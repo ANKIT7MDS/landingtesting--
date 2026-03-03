@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<!-- EventLens build: 2026-02-22 -->
+<html lang="hi">
+<head>
+  <meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#0f172a"/>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>जिला अध्यक्ष जी का प्रवास - EventLens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+  <style>
+:root{--c1:#f97316;--c2:#ef4444;--bgimg:none;}
+*{box-sizing:border-box;}
+html,body{min-height:100%;}
+body{margin:0;font-family:"Plus Jakarta Sans",sans-serif;background-color:#020617;background-image:radial-gradient(ellipse at top left,rgba(249,115,22,.18) 0%,transparent 55%),radial-gradient(ellipse at bottom right,rgba(239,68,68,.12) 0%,transparent 55%),linear-gradient(180deg,#020617 0%,#0a0f1e 100%),var(--bgimg);background-size:cover;background-attachment:fixed;color:#e2e8f0;min-height:100vh;}
+body.has-brand-bg{background-image:radial-gradient(ellipse at top left,rgba(249,115,22,.1) 0%,transparent 50%),linear-gradient(180deg,rgba(2,6,23,.93) 0%,rgba(10,15,30,.96) 100%),var(--bgimg);}
+.glass{background:rgba(15,23,42,.72);backdrop-filter:blur(20px) saturate(1.3);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.09);box-shadow:0 25px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04) inset;}
+#header-banner{width:100%;height:180px;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);position:relative;overflow:hidden;border-radius:20px 20px 0 0;flex-shrink:0;}
+#brand-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;}
+.header-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.6) 100%);}
+.header-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%,rgba(255,255,255,.13) 0%,transparent 40%),radial-gradient(circle at 80% 20%,rgba(255,255,255,.08) 0%,transparent 40%);}
+.brand-text{background:linear-gradient(to right,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.input-field{background:rgba(2,6,23,.6);border:1.5px solid rgba(255,255,255,.1);color:#f1f5f9;border-radius:12px;padding:13px 14px;width:100%;font-size:15px;font-family:"Plus Jakarta Sans",sans-serif;transition:border-color .2s,box-shadow .2s,background .2s;appearance:none;-webkit-appearance:none;}
+.input-field:focus{outline:none;border-color:var(--c1);background:rgba(2,6,23,.8);box-shadow:0 0 0 3px rgba(249,115,22,.18);}
+.input-field::placeholder{color:rgba(148,163,184,.5);}
+.input-field:disabled{opacity:.4;cursor:not-allowed;}
+select.input-field{padding-right:34px;}
+textarea.input-field{resize:vertical;min-height:96px;line-height:1.6;}
+.section-label{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(148,163,184,.85);margin-bottom:12px;}
+.section-label::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.07);}
+.field-label{display:block;font-size:12px;font-weight:600;color:rgba(148,163,184,.9);margin-bottom:6px;}
+.field-hint{font-size:11px;color:rgba(100,116,139,.8);margin-top:5px;line-height:1.4;}
+#photo-drop-zone{border:2px dashed rgba(255,255,255,.15);border-radius:16px;padding:22px 14px;text-align:center;background:rgba(2,6,23,.5);cursor:pointer;transition:all .25s ease;position:relative;-webkit-tap-highlight-color:transparent;}
+#photo-drop-zone.dragover{border-color:var(--c1);background:rgba(249,115,22,.06);box-shadow:0 0 0 3px rgba(249,115,22,.14);}
+#photo-drop-zone.has-photos{border-color:rgba(249,115,22,.3);border-style:solid;}
+#photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px;}
+@media(min-width:400px){#photo-grid{grid-template-columns:repeat(4,1fr);}}
+@media(min-width:520px){#photo-grid{grid-template-columns:repeat(5,1fr);}}
+.photo-thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:rgba(15,23,42,.8);border:1.5px solid rgba(255,255,255,.08);}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.remove-btn{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:rgba(239,68,68,.9);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;z-index:3;transition:transform .15s;}
+.remove-btn:active{transform:scale(.9);}
+.status-bar{position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 8px 8px;}
+.s-pending{background:rgba(148,163,184,.25);}
+.s-converting{background:linear-gradient(90deg,#a78bfa,#818cf8);animation:shimmer 1s infinite;}
+.s-uploading{background:linear-gradient(90deg,var(--c1),var(--c2));animation:shimmer 1.2s infinite;}
+.s-done{background:#10b981;}
+.s-error{background:#ef4444;}
+@keyframes shimmer{0%{opacity:.6}50%{opacity:1}100%{opacity:.6}}
+#upload-progress-wrap{background:rgba(15,23,42,.6);border-radius:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.07);display:none;margin-top:12px;}
+#upload-progress-bar-bg{background:rgba(255,255,255,.08);border-radius:99px;height:6px;overflow:hidden;margin-top:7px;}
+#upload-progress-bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--c1),var(--c2));transition:width .3s ease;width:0%;}
+#submitBtn{width:100%;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:700;color:white;cursor:pointer;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);box-shadow:0 8px 24px rgba(249,115,22,.35);transition:transform .15s,box-shadow .15s,opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.01em;font-family:"Plus Jakarta Sans",sans-serif;}
+#submitBtn:active{transform:scale(.98);box-shadow:0 4px 12px rgba(249,115,22,.25);}
+#submitBtn:disabled{opacity:.65;cursor:not-allowed;transform:none;}
+#status-msg{display:none;padding:12px 16px;border-radius:12px;font-size:13px;font-weight:500;text-align:center;line-height:1.5;margin-top:10px;}
+#status-msg.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.28);color:#fca5a5;}
+#status-msg.success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.28);color:#6ee7b7;}
+#footer-bar{text-align:center;padding:14px 20px 22px;font-size:11px;color:rgba(100,116,139,.7);font-weight:500;letter-spacing:.03em;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+#main-card{animation:fadeUp .4s ease both;}
+#success-screen{display:none;animation:fadeUp .5s ease both;}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+body.el-light{color:#0f172a!important;background:#f0f4f8!important;}
+body.el-light .glass{background:rgba(255,255,255,.88)!important;border-color:rgba(0,0,0,.09)!important;}
+body.el-light .input-field{background:rgba(255,255,255,.95)!important;color:#0f172a!important;border-color:rgba(0,0,0,.14)!important;}
+body.el-light .input-field::placeholder{color:rgba(15,23,42,.4)!important;}
+body.el-light .field-label{color:rgba(15,23,42,.75)!important;}
+body.el-light #photo-drop-zone{background:rgba(0,0,0,.04)!important;border-color:rgba(0,0,0,.14)!important;}
+  
+/* === Mobile Responsive === */
+@media(max-width:600px){
+  input,select,textarea{font-size:16px!important;min-height:44px;}
+  .btn,button[type=submit]{width:100%;padding:12px!important;font-size:15px!important;}
+  body{padding:6px!important;}
+  #main-card{max-width:100%!important;border-radius:14px!important;margin:0!important;}
+  #header-banner{height:130px!important;border-radius:12px 12px 0 0!important;}
+  #logo-wrap{width:42px!important;height:42px!important;}
+  #org-name{font-size:13px!important;}
+  /* 3-col grid to 1-col on very small screens */
+  div[style*="grid-template-columns:1fr 1fr 1fr"]{
+    grid-template-columns:1fr!important;
+  }
+}
+/* Desktop: center card nicely */
+@media(min-width:601px){
+  body{ display:flex; align-items:flex-start; justify-content:center; min-height:100vh; padding:20px; }
+  #main-card{ width:100%; }
+}
+body{overflow-x:hidden;}
+/* Header image: hidden by default, shown by JS onload */
+#brand-header-img{ display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+/* Logo: hidden by default, shown by JS onload */
+#custom-logo{ display:none; width:100%; height:100%; object-fit:contain; }
+
+</style>
+<script>
+// ═══════════════ UNIVERSAL BRANDING v4 ═══════════════
+function _elApplyBranding(cfg, formType){
+  try{
+    var forms=cfg.forms||{}, ft=forms[formType]||{}, def=cfg.defaults||cfg.branding||{}, gl=cfg.global||{};
+    var db=def.branding||{}, fb=ft.branding||{};
+    var title=ft.title||db.title||def.title||gl.title||'';
+    var sub=ft.subtitle||db.subtitle||def.subtitle||'';
+    var tag=ft.tagline||db.tagline||def.tagline||gl.tagline||'';
+    var foot=ft.footer_text||db.footer_text||def.footer_text||gl.tagline||'';
+    // Lambda stores presigned URLs at ft.logo_url, ft.header_url, ft.background_url level
+    var logoUrl=ft.logo_url||fb.logo_url||(fb.logo&&fb.logo.url)||(db.logo&&db.logo.url)||def.logo_url||'';
+    var hdrUrl=ft.header_url||fb.header_url||(fb.header&&fb.header.url)||(db.header&&db.header.url)||def.header_url||'';
+    var bgUrl=ft.background_url||fb.background_url||(fb.background&&fb.background.url)||(db.background&&db.background.url)||def.background_url||'';
+    var bgOpa=((fb.bg_opacity!=null?fb.bg_opacity:db.bg_opacity!=null?db.bg_opacity:def.bg_opacity!=null?def.bg_opacity:35))/100;
+    var c1=fb.color1||db.color1||def.color1||'';
+    var c2=fb.color2||db.color2||def.color2||'';
+    function s(id){ return document.getElementById(id); }
+function isPresignedUrl(u){
+  try{
+    u = String(u||'');
+    return /X-Amz-Signature=|X-Amz-Algorithm=|X-Amz-Credential=|AWSAccessKeyId=|Signature=/.test(u);
+  }catch(e){ return false; }
+}
+function cacheBustSafe(u){
+  u = String(u||'').trim();
+  if(!u) return '';
+  if(isPresignedUrl(u)) return u;
+  var sep = u.indexOf('?')>=0 ? '&' : '?';
+  return u + sep + 't=' + Date.now();
+}
+
+
+    // Text
+    if(title){['org-name','org-title','brand-title'].forEach(function(id){var e=s(id);if(e)e.textContent=title;});}
+    if(sub){['org-sub','org-subtitle','brand-subtitle'].forEach(function(id){var e=s(id);if(e)e.textContent=sub;});}
+    if(tag){['org-tagline','brand-tagline'].forEach(function(id){var e=s(id);if(e){e.textContent=tag;e.style.display='';}});}
+    if(foot){['footer-cam','footer-form','brand-footer'].forEach(function(id){var e=s(id);if(e)e.textContent=foot;});}
+    // Colors
+    if(c1){ document.documentElement.style.setProperty('--o1',c1); document.documentElement.style.setProperty('--c1',c1); }
+    if(c2){ document.documentElement.style.setProperty('--o2',c2); document.documentElement.style.setProperty('--c2',c2); }
+    // Logo
+    if(logoUrl){
+      var lu = cacheBustSafe(logoUrl);
+      ['logo-img','brand-logo','custom-logo'].forEach(function(id){var e=s(id);if(e){
+        e.onerror=function(){this.style.display='none';this.classList.remove('el-loaded');var di=s('default-icon');if(di)di.style.display='';};
+        e.onload=function(){if(this.src&&this.src!==window.location.href){this.style.display='block';this.classList.add('el-loaded');}};
+        e.src=lu;
+        e.style.display='block';
+      }});
+      ['default-icon','logo-icon'].forEach(function(id){var e=s(id);if(e)e.style.display='none';});
+    }
+    // Header
+    if(hdrUrl){
+      var hu = cacheBustSafe(hdrUrl);
+      ['hdr-cam-img','form-hdr-img','brand-header-img'].forEach(function(id){var e=s(id);if(e){
+        e.onerror=function(){this.style.display='none';this.classList.remove('el-loaded');};
+        e.onload=function(){if(this.src&&this.src!==window.location.href){this.style.display='block';this.classList.add('el-loaded');}};
+        e.src=hu;
+      }});
+      ['hdr-cam-img-wrap','form-hdr-img-wrap','brand-header-wrap'].forEach(function(id){var e=s(id);if(e)e.style.display='block';});
+    
+    // Also support DIV banner id="header-image"
+    if(hdrUrl){
+      var hd=s('header-image');
+      if(hd){
+        if(hd.tagName && hd.tagName.toLowerCase()==='img'){
+          hd.onerror=function(){this.style.display='none';};
+          hd.onload=function(){this.style.display='block';};
+          hd.src=cacheBustSafe(hdrUrl);
+          hd.style.display='block';
+        }else{
+          hd.style.backgroundImage='url("'+cacheBustSafe(hdrUrl)+'")';
+          hd.style.backgroundSize='cover';
+          hd.style.backgroundPosition='center';
+          hd.style.display='block';
+        }
+      }
+    }
+}
+    // Background
+    if(bgUrl){
+      var img=new Image();
+      img.onload=function(){
+        document.body.style.backgroundImage='url("'+cacheBustSafe(bgUrl)+'")';
+        document.body.style.backgroundSize='cover';
+        document.body.style.backgroundPosition='center';
+        document.body.style.backgroundAttachment='fixed';
+        var ov=s('_el_bg_ov');
+        if(!ov){ov=document.createElement('div');ov.id='_el_bg_ov';ov.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;';document.body.prepend(ov);}
+        ov.style.background='rgba(15,23,42,'+(1-bgOpa)+')';
+      };
+      img.src=bgUrl;
+    }
+    // Programs
+    var progs=ft.program_options||ft.programs||def.programs||[];
+    if(progs.length){
+      ['program_name','program_type','karyakram_name'].forEach(function(selId){
+        var sel=s(selId);
+        if(sel&&sel.querySelectorAll('option:not([value=""])').length<=1){
+          progs.forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o);});
+        }
+      });
+    }
+    // Level lock
+    var fixedLevel=ft.fixed_level||'';
+    if(fixedLevel){
+      ['level','form_level'].forEach(function(selId){var sel=s(selId);if(sel){sel.value=fixedLevel;sel.disabled=true;}});
+    }
+  }catch(e){ console.warn('[EL Branding]',e); }
+}
+</script>
+</head>
+
+<body class="py-3 px-3 sm:py-6">
+
+<!-- MAIN CARD -->
+<div id="main-card" class="glass rounded-2xl mx-auto overflow-hidden" style="max-width:520px;">
+
+  <!-- Header Banner -->
+  <div id="header-banner">
+    <div class="header-pattern"></div>
+    <img id="brand-header-img" src="" alt="" onerror="this.style.display='none';this.classList.remove('el-loaded');" onload="if(this.src&&this.src!==window.location.href){this.classList.add('el-loaded');}" />
+    <div class="header-overlay"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;z-index:2;">
+      <div style="display:flex;align-items:flex-end;gap:12px;">
+        <div id="logo-wrap" style="width:52px;height:52px;border-radius:14px;background:rgba(0,0,0,.35);border:2px solid rgba(255,255,255,.25);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);">
+          <i id="default-icon" class="fa-solid fa-route" style="font-size:20px;color:white;"></i>
+          <img id="custom-logo" src="" alt="logo" style="width:100%;height:100%;object-fit:contain;display:none;" onerror="this.style.display='none';this.classList.remove('el-loaded');document.getElementById('default-icon')&&(document.getElementById('default-icon').style.display='');" onload="if(this.src&&this.src!==window.location.href){this.classList.add('el-loaded');this.style.display='block';document.getElementById('default-icon')&&(document.getElementById('default-icon').style.display='none');}" />
+        </div>
+        <div style="flex:1;min-width:0;">
+          <h1 id="org-name" style="margin:0;font-size:17px;font-weight:800;color:white;line-height:1.25;text-shadow:0 1px 4px rgba(0,0,0,.4);">जिला अध्यक्ष जी का प्रवास</h1>
+          <p id="org-subtitle" style="margin:3px 0 0;font-size:12px;color:rgba(255,255,255,.75);font-weight:500;">कार्यक्रम पंजीयन</p>
+        </div>
+      </div>
+      <p id="org-tagline" style="margin:7px 0 0;font-size:11px;color:rgba(255,255,255,.6);font-weight:500;display:none;"></p>
+    </div>
+  </div>
+
+  <!-- Form Body -->
+  <div style="padding:20px 16px 6px;">
+    <form id="f" autocomplete="off" novalidate>
+
+      <!-- Section: कार्यक्रम विवरण -->
+      <div class="section-label"><i class="fa-solid fa-calendar-days" style="color:var(--c1)"></i> कार्यक्रम विवरण</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div>
+          <label class="field-label">स्तर (Level) <span style="color:#f87171">*</span></label>
+          <div style="position:relative;">
+            <select id="program_level" class="input-field" required>
+              <option value="">— Level —</option>
+              <option value="जिला">जिला</option>
+              <option value="विधानसभा">विधानसभा</option>
+              <option value="मंडल">मंडल</option>
+            </select>
+            <i class="fa-solid fa-chevron-down" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:rgba(148,163,184,.6);font-size:11px;pointer-events:none;"></i>
+          </div>
+        </div>
+        <div>
+          <label class="field-label">प्रकार <span style="color:#f87171">*</span></label>
+          <select id="program_type" class="input-field" required>
+            <option value="">-- कार्यक्रम का प्रकार चुनें --</option>
+            <option value="संगठनात्मक बैठक / कार्यक्रम">संगठनात्मक बैठक / कार्यक्रम</option>
+            <option value="सामाजिक/ सांस्कृतिक / बैठक कार्यक्रम">सामाजिक/ सांस्कृतिक / बैठक कार्यक्रम</option>
+            <option value="लोकार्पण / भूमिपूजन/शासकीय कार्यक्रम / बैठक">लोकार्पण / भूमिपूजन/शासकीय कार्यक्रम / बैठक</option>
+            <option value="शोक संवेदना कार्यक्रम/निजी प्रवास/स्वागत कार्यक्रम">शोक संवेदना कार्यक्रम/निजी प्रवास/स्वागत कार्यक्रम</option>
+            <option value="मीडिया कार्यक्रम">मीडिया कार्यक्रम</option>
+            <option value="अन्य शहर में संघटनात्मक प्रवास / बैठक">अन्य शहर में संघटनात्मक प्रवास / बैठक</option>
+            <option value="अन्य कोई कार्यक्रम">अन्य कोई कार्यक्रम</option>
+            <option value="प्रवास में सामान्य भेट/ स्वागत/ मुलाक़ात/ भोजन">प्रवास में सामान्य भेट/ स्वागत/ मुलाक़ात/ भोजन</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label class="field-label">कार्यक्रम का नाम <span style="color:#f87171">*</span></label>
+        <input type="text" id="program_name" class="input-field" placeholder="कार्यक्रम का नाम लिखें" required>
+      </div>
+
+      <!-- Section: स्थान -->
+      <div class="section-label" style="margin-top:6px;"><i class="fa-solid fa-location-dot" style="color:var(--c1)"></i> स्थान</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div>
+          <label class="field-label" style="font-size:11px;">जिला <span style="color:#f87171">*</span></label>
+          <div style="position:relative;">
+            <select id="district" class="input-field" required style="font-size:13px;padding:12px 26px 12px 10px;">
+              <option value="">— जिला —</option>
+            </select>
+            <i class="fa-solid fa-chevron-down" style="position:absolute;right:7px;top:50%;transform:translateY(-50%);color:rgba(148,163,184,.6);font-size:9px;pointer-events:none;"></i>
+          </div>
+        </div>
+        <div>
+          <label class="field-label" style="font-size:11px;">विधानसभा</label>
+          <div style="position:relative;">
+            <select id="vidhansabha" class="input-field" style="font-size:13px;padding:12px 26px 12px 10px;">
+              <option value="">— विधानसभा —</option>
+            </select>
+            <i class="fa-solid fa-chevron-down" style="position:absolute;right:7px;top:50%;transform:translateY(-50%);color:rgba(148,163,184,.6);font-size:9px;pointer-events:none;"></i>
+          </div>
+        </div>
+        <div>
+          <label class="field-label" style="font-size:11px;">मंडल</label>
+          <div style="position:relative;">
+            <select id="mandal" class="input-field" style="font-size:13px;padding:12px 26px 12px 10px;">
+              <option value="">— मंडल —</option>
+            </select>
+            <i class="fa-solid fa-chevron-down" style="position:absolute;right:7px;top:50%;transform:translateY(-50%);color:rgba(148,163,184,.6);font-size:9px;pointer-events:none;"></i>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div>
+          <label class="field-label">दिनांक <span style="color:#f87171">*</span></label>
+          <input type="date" id="tour_date" class="input-field" required>
+        </div>
+        <div>
+          <label class="field-label">स्थान <span style="color:#f87171">*</span></label>
+          <input type="text" id="tour_location" class="input-field" placeholder="venue / स्थान" required>
+        </div>
+      </div>
+
+      <!-- Section: अन्य जानकारी -->
+      <div class="section-label" style="margin-top:6px;"><i class="fa-solid fa-circle-info" style="color:var(--c1)"></i> अन्य जानकारी</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div>
+          <label class="field-label">कुल उपस्थिति</label>
+          <input type="number" id="total_attendance" class="input-field" placeholder="संख्या" min="0" inputmode="numeric">
+        </div>
+        <div>
+          <label class="field-label">अन्य प्रमुख वक्ता</label>
+          <input type="text" id="other_speakers" class="input-field" placeholder="नाम, नाम...">
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label class="field-label">कार्यक्रम की जानकारी</label>
+        <textarea id="program_details" class="input-field" placeholder="कार्यक्रम के बारे में जानकारी..."></textarea>
+      </div>
+
+      <!-- ══ PHOTO UPLOAD ══ -->
+      <div class="section-label"><i class="fa-solid fa-camera" style="color:var(--c1)"></i> फोटो अपलोड</div>
+
+      <!-- Hidden input: accept HEIC/HEIF too -->
+      <input type="file" id="photo"
+        accept="image/*,.heic,.heif,image/heic,image/heif"
+        multiple
+        style="display:none;"
+      />
+
+      <!-- Drop Zone -->
+      <div id="photo-drop-zone" onclick="triggerFileInput()">
+        <!-- Empty state -->
+        <div id="dz-empty">
+          <div style="width:52px;height:52px;border-radius:14px;background:rgba(249,115,22,.12);border:1.5px solid rgba(249,115,22,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size:22px;color:var(--c1);"></i>
+          </div>
+          <div style="font-size:15px;font-weight:700;color:rgba(226,232,240,.9);margin-bottom:5px;">Photos चुनें / खींचें</div>
+          <div style="font-size:12px;color:rgba(100,116,139,.8);line-height:1.6;">
+            iPhone <span style="color:rgba(148,163,184,.6);">·</span> Android <span style="color:rgba(148,163,184,.6);">·</span> HEIC <span style="color:rgba(148,163,184,.6);">·</span> JPG <span style="color:rgba(148,163,184,.6);">·</span> PNG<br/>
+            <span style="color:rgba(249,115,22,.85);font-weight:600;">50–100 photos एक साथ</span> — compress होकर upload होंगी
+          </div>
+        </div>
+
+        <!-- Thumbnails grid (hidden initially) -->
+        <div id="photo-grid"></div>
+
+        <!-- Footer bar inside dropzone -->
+        <div id="photo-count-bar" style="display:none;margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.18);">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <i class="fa-solid fa-images" style="color:var(--c1);font-size:13px;"></i>
+              <span style="font-size:13px;font-weight:700;color:rgba(226,232,240,.9);"><span id="photo-count-num">0</span> photos</span>
+              <span id="photo-size-total" style="font-size:11px;color:rgba(100,116,139,.75);"></span>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;">
+              <button type="button" onclick="event.stopPropagation();triggerFileInput()" style="font-size:11px;font-weight:700;color:var(--c1);background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);padding:4px 10px;border-radius:7px;cursor:pointer;">
+                <i class="fa-solid fa-plus" style="margin-right:3px;"></i>जोड़ें
+              </button>
+              <button type="button" onclick="event.stopPropagation();clearAllPhotos()" style="font-size:11px;font-weight:600;color:rgba(239,68,68,.8);background:none;border:none;cursor:pointer;padding:4px 8px;">
+                सब हटाएं
+              </button>
+            </div>
+          </div>
+          <!-- Mini converting indicator -->
+          <div id="converting-indicator" style="display:none;margin-top:8px;font-size:11px;color:rgba(167,139,250,.85);display:flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-circle-notch fa-spin" style="font-size:10px;"></i>
+            <span id="converting-text">HEIC convert हो रहा है...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overall upload progress -->
+      <div id="upload-progress-wrap">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span id="progress-label" style="font-size:12px;font-weight:600;color:rgba(226,232,240,.85);">Uploading...</span>
+          <span id="progress-count" style="font-size:12px;font-weight:700;color:var(--c1);"></span>
+        </div>
+        <div id="upload-progress-bar-bg"><div id="upload-progress-bar"></div></div>
+        <div id="progress-detail" style="font-size:10px;color:rgba(100,116,139,.7);margin-top:5px;"></div>
+      </div>
+
+      <!-- Status msg -->
+      <div id="status-msg"></div>
+
+      <!-- Submit -->
+      <div style="margin-top:20px;padding-bottom:4px;">
+        <button type="submit" id="submitBtn">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span id="submitBtnText">सबमिट करें</span>
+        </button>
+      </div>
+
+    </form>
+
+    <div id="footer-bar"><span id="footer-text">Powered by EventLens</span></div>
+  </div>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div id="success-screen" class="glass rounded-2xl mx-auto text-center" style="max-width:520px;padding:44px 28px;">
+  <div style="width:70px;height:70px;border-radius:50%;background:rgba(16,185,129,.14);border:2px solid rgba(16,185,129,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px;color:#34d399;">
+    <i class="fa-solid fa-circle-check"></i>
+  </div>
+  <h2 style="font-size:22px;font-weight:800;color:white;margin:0 0 8px;">धन्यवाद! 🙏</h2>
+  <p id="success-msg" style="color:rgba(203,213,225,.85);font-size:14px;line-height:1.6;margin:0 0 24px;">
+    कार्यक्रम की जानकारी सफलतापूर्वक सेव हो गई।
+  </p>
+  <div id="success-stats" style="display:flex;gap:10px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;"></div>
+  <button onclick="resetForm()" style="padding:12px 26px;border-radius:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);color:rgba(226,232,240,.9);font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.02em;">
+    <i class="fa-solid fa-rotate-right" style="margin-right:8px;"></i>नया फॉर्म
+  </button>
+</div>
+
+<script>
+// ═══════════════════════════════════
+//  CONFIG & UTILS
+// ═══════════════════════════════════
+const API_ID = "vxid0yoovj";
+const AWS_REGION = "ap-south-1";
+const BASE_URL = `https://${API_ID}.execute-api.${AWS_REGION}.amazonaws.com/prod`;
+const FORM_TYPE_RAW = "president_tour_form";
+
+const $ = id => document.getElementById(id);
+const qs = n => { try { return (new URL(location.href)).searchParams.get(n)||""; } catch(e){ return ""; } };
+
+const __EL_PREVIEW_MODE = qs("preview")==="1";
+const __EL_EMBED_MODE   = qs("embed")==="1" || window.self!==window.top;
+const __EL_THEME_MODE   = (qs("theme")||"").toLowerCase();
+if(__EL_EMBED_MODE) document.body.classList.add("el-embed");
+if(__EL_THEME_MODE==="light") document.body.classList.add("el-light");
+
+const token    = qs("token").trim();
+const cidParam = (qs("cid")||qs("collection_id")||qs("id")).trim();
+const debug    = qs("debug")==="1";
+
+function isPublicMode(){ return !!token; }
+function safeStr(v){ return (v===null||v===undefined) ? "" : String(v); }
+
+function showStatus(msg, isErr){
+  const el = $("status-msg");
+  if(!el) return;
+  if(!msg){ el.style.display="none"; el.className=""; return; }
+  el.style.display="block";
+  el.className = isErr ? "error" : "success";
+  el.textContent = msg;
+}
+
+// ═══════════════════════════════════
+//  API
+// ═══════════════════════════════════
+async function apiCall(action, payload){
+  const url = `${BASE_URL}/political/forms`;
+  const res = await fetch(url, { method:"POST", cache:"no-store", body: JSON.stringify({action, payload: payload||{}}) });
+  const text = await res.text();
+  let data={};
+  try{ data=JSON.parse(text); }catch(e){ data={message:text||"Invalid JSON"}; }
+  if(!res.ok) throw new Error(data.message||data.error||`HTTP ${res.status}`);
+  return data;
+}
+
+async function uploadToS3(url, file, mime){
+  const res = await fetch(url, { method:"PUT", body:file, headers:{"Content-Type": mime||file.type||"image/jpeg"} });
+  if(!res.ok) throw new Error(`S3 upload failed: HTTP ${res.status}`);
+}
+
+async function sha256Hex(file){
+  const buf = await file.arrayBuffer();
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+// ═══════════════════════════════════
+//  BRANDING
+// ═══════════════════════════════════
+function mergeObj(a,b){
+  const out=Object.assign({},a||{});
+  Object.keys(b||{}).forEach(k=>{
+    if(b[k]&&typeof b[k]==="object"&&!Array.isArray(b[k])) out[k]=mergeObj(out[k],b[k]);
+    else out[k]=b[k];
+  });
+  return out;
+}
+
+async function loadRemoteConfig(ft){
+  try{
+    const p = isPublicMode() ? {token,form_type:ft} : {collection_id:cidParam,form_type:ft};
+    const a = isPublicMode() ? "public_get_config" : "admin_get_config";
+    const res = await apiCall(a,p);
+    return res&&(res.config||res.settings||res.data||res);
+  }catch(e){
+    if(debug) console.log("config load failed",e);
+    return null;
+  }
+}
+
+function applyBrandingFromConfig(cfg, ft, fallTitle, fallSub, fallTag, iconId){
+  const root = cfg||{};
+  const settings = root.settings||root.config||root.data||root;
+  const defaultsNode = settings.defaults || settings.default || {};
+  const formsNode = settings.forms || (settings.branding && settings.branding.forms) || {};
+  const formNode  = formsNode[ft] || formsNode[String(ft||"").toLowerCase()] || {};
+  const legacyG   = (settings.branding && settings.branding.global) ? settings.branding.global : {};
+  const legacyP   = (settings.branding && settings.branding.forms && settings.branding.forms[ft]) ? settings.branding.forms[ft] : {};
+  const defBrand  = (defaultsNode && defaultsNode.branding) ? defaultsNode.branding : defaultsNode;
+  const formBrand = (formNode && formNode.branding) ? formNode.branding : formNode;
+  const brand     = mergeObj(mergeObj(mergeObj(defBrand, formBrand), legacyG), legacyP);
+
+  const title    = brand.title    || formNode.title    || fallTitle  || "जिला अध्यक्ष जी का प्रवास";
+  const subtitle = brand.subtitle || formNode.subtitle || fallSub    || "कार्यक्रम पंजीयन";
+  const tagline  = brand.tagline  || formNode.tagline  || fallTag    || "";
+  // Lambda returns logo_url/header_url/background_url at formNode level AND inside branding object
+  const logoUrl  = formNode.logo_url || brand.logo_url || (brand.logo&&brand.logo.url) || (formNode.branding&&formNode.branding.logo_url) || "";
+  const headerImg= formNode.header_url || brand.header_url || brand.header_image_url || (brand.header&&brand.header.url) || (formNode.branding&&formNode.branding.header_url) || "";
+  const bgImg    = formNode.background_url || brand.background_url || brand.background_image_url || (brand.background&&brand.background.url) || (formNode.branding&&formNode.branding.background_url) || "";
+  const footerTxt= brand.footer_text||"";
+
+  if($("org-name"))    $("org-name").textContent    = title;
+  if($("org-subtitle"))$("org-subtitle").textContent= subtitle;
+  if($("org-tagline")){ $("org-tagline").textContent=tagline; $("org-tagline").style.display=tagline?"":"none"; }
+  if($("footer-text") && footerTxt) $("footer-text").textContent=footerTxt;
+  document.title = title + " - EventLens";
+
+  const c1 = brand.primary_color||brand.color_primary||brand.c1||brand.color1||"";
+  const c2 = brand.secondary_color||brand.color_secondary||brand.c2||brand.color2||"";
+  if(c1) document.documentElement.style.setProperty("--c1",c1);
+  if(c2) document.documentElement.style.setProperty("--c2",c2);
+
+  const setImg = (elId, url, isBg) => {
+    const el=$(elId); if(!el) return;
+    if(!url){ el.style.display="none"; return; }
+    const img=new Image();
+    img.onload=()=>{ if(isBg){ el.style.backgroundImage=`url('${url}')`; el.style.backgroundSize="cover"; el.style.display="block"; } else { el.src=url; el.style.display="block"; } };
+    img.onerror=()=>{ el.style.display="none"; };
+    img.src=url;
+  };
+
+  // Logo - safe load with onerror/onload
+  if(logoUrl){
+    const logoEl=$("custom-logo");
+    if(logoEl){
+      logoEl.onerror=function(){ 
+        this.style.cssText="display:none!important"; 
+        const di=$(iconId)||$("default-icon"); 
+        if(di){ di.style.display="flex"; di.style.cssText="display:flex!important"; }
+      };
+      logoEl.onload=function(){
+        if(this.src && this.src!==window.location.href && !this.src.endsWith('/')){
+          this.style.cssText="display:block!important;width:100%;height:100%;object-fit:contain;";
+          this.classList.add("el-loaded");
+          const di=$(iconId)||$("default-icon"); 
+          if(di) di.style.cssText="display:none!important";
+        }
+      };
+      logoEl.src=logoUrl;
+    }
+    if($(iconId)) $(iconId).style.display="none";
+  }
+
+  // Header banner - safe load
+  if(headerImg){
+    const hi=$("brand-header-img");
+    if(hi){
+      hi.onerror=function(){ this.style.cssText="display:none!important"; };
+      hi.onload=function(){ 
+        if(this.src && this.src!==window.location.href){
+          this.style.cssText="display:block!important;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;";
+        }
+      };
+      hi.src=headerImg;
+    }
+  }
+
+  // Background
+  if(bgImg){
+    const bg=new Image();
+    bg.onload=()=>{
+      document.documentElement.style.setProperty("--bgimg",`url('${bgImg}')`);
+      document.body.classList.add("has-brand-bg");
+    };
+    bg.src=bgImg;
+  }
+}
+
+// Program names fill
+function fillProgramNames(cfg, selectId){
+  const sel=$(selectId); if(!sel) return;
+  const list=(cfg&&(cfg.programs||(cfg.data&&cfg.data.programs)))||[];
+  if(!Array.isArray(list)||!list.length) return;
+  sel.innerHTML='<option value="">— कार्यक्रम चुनें —</option>';
+  list.forEach(p=>{ const v=safeStr(p).trim(); if(!v) return; const o=document.createElement("option"); o.value=v; o.textContent=v; sel.appendChild(o); });
+}
+
+function normalizeFormType(ft){
+  ft=(ft||"").toString().trim().toLowerCase();
+  if(!ft) return "president_tour_form";
+  ft=ft.replace(/^political_/,"");
+  return ft;
+}
+const FT_FROM_QS = (qs("ft")||qs("form_type")||"").trim();
+const FORM_TYPE  = normalizeFormType(FT_FROM_QS||FORM_TYPE_RAW);
+const FIELD_IDS  = ["program_level","program_type","program_name","district","vidhansabha","mandal","tour_date","tour_location","total_attendance","other_speakers","program_details"];
+
+// ═══════════════════════════════════
+//  DISTRICT DATA
+// ═══════════════════════════════════
+    const DISTRICT_DATA = {
+  "मुरैना": {
+    "3. सबलगढ़": [
+      "सबलगढ़ नगर",
+      "सबलगढ़ गामीण",
+      "नेपरी",
+      "टेंटरा नया",
+      "रामपुर कलां नया"
+    ],
+    "4. जौरा": [
+      "कैलारस",
+      "जौरा नगर",
+      "जौरा ग्रामीण",
+      "पहाडगढ़",
+      "सरसैनी"
+    ],
+    "5. सुमावली": [
+      "सुमावली",
+      "छैरा",
+      "मुंगावली",
+      "बागचीनी",
+      "मुरैना गा्रमीण"
+    ],
+    "6. मुरैना": [
+      "मुरैना पूर्व",
+      "मुरैना पश्चिम",
+      "मुरैना दक्षिण",
+      "बानमौर",
+      "रिठौराकलाॅ",
+      "जडेरूआ नया"
+    ],
+    "7. दिमनी": [
+      "दिमनी",
+      "सिहोनियां",
+      "जीगनी",
+      "थरा",
+      "नावली बड़ागांव नया"
+    ],
+    "8. अम्बाह अजा": [
+      "अम्बाह नगर",
+      "अम्बाह ग्रामीण",
+      "पोरसा नगर",
+      "पोरसा ग्रामीण",
+      "नगरा"
+    ]
+  },
+  "भिण्ड": {
+    "9. अटेर": [
+      "अटेर",
+      "फूफ",
+      "पीपरी",
+      "सुरपुरा",
+      "सरायघार नया",
+      "जवासा नया"
+    ],
+    "10. भिण्ड": [
+      "भिण्ड गा्रमीण",
+      "महाराणा प्रताप",
+      "बनखण्डेश्वर",
+      "सुभाषचंद्र बोस",
+      "उमरी ,नयागांव",
+      "उमरी अकोड़ा नया"
+    ],
+    "11. लहार": [
+      "लहार",
+      "आलमपुर",
+      "दबोह",
+      "असवार",
+      "मिहोना",
+      "मछण्ड"
+    ],
+    "12. मेहगांव": [
+      "मेहगांव",
+      "आमायन",
+      "रौन",
+      "गोरमी",
+      "सोनी",
+      "दंदरौआ"
+    ],
+    "13. गोहद अजा": [
+      "गोहद नगर",
+      "गोहद गा्रमीण",
+      "मौ",
+      "चितौरा",
+      "मालनपुर नया"
+    ]
+  },
+  "दतिया": {
+    "20. सेवढ़ा": [
+      "सेवढ़ा नगर",
+      "सेवढ़ा ग्रामीण (बअुआपुरा)",
+      "इन्दरगढ़ नगर",
+      "इन्दरगढ़ ग्रामीण",
+      "थरेट नया"
+    ],
+    "21. भाण्डेर अजा": [
+      "सालौन बी",
+      "भाण्डेर",
+      "उन्नाव बालाजी",
+      "ईमलिया उन्नाव ग्रामीण",
+      "उडीना नया"
+    ],
+    "22. दतिया": [
+      "दतिया नगर",
+      "दतिया ग्रामीण",
+      "बडौनी",
+      "उदगुआ",
+      "बसई",
+      "सीतापुर नया"
+    ]
+  },
+  "ग्वालियर नगर": {
+    "15. ग्वालियर": [
+      "कोटेश्वर महादेव",
+      "संत रविदास",
+      "वीर दुर्गादास राठौर",
+      "रानी लक्ष्मीबाई",
+      "राजा मानसिंह तोमर",
+      "महाराजा अग्रसेन नया"
+    ],
+    "16. ग्वालियर पूर्व": [
+      "पं. दीनदयाल उपाध्याय",
+      "महाराणा प्रताप",
+      "शहीद भगत सिंह",
+      "स्वामी रामकृष्ण",
+      "वीर सावरकर",
+      "बाबासाहेब अंबेडकर नया"
+    ],
+    "17. ग्वालियर दक्षिण": [
+      "अटल बिहारी  वाजपाई",
+      "शहीद हेमू कालोनी",
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "स्वामी विवेकानंद",
+      "गुप्तेश्वर महादेव"
+    ]
+  },
+  "ग्वालियर ग्रा .": {
+    "14. ग्वालियर ग्रामीण": [
+      "तानसेन बेहट",
+      "उटिला",
+      "बेरजा",
+      "पुरानी छावनी",
+      "कैंटोमेंट",
+      "गिरवाई नया"
+    ],
+    "18. भितरवार": [
+      "भितरवार",
+      "आंतरी",
+      "चीनोर",
+      "घाटीगांव",
+      "मोहना",
+      "लखेश्वरी नया"
+    ],
+    "19. डबरा अजा": [
+      "डबरा नं.",
+      "डबरा गा्रं.",
+      "पिछोर",
+      "बिलौआ",
+      "छीमक"
+    ]
+  },
+  "श्योपुर": {
+    "1. श्योपुर": [
+      "श्योपुर",
+      "बडोदा",
+      "मानपुर",
+      "प्रेमसर",
+      "पाण्डोला नया",
+      "श्योपुर ग्रामीण नया",
+      "दांतरदा नया"
+    ],
+    "2.विजयपुर": [
+      "विजयपुर",
+      "वीरपुर",
+      "कराहल",
+      "गोरस",
+      "गसवानी",
+      "अगरा नया",
+      "रघुनाथपुर नया"
+    ]
+  },
+  "शिवपुरी": {
+    "23. करेरा अजा": [
+      "करेरा",
+      "सिरसौद",
+      "करही",
+      "दिनारा",
+      "नरवर"
+    ],
+    "24. पोहरी": [
+      "पोहरी",
+      "बैराड़",
+      "सतनवाड़ा (नरवर ग्रामीण)",
+      "सुभाषपुरा मुडैरी",
+      "झिरी-भटनावर नया",
+      "मुढैरी-कुंवरपुर नया"
+    ],
+    "25. शिवपुरी": [
+      "शिवपुरी नगर",
+      "शिवपुरी ग्रामीण",
+      "शिवपुरी पुरानी",
+      "खोड़",
+      "वीरा-सरवाया नया",
+      "शिवपुरी-फिजिकल नया"
+    ],
+    "26. पिछोर": [
+      "पिछोर",
+      "खनियाधाना",
+      "बामोरकला",
+      "मायापुर",
+      "भौती",
+      "मुहारी नया"
+    ],
+    "27. कोलारस": [
+      "कोलारस",
+      "बदरवास",
+      "रन्नौद",
+      "लुकवासा",
+      "खराई",
+      "खतौरा नया"
+    ]
+  },
+  "गुना": {
+    "28. बामोरी": [
+      "म्याना",
+      "बामोरी",
+      "सिरसी",
+      "झागर नया",
+      "उमरी नया"
+    ],
+    "29. गुना अजा": [
+      "गुना",
+      "गुना कैंट",
+      "बजरंगढ",
+      "पगारा",
+      "बूढे बालाजी नया"
+    ],
+    "30. चाचैड़ा": [
+      "चाचैडा",
+      "कुम्भराज",
+      "मकसूदनगढ़",
+      "रूठियाई",
+      "मृगवास",
+      "तेलीगांव नया"
+    ],
+    "31. राघोगढ़": [
+      "राघोगढ़",
+      "आरोन",
+      "जामनेर",
+      "पनवाडी",
+      "फतेहगढ़"
+    ]
+  },
+  "अशोक नगर": {
+    "32. अशोकनगर अजा": [
+      "अशोकनगर नगर",
+      "अशोकनगर गा्रमीण",
+      "शाढौरा",
+      "राजपुर",
+      "सोनेरा (कचनार)",
+      "पछार नया"
+    ],
+    "33. चंदेरी": [
+      "चंदेरी नगर",
+      "चंदेरी गा्रमीण",
+      "ईसागढ़",
+      "नईसराय",
+      "ढाकोनी (आनंदपुर)"
+    ],
+    "34. मुंगावली": [
+      "मुंगावली",
+      "बहादुरपुर",
+      "पिपरई",
+      "सहराई",
+      "थूवोन",
+      "अथाईखेडा नया"
+    ]
+  },
+  "सागर": {
+    "35. बीना अजा": [
+      "बीना नगर",
+      "बीना गा्रमीण",
+      "भानगढ़ नया",
+      "खिमलासा",
+      "मण्डी बामोरा"
+    ],
+    "36. खुरई": [
+      "खुरई नगर",
+      "खुरई गा्रमीण",
+      "मालथौन",
+      "वांदरी",
+      "धनौरा नया",
+      "बरोदिया कलां नया"
+    ],
+    "37. सुरखी": [
+      "सुरखी नगर",
+      "सिहोरा",
+      "राहतगढ़",
+      "जयसिंह नगर",
+      "बिलहरा",
+      "राहतगढ़ नगर नया"
+    ],
+    "40. नरियावली अजा": [
+      "नरयावली",
+      "सागर गा्रमीण",
+      "सदर",
+      "मकरोनिया नगर",
+      "मकरोनिया ग्रामीण"
+    ],
+    "41. सागर": [
+      "सागर नगर",
+      "डाॅ. हरिसिंह गौर",
+      "डाॅ. भीमराव अम्बेकर",
+      "यमुनाताई ठाकुर नया"
+    ]
+  },
+  "सागर ग्रामीण": {
+    "38. देवरी": [
+      "देवरी नगर",
+      "केसली",
+      "गोरझामर",
+      "महाराजपुर",
+      "सहजपुर",
+      "अनंतपुरा नया"
+    ],
+    "39. रेहली": [
+      "रहेली नगर",
+      "रहेली गा्रमीण",
+      "गढ़ाकोटा नगर",
+      "गढ़ाकोटा गा्रमीण",
+      "शाहपुर",
+      "पटना बुजुर्ग नया",
+      "बलेह नया"
+    ],
+    "42. बण्डा": [
+      "बण्डा नगर",
+      "शाहगढ़",
+      "बरोहल",
+      "दलपतपुर",
+      "बरा",
+      "बरायठा नया",
+      "छापरी नया"
+    ]
+  },
+  "टीकमगढ़": {
+    "43. टीकमगढ़": [
+      "टीकमगढ़ नगर",
+      "टीकमगढ़ गा्रमीण",
+      "बडागांवधसान",
+      "कुण्डेश्वर",
+      "बुडेरा",
+      "सावरकर नया"
+    ],
+    "44. जतारा अजा": [
+      "जतारा",
+      "लिधोरा",
+      "थर बराना",
+      "चंदेरा",
+      "बम्हौरी कलां नया"
+    ],
+    "47. खरगापुर": [
+      "पलेरा",
+      "बल्देवगढ़",
+      "खरगापुर",
+      "कुडीला",
+      "देरी नया"
+    ]
+  },
+  "निवाड़ी": {
+    "45. पृथ्वीपुर": [
+      "पृथ्वीपुर नगर",
+      "पृथ्वीपुर ग्रामीण नया",
+      "मोहनगढ़",
+      "जैरोन",
+      "दिगोड़ा"
+    ],
+    "46. निवाडी": [
+      "निवाडी नगर",
+      "निवाड़ी ग्रामीण नया",
+      "ओरछा",
+      "तरीचकला",
+      "नैगुआ नया"
+    ]
+  },
+  "छतरपुर": {
+    "48. महाराजपुर": [
+      "महाराजपुर",
+      "नौगांव नगर",
+      "हरपालपुर",
+      "लुगासी",
+      "गढ़ीमलहरा नया"
+    ],
+    "49. चन्दला": [
+      "चन्दला",
+      "बारीगढ़",
+      "सरवई",
+      "बाछौन",
+      "गौरीहार नया"
+    ],
+    "50. राजनगर": [
+      "राजनगर",
+      "बमीठा",
+      "लवकुश नगर",
+      "खजुराहो",
+      "विक्रमपुर  नया"
+    ],
+    "51. छतरपुर": [
+      "छतरपुर नगर",
+      "छतरपुर ग्रामीण",
+      "महेवा",
+      "पड़रिया",
+      "निवारी नया"
+    ],
+    "52. बिजावर": [
+      "बिजावर",
+      "सटई",
+      "ईसानगर",
+      "किशनगढ़",
+      "मातगुवां नया"
+    ],
+    "53. बड़ा मलेहरा": [
+      "बड़ामलेहरा नगर",
+      "बड़ामलेहरा ग्रामीण",
+      "घुवारा",
+      "बक्सवाहा",
+      "बाजना नया"
+    ]
+  },
+  "पन्ना": {
+    "58. पवई": [
+      "पवई",
+      "शाहनगर",
+      "रैपुरा",
+      "मोहन्द्रा, मोहर्रा सिमरिया",
+      "कल्दा (आदिवासी)",
+      "बिसानी नया",
+      "सिमरिया नया"
+    ],
+    "59. गुन्नौर अजा": [
+      "अमानगंज",
+      "गुन्नौर",
+      "देवेन्द्र नगर",
+      "सलेहा",
+      "ककरहटी",
+      "महेबा नया"
+    ],
+    "60. पन्ना": [
+      "पन्ना नगर",
+      "पन्ना ग्रा.",
+      "अजयगढ़",
+      "धरमपुर",
+      "बृजपुर",
+      "बीरा नया"
+    ]
+  },
+  "सतना": {
+    "61. चित्रकुट": [
+      "बिरसिंहपुर",
+      "मझगवां",
+      "बरौधा",
+      "जैतवारा",
+      "चित्रकुट नया"
+    ],
+    "62. रैगांव अजा": [
+      "सोहावल",
+      "सिंहपुर",
+      "कोठी",
+      "सेमरवारा",
+      "भरजूना  नया"
+    ],
+    "63. सतना": [
+      "सतना नगर पश्चिमी (कुशाभाऊ ठाकरे)",
+      "सतना पूर्वी  (पं. दीनदयाल उपाध्याय)",
+      "बाबूपुर",
+      "अटल बिहारी वाजपेयी",
+      "डाॅ. श्यामा प्रसाद मुखर्जी नया"
+    ],
+    "64. नागौद": [
+      "नागौद",
+      "उचेहरा",
+      "परसमनिया",
+      "अटरा",
+      "जसो",
+      "भरहुत  नया"
+    ],
+    "67. रामपुर बघेलान": [
+      "रामपुर बघेलान",
+      "मोहारी कटरा",
+      "कोटर",
+      "सज्जनपुर",
+      "छिबौरा"
+    ]
+  },
+  "मैहर  नया जिला": {
+    "65. मैहर": [
+      "मेैहर नगर",
+      "नादन",
+      "बदेरा",
+      "अमदरा",
+      "सोनवारी नया",
+      "बेरमा नया"
+    ],
+    "66. अमरपाटन": [
+      "अमरपाटन",
+      "रामनगर",
+      "ताला",
+      "मर्यादापुर",
+      "कठहा नया",
+      "बड़वार नया"
+    ]
+  },
+  "रीवा": {
+    "68. सिरमौर": [
+      "सिरमौर",
+      "जवा",
+      "डभौरा",
+      "बैकुण्ठपुर नया",
+      "अतरैला नया"
+    ],
+    "69. सेमरिया": [
+      "सेमरिया",
+      "शाहपुर",
+      "बनकुंइया",
+      "मनकहरी  नया"
+    ],
+    "70. त्याथौर": [
+      "त्यौथर",
+      "गढ़ी",
+      "रायपुर सोनौरी",
+      "कटरा नया"
+    ],
+    "73. मनगवां अजा": [
+      "मनगवां",
+      "रामपुर सर्किल",
+      "लालगांव (गढ)",
+      "देवास नया",
+      "सूरा नया"
+    ],
+    "74. रीवा": [
+      "अटल (रीवा नगर)",
+      "रीवा ग्रामीण",
+      "बिछिया",
+      "बोदाबाग (दीनदयाल)"
+    ],
+    "75. गुढ़": [
+      "गुढ़",
+      "गोविन्दगढ़",
+      "रायपुरकुर्चलियान",
+      "महसांव नया"
+    ]
+  },
+  "मऊगंज  नया जिलाा": {
+    "71. मउगंज": [
+      "मउगंज",
+      "हनुमना",
+      "खटकरी",
+      "शाहपुर नया",
+      "पिपराही नया"
+    ],
+    "72. देवतालाब": [
+      "देवतालाब",
+      "रघुराज गढ़",
+      "नईगढ़ी",
+      "सीतापुर",
+      "तमरी नया"
+    ]
+  },
+  "सीधी": {
+    "76. चुरहट": [
+      "चुरहट",
+      "रामपुरनैकिन",
+      "खड्डी",
+      "पटपरा",
+      "चोरगड़ी",
+      "पड़खुरी नया",
+      "हनुमानगढ़ नया"
+    ],
+    "77. सीधी": [
+      "सीधी नगर",
+      "कुचवाही",
+      "सेमरिया",
+      "बरमबाबा",
+      "अमरपुर",
+      "चैफाल"
+    ],
+    "78. सिंहावल": [
+      "सिंहावल",
+      "बहरी",
+      "सोनवर्षा",
+      "अमिलिया नया",
+      "मायापुर नया"
+    ],
+    "82. धौहनी अजजा": [
+      "मझौली",
+      "मडवास",
+      "कुसमी",
+      "पौंडी निवास",
+      "खडौरा नया"
+    ]
+  },
+  "सिंगरौली": {
+    "79. चितरंगी अजजा": [
+      "चितरंगी",
+      "गौरबी",
+      "बगदरा",
+      "कर्थुआ",
+      "मौहरिया",
+      "बगैया"
+    ],
+    "80. सिंगरौली": [
+      "सिंगरौली",
+      "बैढन",
+      "तियरा",
+      "विन्ध्यनगर",
+      "जयन्त नगर"
+    ],
+    "81. देवसर अजा": [
+      "खुटार",
+      "माडा",
+      "सरई",
+      "बरगवां",
+      "लंघाडोल",
+      "रजमिलान"
+    ],
+    "82. धौहनी": [
+      "निवास",
+      "रजनिया  नया"
+    ],
+    "78. सिंहावल": [
+      "देवसर जियावन",
+      "नौड़िया"
+    ]
+  },
+  "शहडोल": {
+    "83. ब्यौहारी अजजा": [
+      "बाणसागर",
+      "ब्यौहारी",
+      "पपौध",
+      "सीधी",
+      "आमडीह (करकी)",
+      "टिकही नया",
+      "मऊ नया"
+    ],
+    "84. जयसिंह नगर अजजा": [
+      "जयसिंह नगर",
+      "गोहपारू",
+      "शहडोल नगर",
+      "सोहागपुर",
+      "सिंहपुर",
+      "चुहरी  नया"
+    ],
+    "85. जैतपुर अजजा": [
+      "बुढार",
+      "खैहरा",
+      "धनपुरी",
+      "केशवाही",
+      "जैतपुर",
+      "बकहो नया"
+    ]
+  },
+  "अनूपपुर": {
+    "86. कोतमा": [
+      "कोतमा नगर",
+      "कोतमा गा्रमीण",
+      "बिजुरी नगर",
+      "राजनगर नगर",
+      "राजनगर ग्रामीण"
+    ],
+    "87. अनूपपुर": [
+      "अनूपपुर नगर",
+      "अनूपपुर गा्रमीण",
+      "फुनगा",
+      "पसान",
+      "जैतहरी"
+    ],
+    "88. पुष्पराजगढ़ अजजा": [
+      "अमरकंटक",
+      "राजेन्द्रगा्रम नगर",
+      "बेनीवारी",
+      "करपा",
+      "वैंकट नगर",
+      "दमेहडी  नया"
+    ]
+  },
+  "उमरिया": {
+    "89. बांधगढ़ अजजा": [
+      "चंदिया",
+      "उमरिया नगर",
+      "उमरिया ग्रामीण",
+      "करकेली",
+      "नौरोजाबाद",
+      "बिलासपुर नया",
+      "कोहका  नया"
+    ],
+    "90. मानपुर अजजा": [
+      "अमरपुर",
+      "मानपुर",
+      "पाली नगर",
+      "पाली ग्रामीण",
+      "पिपरिया",
+      "बिजौरी नया",
+      "इंदवार नया"
+    ]
+  },
+  "जबलपुर नगर": {
+    "97. जबलपुर पूर्व अजा": [
+      "डाॅ. श्याम प्रसाद मुखर्जी",
+      "लोकमान्य बाल गंगाधर तिलक",
+      "शहीद अब्दुल हमीद",
+      "नेता जी सुभाषचंद्र बोस"
+    ],
+    "98. जबलपुर उत्तर": [
+      "शहीद चन्द्रशेखर आजाद",
+      "स्वामी विवेकानंद",
+      "पं. दीनदयाल उपाध्याय",
+      "कुशाभाऊ ठाकरे",
+      "आचार्य विद्यासागर  नया"
+    ],
+    "99. जबलपुर केन्ट": [
+      "वीर सावरकर",
+      "शहीद भगत सिंह",
+      "छत्रपति शिवाजी",
+      "अटल बिहारी वाजपेयी"
+    ],
+    "100. जबलपुर पश्चिम": [
+      "गिरीराज किशोर कपूर",
+      "रानी दुर्गावती",
+      "मां नर्मदा",
+      "महाराणा प्रताप",
+      "महर्षि वाल्मिकी  नया"
+    ]
+  },
+  "जबलपुर गा्र.": {
+    "95. पाटन": [
+      "पाटन",
+      "मझोली पश्चिम",
+      "मझोली पूर्व",
+      "कटंगी",
+      "पोडा",
+      "नुनसर"
+    ],
+    "96. बरगी": [
+      "बरगी",
+      "चरगवां",
+      "शहपुरा",
+      "भेडाघाट",
+      "तिलवारा",
+      "बेलखेड़ा"
+    ],
+    "101. पनागर": [
+      "पनागर नगर",
+      "पनागर पूर्व",
+      "पनागर पश्चिम",
+      "सोहागी करमेता",
+      "बरेला",
+      "महाराजपुर नया",
+      "रानी दुर्गावती"
+    ],
+    "102. सीहोरा अजजा": [
+      "सीहोरा नगर",
+      "गोसलपुर (सीहोरा ग्रा.)",
+      "मझगवां",
+      "बघराजी",
+      "कुण्डम",
+      "चैरई कलां  नया"
+    ]
+  },
+  "कटनी": {
+    "91. बडवारा अजजा": [
+      "बडवारा",
+      "ढीमरखेडा",
+      "सिलोडी",
+      "देवरी हटाई",
+      "कैमोर",
+      "विलायतकला",
+      "पान उमरिया"
+    ],
+    "92. विजयराघोगढ़": [
+      "विजय राघवगढ़",
+      "सिनगोडी",
+      "बरही",
+      "खितौली",
+      "कांटी",
+      "पिपरिया कलां नया"
+    ],
+    "93. मुडवारा": [
+      "मुडवारा (कटनीनगर)",
+      "माधवनगर",
+      "न्यू कटनी",
+      "कटनी गा्रमीण",
+      "निवार",
+      "स्लीमनाबाद",
+      "पं. दीनदयाल उपाध्याय नया"
+    ],
+    "94. बहोरीबंद": [
+      "बहोरीबंद",
+      "रीठी",
+      "बिलहरी",
+      "बाकल",
+      "कुआ",
+      "देवगांव  नया"
+    ]
+  },
+  "डिण्डौरी": {
+    "103. शाहपुरा अजजा": [
+      "मेहंदवानी",
+      "अमरपुर",
+      "शाहपुर",
+      "शहपुरा",
+      "मानिकपुर नया",
+      "सक्का  नया"
+    ],
+    "104. डिण्डौरी अजजा": [
+      "करंजिया",
+      "बजाग",
+      "समनापुर",
+      "डिण्डौरी",
+      "गोपालपुर नया",
+      "गाड़ासरई नया",
+      "बम्हनी नया"
+    ]
+  },
+  "मण्डला": {
+    "105. बिछिया अजजा": [
+      "बिछिया",
+      "मवई",
+      "घुघरी",
+      "अंजनिया",
+      "घुटास नया",
+      "सलवाह नया"
+    ],
+    "106. निवास अजजा": [
+      "निवास",
+      "नारायणगंज",
+      "बीजाहाडी",
+      "बकोरी",
+      "मोहगांव",
+      "बबलिया नया"
+    ],
+    "107. मण्डला अजजा": [
+      "मण्डला नगर",
+      "मण्डला ग्रामीण",
+      "नैनपुर नगर",
+      "नैनपुर ग्रामीण",
+      "चिरई डोंगरी",
+      "बम्हनी बंजर नगर",
+      "पदमी चैराह नया"
+    ]
+  },
+  "बालाघाट": {
+    "108. बैहर अजजा": [
+      "बिरसा",
+      "मलाजखण्ड",
+      "बैहर",
+      "उकवा",
+      "गढ़ी",
+      "मंडई नया"
+    ],
+    "109. लांजी": [
+      "किरनापुर",
+      "लांजी",
+      "भाडरा",
+      "भानेगांव",
+      "कारंजा नया",
+      "माटे नया",
+      "बिसोनी नया"
+    ],
+    "110. परसवाडा": [
+      "हट्टा",
+      "बालाघाट ग्रामीण",
+      "लामटा",
+      "परसवाडा",
+      "मझगांव नया",
+      "समनापुर नया",
+      "रजेगांव नया"
+    ],
+    "111. बालाघाट": [
+      "बालाघाट नगर",
+      "लालबर्रा",
+      "खमरिया",
+      "भरवेली",
+      "बालाघाट उत्तर नया",
+      "मोहगांव नया"
+    ],
+    "112. वारासिवनी": [
+      "वारासिवनी नगर",
+      "वारासिवनी ग्रामीण",
+      "खैरलाजी",
+      "आरंभा नया",
+      "रामपायली नया"
+    ],
+    "113. कटंगी": [
+      "कटंगी",
+      "कटोरी",
+      "तिरोडी",
+      "कटंगी पश्चिम नया",
+      "मिरगपुर नया",
+      "महकेपार नया"
+    ]
+  },
+  "सिवनी": {
+    "114. बरघाट अजजा": [
+      "कुरई",
+      "सुखतरा",
+      "बरघाट",
+      "धारना",
+      "गंगेरूआ"
+    ],
+    "115. सिवनी": [
+      "बारापत्थर (सिवनी उत्तर )",
+      "मंगलीपेठ (सिवनी दक्षिण)",
+      "करकोटी (सिवनी ग्रामीण)",
+      "लखनवाडा नया",
+      "मुगवानी",
+      "बण्डोल",
+      "चमारी",
+      "बीजादेवरी"
+    ],
+    "116. केवलारी": [
+      "केवलारी",
+      "छपारा",
+      "उगली",
+      "धनोरा",
+      "कान्हीवाडा",
+      "पलारी",
+      "छींद खैरलांजी नया"
+    ],
+    "117.लखनादौनअजजा": [
+      "लखनादौन नगर",
+      "आंदेगांव",
+      "घूमा",
+      "कहानी",
+      "घंसोर",
+      "केदारपुर",
+      "नागनदेवरी नया"
+    ]
+  },
+  "नरसिंहपुर": {
+    "118. गोटेंगांव अजा": [
+      "गोटेगांव नगर",
+      "गोटेगांव ग्रामीण",
+      "करकबेल",
+      "मुंगवानी",
+      "श्रीनगर नया",
+      "ढांगीढाना नया"
+    ],
+    "119. नरसिंहपुर": [
+      "नरसिंहपुर नगर",
+      "नरसिंहपुर ग्रामीण",
+      "करेली नगर",
+      "करेली ग्रामीण",
+      "नर्मदा",
+      "सिंहपुर नया"
+    ],
+    "120. तेन्दूखेडा": [
+      "चैगान",
+      "सिहोरा",
+      "चावरपाठा (तेंदूखेड़ा)",
+      "कौड़िया नया",
+      "तेंदूखेड़ा नया"
+    ],
+    "121. गाडरवाडा": [
+      "गाडरवारा नगर",
+      "साईखेडा",
+      "चीचली",
+      "सालीचैका",
+      "आमगांव छोटा नया"
+    ]
+  },
+  "छिंदवाड़ा": {
+    "122. जुन्नारदेव अजजा": [
+      "जुन्नारदेव नगर",
+      "जुन्नारदेव ग्रामीण",
+      "दमुआ नगर",
+      "दमुआ ग्रामीण",
+      "तामिया",
+      "चावलपानी नया"
+    ],
+    "123. अमरवाडा अजजा": [
+      "अमरवाडा नगर",
+      "अमरवाडा ग्रामीण",
+      "सिंगोडी",
+      "बटकाखापा",
+      "हरई",
+      "छिन्दी",
+      "सुरलाखापा"
+    ],
+    "124. चैरई": [
+      "चैरई नगर",
+      "चैरई ग्रामीण",
+      "चांद",
+      "बिछुआ",
+      "कुण्डा",
+      "खमारपानी नया"
+    ],
+    "126. छिन्दवाडा": [
+      "छिन्दवाडा नगर (एक)",
+      "छिन्दवाडा नगर (दो)",
+      "छिन्दवाडा ग्रामीण",
+      "सारना",
+      "धरमटेकड़ी नया",
+      "गुलाबरा नया"
+    ],
+    "127. परासिया अजा": [
+      "परासिया नगर",
+      "पगारा (परासिया ग्रा.)",
+      "उमरेठ",
+      "शिवपुरी",
+      "पटपड़ा नया"
+    ]
+  },
+  "पांढुर्णा नया जिला": {
+    "125. सौसर": [
+      "सौसर",
+      "लोधीखेडा ग्रा.",
+      "पिपल्यानारायणवार",
+      "मोहखेडा",
+      "रामाकोना नया",
+      "लिंगा नया"
+    ],
+    "128. पांढुर्णा अजजा": [
+      "पांढुर्णा नगर",
+      "पांढुर्णा ग्रा.",
+      "नंदनवाडी",
+      "सावरी",
+      "कुशाभाऊ ठाकरे नया",
+      "श्यामाप्रसाद मुखर्जी (देवगढ़) नया"
+    ]
+  },
+  "नर्मदापुरम्": {
+    "136. सिवनी मालवा": [
+      "सिवनीमालवा नगर",
+      "सिवनीमालवा ग्रामीण",
+      "केसला",
+      "शिवपुर",
+      "भीलटदेव",
+      "डोलरिया"
+    ],
+    "137. नर्मदापुरम्": [
+      "नर्मदापुरम् नगर",
+      "नर्मदापुर नगर",
+      "इटारसी नगर",
+      "पुरानी इटारसी",
+      "नर्मदापुरम् ग्रामीण"
+    ],
+    "138. सोहागपुर": [
+      "सोहागपुर",
+      "सेमरी",
+      "माखन नगर (बावई)",
+      "आरी बाबई पश्चिम",
+      "रामपुर",
+      "शोभापुर"
+    ],
+    "139. पिपरिया अजा": [
+      "पिपरिया नगर",
+      "पिपरिया ग्रामीण",
+      "बनखेडी नगर",
+      "पंचमढ़ी",
+      "चांदौन ग्रामीण",
+      "खापरखेड़ा",
+      "बनखेडी ग्रामीण नया"
+    ]
+  },
+  "हरदा": {
+    "134. टिमरनी अजजा": [
+      "टिमरनी",
+      "कायदा नया",
+      "रेहटगांव",
+      "सिराली",
+      "करताना नया",
+      "पहटकलां  नया"
+    ],
+    "135. हरदा": [
+      "हरदा नगर",
+      "हरदा ग्रा.",
+      "खिरकिया",
+      "हाण्डिया",
+      "सोनतलाई नया",
+      "चारूवा नया"
+    ]
+  },
+  "बैतूल": {
+    "129. मुलताईृ": [
+      "मुलताई नगर",
+      "मुलताई ग्रामीण",
+      "प्रभात पटट्नम",
+      "दुनावा",
+      "मासौदा"
+    ],
+    "130. आमला अजा": [
+      "आमला नगर",
+      "आमला ग्रामीण",
+      "सारणी नगर",
+      "सारणी ग्रामीण",
+      "मोरखा"
+    ],
+    "131. बैतूल": [
+      "बैतूल गंज",
+      "बतूल ग्रामीण",
+      "बैतूल बाजार",
+      "आठनेर नगर",
+      "बडोरा",
+      "कोठी बाजार"
+    ],
+    "132. घोडाडोंगरी अजजा": [
+      "घोडाडोंगरी",
+      "चिचोली नगर",
+      "चिचैली ग्रामीण",
+      "शाहपुर",
+      "भौरा",
+      "चोपना",
+      "पाढर"
+    ],
+    "133. भैंसदेही अजजा": [
+      "भैंसदेही नगर",
+      "भैंसदेही ग्रामीण",
+      "आठनेर ग्रामीण",
+      "भीमपुर",
+      "दामजीपुरा",
+      "रतनपुर नया",
+      "सावलमेढ़ा नया"
+    ]
+  },
+  "भोपाल नगर": {
+    "150. भोपाल उत्तर": [
+      "रानी कमलपती (शाहजहानाबाद)",
+      "गुरूनानक(शाहजहानाबाद)",
+      "वीर सावरकर (बस स्टैण्ड)",
+      "राजाभोज (अग्रसेन)",
+      "नवल शाह नया मण्डल"
+    ],
+    "151. नरेला": [
+      "स्टेशन",
+      "सुभाष",
+      "स्वामी विवेकानंद (करोंद)",
+      "शहीद भगत सिंह (करोंद)",
+      "अशोका गार्डन",
+      "महामाई"
+    ],
+    "152. दक्षिण पश्चिम": [
+      "टैगोर  (टी.टी. नगर)",
+      "तात्याटोपे",
+      "करूणाधाम ( नेहरू नगर )",
+      "पंचशील नगर",
+      "माता शबरी नया"
+    ],
+    "153. भोपाल मध्य": [
+      "बरखेडी",
+      "चैक",
+      "अरेरा",
+      "महाराणाप्रताप",
+      "शाहपुरा"
+    ],
+    "154. गोविंदपुरा": [
+      "अवधपुरी",
+      "मिसरोद",
+      "साकेतनगर",
+      "आनंदनगर",
+      "इन्द्रपुरी",
+      "भानपुर"
+    ],
+    "155. हुजुर": [
+      "बैरागढ़ संतहिरदाराम नगर",
+      "गांधीनगर",
+      "डाॅ. श्यामा प्रसाद मुखर्जी नगर (कोलार)",
+      "अटल बिहारी वाजपेयी (कोलार)"
+    ]
+  },
+  "भोपाल ग्रामीण": {
+    "149. बैरसिया अजा": [
+      "नजीराबाद",
+      "हर्राखेडा",
+      "बैरसिया नगर",
+      "बैरसिया ग्रामीण",
+      "हरिसिद्धि",
+      "परवलिया सड़क"
+    ],
+    "155. हुजुर": [
+      "बिलखिरिया",
+      "फन्दा",
+      "पं. दीनदयाल",
+      "नीलबड़ (रातीबड़)"
+    ]
+  },
+  "रायसेन": {
+    "140. उदयपुरा": [
+      "उदयपुरा",
+      "बरेली नगर",
+      "भारकच्छ",
+      "देवरी",
+      "बरेली ग्रामीण",
+      "खरगोन नया मण्डल",
+      "नूरनगर नया मण्डल"
+    ],
+    "141. भोजपुर": [
+      "मंडीदीप नगर",
+      "औबेदुल्लागंज",
+      "बाडी",
+      "सुल्तानपुर",
+      "मण्डीदीप ग्रामीण",
+      "भोजपुर"
+    ],
+    "142. सांची अजा": [
+      "रायसेन",
+      "सांची",
+      "गैरतगंज",
+      "खरबई",
+      "साॅचेत",
+      "देवनगर (देवगांव)",
+      "गैरतगंज ग्रामीण नया",
+      "सलामतपुर नया"
+    ],
+    "143. सिलवानी": [
+      "सिलवानी पूर्व",
+      "सिलवानी पश्चिम",
+      "बेगमगंज नं.",
+      "बेगमगंज ग्रा.",
+      "सुल्तानगंज ग्रामीण",
+      "प्रतापगढ़ नया"
+    ]
+  },
+  "विदिशा": {
+    "144. विदिशा": [
+      "गुलाबगंज",
+      "वैत्रवति (विदिशा नगर)",
+      "दुर्गानगर (विदिशा नगर)",
+      "बैसनगर (विदिशा ग्रामीण)",
+      "अहमदपुर",
+      "ढोलखेड़ी नया"
+    ],
+    "145. बासौदा": [
+      "गंजबासोदा नगर",
+      "गंजबासोदा ग्रामीण",
+      "ग्यारसपुर",
+      "त्योंदा",
+      "सिरनोटा नया"
+    ],
+    "146. कुरवाई अजा": [
+      "कुरवाई",
+      "पथरिया",
+      "मेहलुआ चैराहा",
+      "पठारी",
+      "उदयपुर",
+      "दीपनाखेड़ा नया",
+      "अम्बानगर नया"
+    ],
+    "147. सिरोज": [
+      "सिरोज नगर",
+      "लटेरी",
+      "आनंदपुर",
+      "चितावर",
+      "देवपुर"
+    ],
+    "148. शमशाबाद": [
+      "नटेरन",
+      "शमशाबाद",
+      "खामखेडा",
+      "सतपाडा हाट",
+      "देव खाजूरी नया"
+    ]
+  },
+  "सीहोर": {
+    "156. बुदनी": [
+      "नसरूल्लागंज",
+      "सलकनपुर",
+      "शाहगंज",
+      "बुधनी",
+      "गोपालपुर",
+      "लाड़कुई",
+      "चकल्दी"
+    ],
+    "157. आष्टा अजा": [
+      "आष्टा नगर",
+      "आष्टा ग्रा.",
+      "जावर",
+      "कोठरी",
+      "सिद्विकगंज",
+      "मैना नया",
+      "खाचरोद नया",
+      "डोडी नया"
+    ],
+    "158. इच्छावर": [
+      "इच्छावर",
+      "बिलकिसगंज",
+      "बरखेडी",
+      "गुड़भेला",
+      "दीवड़िया"
+    ],
+    "159. सीहोर": [
+      "सीहोर नगर-1",
+      "श्यामपुर",
+      "दोराहा",
+      "अहमदपुर",
+      "सीहोर नगर - 2 नया"
+    ]
+  },
+  "राजगढ़": {
+    "160. नरसिंहगढ़": [
+      "नरसिंहगढ़",
+      "कुरावर",
+      "तलेन",
+      "बोड़ा",
+      "झाड़ला नया",
+      "मण्डावर नया"
+    ],
+    "161. ब्यावरा": [
+      "ब्यावरा",
+      "गादिया",
+      "सुठालिया",
+      "पिपलहेला",
+      "मलावर नया",
+      "गिन्दौरहाट नया"
+    ],
+    "162. राजगढ़": [
+      "राजगढ़",
+      "खुजनेर",
+      "कालीपीठ",
+      "पपडेल",
+      "करेड़ी नया",
+      "पिपलोदी नया"
+    ],
+    "163. खिलचीपुर": [
+      "खिलचीपुर",
+      "जीरापुर",
+      "माचलपुर",
+      "छापीहेड़ा",
+      "रामगढ़ नया",
+      "भण्डावद नया"
+    ],
+    "164. सांरगपुर अजा": [
+      "सांरगपुर नगर",
+      "संडावता",
+      "पचैर",
+      "गुलावता",
+      "पड़ाना नया"
+    ]
+  },
+  "इंदौर नगर": {
+    "204. इन्दौर-1": [
+      "सुभाषचन्द्र बोस",
+      "लक्ष्मीबाई",
+      "सम्राट अशोक",
+      "चन्द्रशेखर आजाद",
+      "लवकुश",
+      "गुरू टेकचंद  नया"
+    ],
+    "205. इन्दौर-2": [
+      "डाॅ. अम्बेडकर",
+      "रामायण",
+      "पं. दीनदयाल उपाध्याय",
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "संतश्री मोनी बाबा",
+      "संतश्री बालीनाथ",
+      "राजमाता जीजाबाई नया",
+      "संतश्री रविदास  नया"
+    ],
+    "206. इन्दौर-3": [
+      "कुशाभाउ ठाकरे",
+      "देवी अहिल्या बाई",
+      "अटल बिहारी वाजपेयी",
+      "राजेन्द्र धारकर नया"
+    ],
+    "207. इन्दौर-4": [
+      "हेमू कालोनी",
+      "महाराणाप्रताप",
+      "लक्ष्मण सिंह गौड",
+      "शहीद भगत सिंह"
+    ],
+    "208. इन्दौर-5": [
+      "शिवाजी",
+      "सरदार बल्लभ पटेल तिलक",
+      "छत्रसाल",
+      "वीर सावरकर",
+      "ऐ. पी. जे. अब्दुल कलाम",
+      "संत कबीरदास नया",
+      "ज्योतिबा फुले नया"
+    ],
+    "210. राऊ": [
+      "निर्भय सिंह पटेल",
+      "समा्रट चंद्रगुप्त मौर्य",
+      "गुरू गोविंद सिंह"
+    ],
+    "203. देपालपुर": [
+      "सरदार पटेल"
+    ],
+    "211. सांवेर": [
+      "निपानिया"
+    ]
+  },
+  "इंदौर गा्र.": {
+    "209. महू": [
+      "भीमराव अंबेडकर -कोदरिया",
+      "केजी माहेष्वरी- मंहू नगर",
+      "शहीद टंट्यामामा- सिमरोल",
+      "भेरूलाल पाटीदार- मंहूगांव",
+      "भगवान परषुराम- मानपुर"
+    ],
+    "203. देपालपुर": [
+      "चैबीस अवतार- देपालपुर",
+      "धन्नालाल पटैल- गौतमपुरा",
+      "गुरूनानक देव- बेटमा",
+      "महाराज यषवंत राव- हातोद"
+    ],
+    "211. सांवेर": [
+      "प्रकाश सोनकर- सांवेर",
+      "मां षिप्रा- शिप्रा",
+      "मां अहिल्या- पालिया",
+      "मां नर्मदा -खुडेल"
+    ],
+    "210. राऊ": [
+      "राऊ",
+      "कैलाश पाटीदार",
+      "राऊ ग्रामीण नया"
+    ]
+  },
+  "खण्डवा": {
+    "175. मांधाता": [
+      "पुनासा",
+      "किल्लोद",
+      "मूंदी",
+      "ओंकारेश्वर",
+      "कावेरी नया"
+    ],
+    "176. हरसूद": [
+      "हरसूद नगर",
+      "हरसूद ग्रामीण",
+      "रोशनी",
+      "खालवा",
+      "खार",
+      "आशापुर नया"
+    ],
+    "177. खण्डवा अजजा": [
+      "कुशाभाउ ठाकरे  (खण्डवा नगर)",
+      "अटल बिहारी वाजपेयी",
+      "जावर (खण्डवा ग्रा.)",
+      "अमलपुरा",
+      "पं. दीनदयाल उपाध्याय नया"
+    ],
+    "178. पंधाना अजजा": [
+      "पंधाना",
+      "छैगांव माखन",
+      "बोरगांव",
+      "चिचगोहन",
+      "गुडीखेड़ा",
+      "सिंगोठ"
+    ]
+  },
+  "बुरहानपुर": {
+    "179. नेपानगर अजजा": [
+      "नेपानगर नगर.",
+      "नावरा (नेपानगर ग्रा.)",
+      "खकनार",
+      "धुलकोट",
+      "अटलबिहारी बाजपेयी(दर्यापुर)",
+      "कुशाभाऊ ठाकरे"
+    ],
+    "180. बुरहानुपर": [
+      "बहादरपुर (बुरहानपुर नगर)",
+      "डाॅ.श्यामा प्रसाद मुखर्जी लालबाग (बुरहानपुर ग्रा.)",
+      "लोकमान्य तिलक",
+      "सरदार बल्लभ भाई पटेल",
+      "शाहपुर",
+      "पंडित दीनदयाल उपाध्याय",
+      "लोकमाता अहिल्या देवी नया"
+    ]
+  },
+  "खरगौन": {
+    "181.  भीकनगांव अजजा": [
+      "भीकनगांव",
+      "झिरन्या",
+      "चिरिया",
+      "आभापुरी (शिवना) नया",
+      "भीकनगांव (पश्चिम) नया"
+    ],
+    "182. बड़वाह": [
+      "बड़वाह नगर",
+      "बड़वाह ग्रा.",
+      "सनावद नगर",
+      "सनावद ग्रा.",
+      "बैड़िया"
+    ],
+    "183. महेश्वर अजा": [
+      "महेश्वर",
+      "करही",
+      "बलवाड़ा",
+      "मंडलेश्वर"
+    ],
+    "184. कसरावद": [
+      "कसरावद पूर्व",
+      "कसरावद पश्चिम",
+      "अंदड़",
+      "कसरावद दक्षिण नया",
+      "कसरावद नगर नया"
+    ],
+    "185. खरगौन": [
+      "खरगौन नगर (पूर्व)",
+      "खरगौन ग्रा.",
+      "गोगावा",
+      "खरगौन नगर (पश्चिम) नया"
+    ],
+    "186. भगवानपुरा अजजा": [
+      "भगवानपुरा",
+      "बिस्टान",
+      "सैगांव",
+      "बरूड़",
+      "सिरवेल महादेव नया"
+    ]
+  },
+  "बड़वानी": {
+    "187. सेंधवा अजजा": [
+      "सेंधवा नगर",
+      "संेधवा ग्रामीण",
+      "धनोरा",
+      "बलवाड़ी",
+      "चाचरिया",
+      "धवली",
+      "शाहपुरा नया"
+    ],
+    "188. राजपुर अजजा": [
+      "राजपुर",
+      "जुलवानीया",
+      "ठीकरी",
+      "अंजड़",
+      "तलवाडा",
+      "ओझर"
+    ],
+    "189. पानसेमल अजजा": [
+      "पानसेमल नगर",
+      "चाटली",
+      "खेतिया",
+      "पलसूद",
+      "निवाली",
+      "जलगोन नया"
+    ],
+    "190. बड़वानी अजजा": [
+      "बड़वानी नगर",
+      "बड़वानी ग्रामीण",
+      "पाटी",
+      "सिलावद",
+      "गंधावल बोकराटा",
+      "भवती बिजासन",
+      "मेणीमाता"
+    ]
+  },
+  "अलीराजपुर": {
+    "191. अलीराजपुर अजजा": [
+      "अलीराजपुर नगर",
+      "अलीराजपुर ग्रामीण",
+      "सौरवा",
+      "छकतला",
+      "सोण्डवा",
+      "उमराली नया"
+    ],
+    "192. जोबट अजजा": [
+      "चन्द्रशेखर आजाद नगर",
+      "उदयगढ़",
+      "कटटीवाड़ा",
+      "जोबट",
+      "खटटाली",
+      "आम्बुआ",
+      "बरझर"
+    ]
+  },
+  "झाबुआ": {
+    "193. झाबुआ अजजा": [
+      "झाबुआ नगर",
+      "पिटोल (झाबुआ ग्रा.)",
+      "देवझरी नया",
+      "राणापुर",
+      "वन (राणापुर ग्रा.)",
+      "कल्याणपुरा",
+      "बोरी"
+    ],
+    "194. थांदला अजजा": [
+      "थांदला",
+      "काकनवानी  (थांदला ग्रा.)",
+      "मेघनगर",
+      "मदरानी",
+      "नौगांवा",
+      "खवासा"
+    ],
+    "195. पेटलावद अजजा": [
+      "पेटलावद",
+      "सारंगी (पेटलावद ग्रा.)",
+      "रायपुरिया",
+      "पारा",
+      "रामा",
+      "कुंदनपुर",
+      "झकनावद नया"
+    ]
+  },
+  "धार": {
+    "196. सरदारपुर अजजा": [
+      "सरदारपुर",
+      "राजगढ़ नगर",
+      "राजगढ़ ग्रामीण",
+      "अमझेरा दसाई",
+      "लाबरिया (राजोद)"
+    ],
+    "201. धार": [
+      "कुशाभाउ ठाकरे",
+      "धार ग्रामीण",
+      "तिरला",
+      "दिग्ठान",
+      "पीथमपुर",
+      "सेनापति",
+      "सागौर"
+    ],
+    "202. बदनावर": [
+      "बदनावर नगर",
+      "बदनावर ग्रा.",
+      "कानवन",
+      "सादलपुर",
+      "बखतगढ़",
+      "बिडवाल"
+    ]
+  },
+  "धार ग्रामीण": {
+    "197. गंधवानी": [
+      "गंधवानी",
+      "बाग",
+      "कछावदा",
+      "जीराबाद",
+      "टाण्डा"
+    ],
+    "198. कुक्षी अजजा": [
+      "कुक्षी नगर",
+      "कुक्षी ग्रामीण",
+      "निसरपुर",
+      "डही",
+      "बडदा"
+    ],
+    "199. मनावर अजजा": [
+      "मनावर नगर",
+      "मनावर ग्रा.",
+      "उमरबन",
+      "सिंघाना",
+      "बाकानेर"
+    ],
+    "200. धरमपुरी अजजा": [
+      "धरमपुरी",
+      "धामनोद",
+      "नालक्षा",
+      "गुजरी",
+      "बगड़ी नया"
+    ]
+  },
+  "उज्जैन नगर": {
+    "216. उज्जैन उत्तर": [
+      "दौलतगंज",
+      "सराफा",
+      "जीवाजीगंज",
+      "कार्तिक चैक",
+      "विक्रमादित्य",
+      "डाॅ. श्यामा प्रसाद मुखजी  नया"
+    ],
+    "217. उज्जैन दक्षिण": [
+      "माधवनगर",
+      "केशवनगर",
+      "महाराजवाडा",
+      "पं. दीनदयाल",
+      "शहीद राजभाऊ महाकाल  नया"
+    ]
+  },
+  "उज्जैन ग्रा.": {
+    "212. नागदा": [
+      "नागदा नगर",
+      "नागदा ग्रामीण",
+      "खाचरौद नगर",
+      "खाचरौद ग्रामीण",
+      "खाचरौद ग्रामीण (दक्षिण) नया",
+      "नागदा बिरलाग्राम नया"
+    ],
+    "213. महिदपुर": [
+      "महिदपुर नगर",
+      "महिदपुर ग्रामीण",
+      "झारडा",
+      "महिदपुर रोड़"
+    ],
+    "214. तराना अजा": [
+      "तराना नगर",
+      "तराना ग्रामीण",
+      "माकडोन",
+      "कनासिया"
+    ],
+    "215. घटिया अजा": [
+      "घटिया",
+      "ताजपुर",
+      "पानबिहार",
+      "उन्हेल"
+    ],
+    "218. बडनगर": [
+      "बडनगर नगर",
+      "बडनगर ग्रामीण",
+      "इन्गोरिया",
+      "खरसोदकलां",
+      "खरसौद खुर्द नया"
+    ],
+    "217. उज्जैन दक्षिण": [
+      "उज्जैन ग्रामीण (दक्षिण)"
+    ]
+  },
+  "शाजापुर": {
+    "167. शाजापुर": [
+      "शाजापुर नगर",
+      "शाजापुर ग्रामीण",
+      "पनवाडी",
+      "मोहन बडोदिया",
+      "बेरछा",
+      "मक्सी"
+    ],
+    "168. शुजालपुर": [
+      "शुजालपुर नगर",
+      "शुजालपुर ग्रामीण",
+      "अकोदिया",
+      "गुलाना",
+      "सुन्दरसी"
+    ],
+    "169. कालापीपल": [
+      "कालापीपल",
+      "खोकराकलां",
+      "अरनियाकलां",
+      "पोलायकलां",
+      "अवंतीपुर बड़ोदिया  नया",
+      "लसुल्डिया  नया"
+    ]
+  },
+  "आगर": {
+    "165. सुसनेर": [
+      "सुसनेर",
+      "नलखेड़ा",
+      "बड़ागांव",
+      "सोयत",
+      "मोड़ी नया",
+      "मोहना नया",
+      "धरोला नया"
+    ],
+    "166. आगर अजा": [
+      "आगर नगर",
+      "कानड़",
+      "बड़ौद",
+      "बीजानगरी",
+      "आगर ग्रामीण",
+      "तनोड़िया नया",
+      "मदकोटा नया"
+    ]
+  },
+  "देवास": {
+    "170. सोनकच्छ अजा": [
+      "टोकखुर्द नगर",
+      "टोकखुर्द ग्रामीण",
+      "सोनकच्छ नगर",
+      "सोनकच्छ (काशी)",
+      "भौरासा नया"
+    ],
+    "171. देवास": [
+      "देवास सीनियर",
+      "देवास जूनियर",
+      "देवास ग्रामीण",
+      "श्रीमंत महाराजा",
+      "सतगुरू शीलनाथ नया"
+    ],
+    "172. हाटपिपल्या": [
+      "हाटपिपल्या नगर",
+      "हाटपीपल्या ग्रामीण",
+      "बरोठा",
+      "क्षिप्रा",
+      "राजोदा नया"
+    ],
+    "173. खातेगांव": [
+      "खातेगांव",
+      "कन्नौद",
+      "हरनगांव",
+      "नेमावर मंदसौर",
+      "पानीगांव नया"
+    ],
+    "174. बागली अजजा": [
+      "बागली",
+      "सतवास",
+      "उदयनगर",
+      "काॅटाफोड लोहारदा",
+      "कर्णेश्वर नया"
+    ]
+  },
+  "रतलाम": {
+    "219. रतलाम ग्रा. अजा": [
+      "नामली",
+      "धराड",
+      "शबरी",
+      "शहीद चन्द्रशेखर आजाद",
+      "बांगरोद"
+    ],
+    "220. रतलाम सिटी": [
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "पं. दीनदयाल दीनदयाल",
+      "सूरजमल जैन",
+      "डाॅ. अम्बेडकर",
+      "कुशाभाउ ठाकरे"
+    ],
+    "221. सैलाना अजजा": [
+      "बाजना",
+      "रावटी शिवगढ़",
+      "सैलाना",
+      "बेडदा",
+      "राजपुरा"
+    ],
+    "222. जावरा": [
+      "जावरा ग्रामीण",
+      "पिपलोदा",
+      "जावरा नगर",
+      "सूखेडा",
+      "डाॅ. लक्ष्मीनारायण पांडे नया"
+    ],
+    "223. आलोट अजा": [
+      "आलोट",
+      "ताल",
+      "बडावदा",
+      "श्रीमंत राजमाता विजयाराजे सिंधिया",
+      "जोगणिया माता"
+    ]
+  },
+  "मंदसौर": {
+    "224. मंदसौर": [
+      "मंदसौर ग्रामीण",
+      "मंदसौर दक्षिण",
+      "दलौदा",
+      "मंदसौर उत्तर",
+      "मगरा माताजी  नया"
+    ],
+    "225. मल्हारगढ़ अजा": [
+      "मल्हारगढ़",
+      "बूढा बुरहानपुर",
+      "घुन्धडका",
+      "पिपल्यामण्डी",
+      "गुर्जर बर्ड़िया नया"
+    ],
+    "226. सुवासरा": [
+      "सुवासरा",
+      "सीतामउ नगर",
+      "सीतामउ ग्रामीण",
+      "कयामपुर",
+      "शामगढ़",
+      "बसई नया"
+    ],
+    "227. गरोठ": [
+      "गरोठ",
+      "भानपुरा",
+      "मेलखेडा",
+      "भैसोदा",
+      "खडावदा"
+    ]
+  },
+  "नीमच": {
+    "228. मनासा": [
+      "श्यामाप्रसाद मुखर्जी (मनासा नगर)",
+      "पं. दीनदयाल  (मनासा ग्रामीण)",
+      "कुकडेश्वर",
+      "रामपुरा",
+      "कुशाभाऊ ठाकरे (मनासा) नया"
+    ],
+    "229. नीमच": [
+      "पं. दीनदयाल (नीमच सिटी)",
+      "भादवामाता",
+      "नीमच उत्तर",
+      "नीमच दक्षिण",
+      "श्यामाप्रसाद मुखर्जी (बघाना)",
+      "कुशाभाऊ ठाकरे (नीमच) नया"
+    ],
+    "230. जावद": [
+      "जावद",
+      "मोरवन",
+      "रतनगढ",
+      "सिगोली"
+    ]
+  }
+};
+
+
+// ═══════════════════════════════════
+//  DISTRICT CASCADE
+// ═══════════════════════════════════
+function initDistrictCascade(){
+  const dEl=$("district"), vEl=$("vidhansabha"), mEl=$("mandal");
+  if(!dEl||!vEl||!mEl) return;
+
+  Object.keys(DISTRICT_DATA).sort((a,b)=>a.localeCompare(b,"hi")).forEach(d=>{
+    const o=document.createElement("option"); o.value=d; o.textContent=d; dEl.appendChild(o);
+  });
+
+  dEl.addEventListener("change",()=>{
+    const dv=dEl.value;
+    vEl.innerHTML='<option value="">— विधानसभा —</option>';
+    mEl.innerHTML='<option value="">— मंडल —</option>';
+    vEl.disabled=!dv; mEl.disabled=true;
+    if(!dv||!DISTRICT_DATA[dv]) return;
+    Object.keys(DISTRICT_DATA[dv]).sort((a,b)=>a.localeCompare(b,"hi")).forEach(vs=>{
+      const o=document.createElement("option"); o.value=vs; o.textContent=vs; vEl.appendChild(o);
+    });
+  });
+
+  vEl.addEventListener("change",()=>{
+    const dv=dEl.value, vv=vEl.value;
+    mEl.innerHTML='<option value="">— मंडल —</option>';
+    mEl.disabled=!vv;
+    if(!dv||!vv||!DISTRICT_DATA[dv]||!DISTRICT_DATA[dv][vv]) return;
+    DISTRICT_DATA[dv][vv].slice().sort((a,b)=>a.localeCompare(b,"hi")).forEach(m=>{
+      const o=document.createElement("option"); o.value=m; o.textContent=m; mEl.appendChild(o);
+    });
+  });
+}
+
+function setupLevelLock(){
+  const lvl=$("program_level"), d=$("district"), v=$("vidhansabha"), m=$("mandal");
+  if(!lvl||!d||!v||!m) return;
+  const setReq=(el,on)=>{ if(!el) return; on?el.setAttribute("required",""):el.removeAttribute("required"); };
+  const apply=()=>{
+    const val=(lvl.value||"").trim();
+    d.disabled=false; setReq(d,true);
+    if(val==="जिला"){ v.value=""; m.value=""; v.disabled=true; m.disabled=true; setReq(v,false); setReq(m,false); }
+    else if(val==="विधानसभा"){ v.disabled=false; m.value=""; m.disabled=true; setReq(v,true); setReq(m,false); }
+    else if(val==="मंडल"){ v.disabled=false; m.disabled=false; setReq(v,true); setReq(m,true); }
+    else { v.value=""; m.value=""; v.disabled=true; m.disabled=true; setReq(v,false); setReq(m,false); }
+  };
+  lvl.addEventListener("change",apply); apply();
+}
+
+// ═══════════════════════════════════
+//  PHOTO UPLOAD ENGINE
+// ═══════════════════════════════════
+let photoFiles = []; // { file, previewUrl, thumbBlob, mime, status }
+
+function triggerFileInput(){
+  const inp=$("photo"); if(inp) inp.click();
+}
+
+// Convert HEIC/HEIF to JPEG using canvas + OffscreenCanvas approach
+async function convertHeicToJpeg(file){
+  // Use createImageBitmap which supports HEIC in modern Safari/iOS
+  try {
+    const bitmap = await createImageBitmap(file);
+    // Max dimension for output: 2048px
+    let w=bitmap.width, h=bitmap.height;
+    const MAX=2048;
+    if(w>MAX||h>MAX){ const s=Math.min(MAX/w,MAX/h); w=Math.round(w*s); h=Math.round(h*s); }
+    const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h;
+    const ctx=canvas.getContext("2d");
+    ctx.drawImage(bitmap,0,0,w,h);
+    bitmap.close();
+    return await new Promise((res,rej)=>canvas.toBlob(b=>b?res(b):rej(new Error("toBlob failed")),"image/jpeg",0.88));
+  } catch(e){
+    throw new Error("HEIC convert failed: "+e.message);
+  }
+}
+
+// Compress + resize image to max 1600px on longest side, max ~800KB
+async function compressImage(file, maxDim=1600, quality=0.86){
+  return new Promise((resolve, reject)=>{
+    const url=URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      let w=img.naturalWidth||img.width, h=img.naturalHeight||img.height;
+      if(!w||!h){ resolve(file); return; }
+      if(w<=maxDim&&h<=maxDim&&file.size<900*1024){ resolve(file); return; } // Already small enough
+      const s=Math.min(1, maxDim/Math.max(w,h));
+      w=Math.round(w*s); h=Math.round(h*s);
+      const canvas=document.createElement("canvas"); canvas.width=w; canvas.height=h;
+      const ctx=canvas.getContext("2d");
+      ctx.drawImage(img,0,0,w,h);
+      canvas.toBlob(blob=>{
+        if(blob) resolve(new File([blob], file.name.replace(/\.[^.]+$/, ".jpg"), {type:"image/jpeg"}));
+        else resolve(file);
+      }, "image/jpeg", quality);
+    };
+    img.onerror=()=>{ URL.revokeObjectURL(url); resolve(file); };
+    img.src=url;
+  });
+}
+
+// Create thumbnail (120x120)
+async function makeThumbnail(file){
+  return new Promise(resolve=>{
+    const url=URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      const SIZE=120;
+      const canvas=document.createElement("canvas"); canvas.width=SIZE; canvas.height=SIZE;
+      const ctx=canvas.getContext("2d");
+      const aspect=img.width/img.height;
+      let sx=0,sy=0,sw=img.width,sh=img.height;
+      if(aspect>1){ sw=img.height; sx=(img.width-sw)/2; }
+      else if(aspect<1){ sh=img.width; sy=(img.height-sh)/2; }
+      ctx.drawImage(img,sx,sy,sw,sh,0,0,SIZE,SIZE);
+      canvas.toBlob(b=>resolve(b?URL.createObjectURL(b):url),"image/jpeg",0.75);
+    };
+    img.onerror=()=>{ URL.revokeObjectURL(url); resolve(null); };
+    img.src=url;
+  });
+}
+
+function formatBytes(b){ if(b<1024) return b+"B"; if(b<1024*1024) return (b/1024).toFixed(0)+"KB"; return (b/1024/1024).toFixed(1)+"MB"; }
+
+async function processAndAddFiles(rawFiles){
+  const grid=$("photo-grid"), dz=$("photo-drop-zone");
+  grid.style.display="grid";
+  dz.classList.add("has-photos");
+  $("dz-empty").style.display="none";
+  $("photo-count-bar").style.display="flex";
+
+  for(let i=0; i<rawFiles.length; i++){
+    let f=rawFiles[i];
+    const idx=photoFiles.length;
+    const isHeic=/heic|heif/i.test(f.type)||/\.(heic|heif)$/i.test(f.name);
+
+    photoFiles.push({ file:f, previewUrl:null, thumbUrl:null, mime:"image/jpeg", status:"pending", isHeic, origSize:f.size });
+
+    // Create placeholder thumb card
+    const card=document.createElement("div"); card.className="photo-thumb"; card.id=`thumb-${idx}`;
+    const statusBar=document.createElement("div"); statusBar.className="status-bar s-pending"; card.appendChild(statusBar);
+    const rmBtn=document.createElement("button"); rmBtn.className="remove-btn"; rmBtn.type="button";
+    rmBtn.innerHTML='<i class="fa-solid fa-xmark"></i>'; rmBtn.onclick=(e)=>{ e.stopPropagation(); removePhoto(idx); };
+    card.appendChild(rmBtn);
+    grid.appendChild(card);
+
+    updateCountBar();
+
+    // Process async
+    (async (fi, fIdx)=>{
+      try{
+        const bar=document.querySelector(`#thumb-${fIdx} .status-bar`);
+        if(bar) bar.className="status-bar s-converting";
+
+        let processed=fi;
+        let mime="image/jpeg";
+
+        // HEIC → JPEG
+        if(/heic|heif/i.test(fi.type)||/\.(heic|heif)$/i.test(fi.name)){
+          setConvertingIndicator(true, `HEIC convert हो रहा... (${fIdx+1}/${photoFiles.length})`);
+          try{ const blob=await convertHeicToJpeg(fi); processed=new File([blob],fi.name.replace(/\.[^.]+$/,".jpg"),{type:"image/jpeg"}); mime="image/jpeg"; }
+          catch(e){ console.warn("HEIC convert failed, using original",e); processed=fi; mime=fi.type||"image/jpeg"; }
+        } else {
+          mime=fi.type||"image/jpeg";
+        }
+
+        // Compress
+        processed=await compressImage(processed, 1600, 0.86);
+
+        // Thumbnail
+        const thumbUrl=await makeThumbnail(processed);
+
+        photoFiles[fIdx].file=processed;
+        photoFiles[fIdx].thumbUrl=thumbUrl;
+        photoFiles[fIdx].mime=mime;
+        photoFiles[fIdx].status="ready";
+
+        // Render thumb
+        const card2=document.getElementById(`thumb-${fIdx}`);
+        if(card2){
+          const img=document.createElement("img"); img.src=thumbUrl||""; img.loading="lazy"; img.alt="";
+          card2.insertBefore(img,card2.firstChild);
+          const b2=card2.querySelector(".status-bar"); if(b2) b2.className="status-bar s-pending";
+        }
+        updateCountBar();
+        setConvertingIndicator(false);
+      }catch(err){
+        photoFiles[fIdx].status="error";
+        const b=document.querySelector(`#thumb-${fIdx} .status-bar`); if(b) b.className="status-bar s-error";
+        console.error("process error",err);
+      }
+    })(f, idx);
+  }
+}
+
+function setConvertingIndicator(on, text){
+  const el=$("converting-indicator");
+  if(!el) return;
+  if(on){ el.style.display="flex"; $("converting-text").textContent=text||"HEIC convert हो रहा है..."; }
+  else   { el.style.display="none"; }
+}
+
+function updateCountBar(){
+  const total=photoFiles.length;
+  $("photo-count-num").textContent=total;
+  const totalSize=photoFiles.reduce((s,p)=>s+(p.file?p.file.size:p.origSize||0),0);
+  $("photo-size-total").textContent=total>0?"("+formatBytes(totalSize)+")":"";
+  $("photo-count-bar").style.display=total>0?"flex":"none";
+  $("dz-empty").style.display=total>0?"none":"block";
+  if(total>0) $("photo-grid").style.display="grid"; else $("photo-grid").style.display="none";
+  if(total===0) $("photo-drop-zone").classList.remove("has-photos");
+}
+
+function removePhoto(idx){
+  if(photoFiles[idx]&&photoFiles[idx].thumbUrl) URL.revokeObjectURL(photoFiles[idx].thumbUrl);
+  photoFiles.splice(idx,1);
+  // Re-render entire grid
+  renderPhotoGrid();
+  updateCountBar();
+}
+
+function renderPhotoGrid(){
+  const grid=$("photo-grid"); grid.innerHTML="";
+  photoFiles.forEach((p,idx)=>{
+    const card=document.createElement("div"); card.className="photo-thumb"; card.id=`thumb-${idx}`;
+    if(p.thumbUrl){ const img=document.createElement("img"); img.src=p.thumbUrl; img.alt=""; card.appendChild(img); }
+    const bar=document.createElement("div"); bar.className="status-bar s-"+p.status; card.appendChild(bar);
+    const rmBtn=document.createElement("button"); rmBtn.className="remove-btn"; rmBtn.type="button";
+    rmBtn.innerHTML='<i class="fa-solid fa-xmark"></i>'; rmBtn.onclick=(e)=>{ e.stopPropagation(); removePhoto(idx); };
+    card.appendChild(rmBtn);
+    grid.appendChild(card);
+  });
+}
+
+function clearAllPhotos(){
+  photoFiles.forEach(p=>{ if(p.thumbUrl) URL.revokeObjectURL(p.thumbUrl); });
+  photoFiles=[];
+  $("photo-grid").innerHTML="";
+  $("photo").value="";
+  updateCountBar();
+  $("photo-drop-zone").classList.remove("has-photos");
+}
+
+// File input change
+$("photo").addEventListener("change", async(e)=>{
+  const files=Array.from(e.target.files||[]); e.target.value="";
+  if(!files.length) return;
+  await processAndAddFiles(files);
+});
+
+// Drag & drop
+const dz=$("photo-drop-zone");
+dz.addEventListener("dragover",e=>{ e.preventDefault(); dz.classList.add("dragover"); });
+dz.addEventListener("dragleave",()=>dz.classList.remove("dragover"));
+dz.addEventListener("drop",async(e)=>{ e.preventDefault(); dz.classList.remove("dragover"); const files=Array.from(e.dataTransfer.files); if(files.length) await processAndAddFiles(files); });
+
+// ═══════════════════════════════════
+//  FORM SUBMIT
+// ═══════════════════════════════════
+$("f").addEventListener("submit", async(e)=>{
+  e.preventDefault();
+  if(__EL_PREVIEW_MODE){ showStatus("🔎 Preview Mode: submit disabled",false); return; }
+
+  const btn=$("submitBtn"); btn.disabled=true;
+  const setBtnText=(t)=>{ $("submitBtnText").textContent=t; };
+  const oldText="सबमिट करें";
+
+  showStatus("","");
+
+  try{
+    // Validate fields
+    const data={};
+    FIELD_IDS.forEach(id=>{ const el=$(id); if(el) data[id]=(el.value||"").trim(); });
+
+    if(!data.program_level) throw new Error("कृपया कार्यक्रम का Level चुनें");
+    if(!data.program_type)  throw new Error("कृपया कार्यक्रम का प्रकार भरें");
+    if(!data.program_name)  throw new Error("कृपया कार्यक्रम का नाम भरें");
+    if(!data.tour_date)     throw new Error("कृपया दिनांक चुनें");
+    if(!data.tour_location) throw new Error("कृपया स्थान भरें");
+    if(!data.district)      throw new Error("कृपया जिला चुनें");
+
+    if(data.program_level==="विधानसभा" && !data.vidhansabha) throw new Error("कृपया विधानसभा चुनें");
+    if(data.program_level==="मंडल" && (!data.vidhansabha||!data.mandal)) throw new Error("कृपया विधानसभा और मंडल चुनें");
+
+    const readyFiles=photoFiles.filter(p=>p.file&&p.status!=="error");
+    if(!readyFiles.length) throw new Error("कृपया कम से कम 1 फोटो चुनें");
+
+    // Wait for any still-converting
+    setBtnText("Photos तैयार हो रही हैं...");
+    let waited=0;
+    while(photoFiles.some(p=>p.status==="pending"&&p.file)&&waited<30000){
+      await new Promise(r=>setTimeout(r,300)); waited+=300;
+    }
+
+    // Show progress
+    $("upload-progress-wrap").style.display="block";
+    const total=readyFiles.length;
+    let done=0;
+
+    const updateProgress=(label, detail)=>{
+      const pct=Math.round((done/total)*100);
+      $("upload-progress-bar").style.width=pct+"%";
+      $("progress-count").textContent=`${done}/${total}`;
+      $("progress-label").textContent=label||"Uploading...";
+      if($("progress-detail")&&detail) $("progress-detail").textContent=detail;
+    };
+    updateProgress("शुरू हो रहा है...");
+
+    for(let idx=0; idx<readyFiles.length; idx++){
+      const pObj=readyFiles[idx];
+      const file=pObj.file;
+      const mime=pObj.mime||file.type||"image/jpeg";
+      const ext=mime.includes("png")?"png":"jpg";
+      const fileName=`${crypto.randomUUID()}.${ext}`;
+
+      // Mark as uploading
+      pObj.status="uploading";
+      const origIdx=photoFiles.indexOf(pObj);
+      if(origIdx>=0){ const b=document.querySelector(`#thumb-${origIdx} .status-bar`); if(b) b.className="status-bar s-uploading"; }
+
+      updateProgress(`Uploading... (${idx+1}/${total})`, file.name);
+
+      const sha=await sha256Hex(file);
+
+      let res;
+      if(isPublicMode()){
+        res=await apiCall("public_create_entry",{ token, form_type:FORM_TYPE, sha256:sha, file_name:fileName, mime_type:mime, payload:data });
+      } else {
+        if(!cidParam) throw new Error("Missing Collection ID (cid) in URL");
+        res=await apiCall("create_entry",{ collection_id:cidParam, form_type:FORM_TYPE, sha256:sha, file_name:fileName, mime_type:mime, payload:data });
+      }
+
+      if(res&&res.upload_url) await uploadToS3(res.upload_url, file, mime);
+
+      const finAction=isPublicMode()?"public_finalize_entry":"finalize_entry";
+      await apiCall(finAction,{ finalize_token:res.finalize_token, entry_id:res.entry_id });
+
+      pObj.status="done"; done++;
+      if(origIdx>=0){ const b=document.querySelector(`#thumb-${origIdx} .status-bar`); if(b) b.className="status-bar s-done"; }
+      updateProgress(`अपलोड हो रहा है...`);
+    }
+
+    // Success
+    $("success-photo-count")&&($("success-photo-count").textContent=total+" photos");
+    const ss=$("success-stats");
+    if(ss) ss.innerHTML=`
+      <div style="background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);border-radius:10px;padding:10px 16px;text-align:center;">
+        <div style="font-size:20px;font-weight:800;color:var(--c1);">${total}</div>
+        <div style="font-size:11px;color:rgba(148,163,184,.7);margin-top:2px;">Photos</div>
+      </div>
+      <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:10px 16px;text-align:center;">
+        <div style="font-size:14px;font-weight:800;color:#34d399;">${data.program_name.slice(0,20)||"—"}</div>
+        <div style="font-size:11px;color:rgba(148,163,184,.7);margin-top:2px;">कार्यक्रम</div>
+      </div>
+    `;
+
+    $("main-card").style.display="none";
+    $("success-screen").style.display="block";
+
+  }catch(err){
+    showStatus("❌ "+(err.message||"Error"), true);
+    btn.disabled=false;
+    setBtnText(oldText);
+    $("upload-progress-wrap").style.display="none";
+  }
+});
+
+function resetForm(){
+  $("f").reset();
+  clearAllPhotos();
+  showStatus("","");
+  $("upload-progress-wrap").style.display="none";
+  $("upload-progress-bar").style.width="0%";
+  $("success-screen").style.display="none";
+  $("main-card").style.display="block";
+  initDistrictCascade && initDistrictCascade();
+  setupLevelLock && setupLevelLock();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+// ═══════════════════════════════════
+//  INIT
+// ═══════════════════════════════════
+async function initAll(){
+  initDistrictCascade();
+  setupLevelLock();
+
+  // Set today as default date
+  const today=new Date().toISOString().split("T")[0];
+  const dateEl=$("tour_date"); if(dateEl&&!dateEl.value) dateEl.value=today;
+
+  // Load branding
+  const remoteCfg=await loadRemoteConfig(FORM_TYPE);
+  applyBrandingFromConfig(remoteCfg, FORM_TYPE, "जिला अध्यक्ष जी का प्रवास", "कार्यक्रम पंजीयन", "", "default-icon");
+
+  // Admin Console iframe preview bridge
+  try{
+    window.__EL_PREVIEW_FALLBACKS={
+      title: ($("org-name")?.textContent||"").trim(),
+      subtitle: ($("org-subtitle")?.textContent||"").trim(),
+      tagline: ($("org-tagline")?.textContent||"").trim(),
+      iconId: "default-icon"
+    };
+  }catch(e){}
+
+  // Live preview message listener (from admin console)
+  window.addEventListener("message",(ev)=>{
+    const d=ev&&ev.data;
+    if(!d||typeof d!=="object"||d.type!=="EL_PREVIEW_SETTINGS") return;
+    applyBrandingFromConfig(d.payload||{}, FORM_TYPE, "", "", "", "default-icon");
+  });
+  try{
+    if(window.parent&&window.parent!==window)
+      window.parent.postMessage({type:"EL_PREVIEW_READY",cid:cidParam,form_type:FORM_TYPE},"*");
+  }catch(e){}
+}
+document.addEventListener("DOMContentLoaded", initAll);
+</script>
+</body>
+</html>

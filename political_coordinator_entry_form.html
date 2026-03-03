@@ -1,0 +1,3177 @@
+<!DOCTYPE html>
+
+<!-- EventLens build: 2026-02-17 04:08:31 -->
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="EventLens"/>
+  <meta name="theme-color" content="#f97316"/>
+  <meta name="application-name" content="EventLens Pro"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coordinator Entry - EventLens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+
+    // === EventLens Admin Console Live Preview Bridge (2026-02-17) ===
+    (function() {
+      const __ft = (typeof FORM_TYPE !== "undefined") ? FORM_TYPE : ((typeof FORM_TYPE_RAW !== "undefined") ? FORM_TYPE_RAW : "");
+      const __cid = (qs("cid") || qs("collection_id") || qs("cid") || "").trim();
+
+      function __applyPreview(payload) {
+        try {
+          const fb = window.__EL_PREVIEW_FALLBACKS || {};
+          applyBrandingFromConfig(payload, __ft, fb.title || "", fb.subtitle || "", fb.tagline || "", fb.iconId || "default-icon");
+
+          // Keep tagline visibility consistent
+          const tg = document.getElementById("org-tagline");
+          if (tg) {
+            if ((tg.textContent || "").trim()) tg.classList.remove("hidden");
+            else tg.classList.add("hidden");
+          }
+        } catch(e) {}
+      }
+
+      window.addEventListener("message", (ev) => {
+        const d = ev && ev.data;
+        if (!d || typeof d !== "object") return;
+        if (d.type !== "EL_PREVIEW_SETTINGS") return;
+        if (d.form_type && __ft && d.form_type !== __ft) return;
+        if (d.cid && __cid && d.cid !== __cid) return;
+        __applyPreview(d.payload || {});
+      });
+
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "EL_PREVIEW_READY", cid: __cid, form_type: __ft }, "*");
+        }
+      } catch(e) {}
+
+      window.__EL_applyPreviewSettings = __applyPreview;
+    })();
+
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --c1: #f97316; /* primary */
+      --c2: #ef4444; /* secondary */
+      --bgimg: none;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(234, 88, 12, 0.10), transparent 50%),
+        linear-gradient(180deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.98)),
+        var(--bgimg);
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+    }
+    .glass {
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.40);
+    }
+    .input-field {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: white;
+      transition: all 0.25s ease;
+    }
+    .input-field:focus {
+      border-color: var(--c1);
+      box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.18);
+      outline: none;
+    }
+    .input-field:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: rgba(15, 23, 42, 0.35);
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+    .brand-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(to right, var(--c1), var(--c2));
+    }
+    .brand-bg { background-image: linear-gradient(to right, var(--c1), var(--c2)); }
+    .brand-ring { box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.16); }
+      select, option {
+      font-family: "Noto Sans Devanagari", "Mangal", "Plus Jakarta Sans", system-ui, sans-serif;
+    }
+
+
+    /* === EventLens Embed/Light/Preview Patch (2026-02-17) === */
+    html, body { height: 100%; }
+    body.el-embed {
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden;
+      background-attachment: scroll !important;
+    }
+    body.el-embed [class*="max-w-"] {
+      max-width: 100% !important;
+    }
+    body.el-embed img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    /* Light mode (optional via ?theme=light) */
+    body.el-light {
+      color: #0f172a !important;
+      background: #f8fafc !important;
+    }
+    body.el-light .glass {
+      background: rgba(255, 255, 255, 0.88) !important;
+      border: 1px solid rgba(15, 23, 42, 0.10) !important;
+      box-shadow: 0 14px 28px rgba(2, 6, 23, 0.10) !important;
+    }
+    body.el-light .input-field {
+      background: rgba(255, 255, 255, 0.96) !important;
+      color: #0f172a !important;
+      border: 1px solid rgba(15, 23, 42, 0.18) !important;
+    }
+    body.el-light .input-field::placeholder {
+      color: rgba(15, 23, 42, 0.45) !important;
+    }
+
+
+/* ===== EventLens: Light mode visibility fixes (auto) ===== */
+body.mode-light{ color:#0f172a !important; }
+body.mode-light .card,
+body.mode-light .panel,
+body.mode-light .section,
+body.mode-light .container,
+body.mode-light .wrap,
+body.mode-light .box{
+  background: rgba(255,255,255,.92) !important;
+  border-color: rgba(15,23,42,.14) !important;
+}
+body.mode-light input,
+body.mode-light select,
+body.mode-light textarea{
+  background: rgba(255,255,255,.96) !important;
+  color:#0f172a !important;
+  border-color: rgba(15,23,42,.18) !important;
+}
+body.mode-light input::placeholder,
+body.mode-light textarea::placeholder{
+  color: rgba(15,23,42,.45) !important;
+}
+body.mode-light label,
+body.mode-light .label{ color: rgba(15,23,42,.85) !important; }
+body.mode-light .muted,
+body.mode-light .hint,
+body.mode-light .help{ color: rgba(15,23,42,.65) !important; }
+body.mode-light select option{ background:#ffffff; color:#0f172a; }
+/* ===== /EventLens: Light mode visibility fixes ===== */
+
+    @supports not (-webkit-background-clip: text) {
+      .brand-text { color: var(--c1); background-image: none; }
+    }
+
+    #custom-logo{object-fit:contain;}
+</style>
+</head>
+    <body class="min-h-screen flex items-start sm:items-center justify-center p-3 sm:p-4 font-sans mode-dark">
+
+    <div class="w-full max-w-lg glass rounded-2xl p-6 relative overflow-hidden transition-all duration-500" id="main-container">
+    <div class="absolute top-0 left-0 w-full h-1 brand-bg"></div>
+
+    <div id="header-image" class="hidden w-full h-24 rounded-xl mb-4 bg-slate-800/40 border border-white/5 overflow-hidden bg-cover bg-center"></div>
+
+    <div class="text-center mb-6" id="form-header">
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 text-orange-500 mb-3 overflow-hidden border border-white/10">
+            <i id="default-icon" class="fa-solid fa-user-tie text-2xl"></i>
+            <img id="custom-logo" src="" class="w-full h-full object-contain scale-[1.15] hidden" alt="logo">
+        </div>
+        <h1 id="org-name" class="text-2xl font-extrabold brand-text">संयोजक (Coordinator) फॉर्म</h1>
+        <p id="org-subtitle" class="text-slate-300/80 text-xs mt-1">Coordinator Entry</p>
+        <p id="org-tagline" class="text-slate-400 text-[11px] mt-2 hidden"></p>
+    </div>
+
+      <form id="f" class="space-y-6">
+  <div class="grid gap-5 md:grid-cols-2">
+    <!-- Level -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">लेवल *</label>
+      <select id="level" required class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+        <option value="">Select</option>
+        <option value="mandal">मंडल</option>
+        <option value="vidhansabha">विधानसभा</option>
+        <option value="district">जिला</option>
+        <option value="state">प्रदेश</option>
+      </select>
+    </div>
+
+    <!-- Program Name -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">कार्यक्रम का नाम *</label>
+      <select id="program_name" name="program_name" required class="w-full rounded-xl bg-slate-900/40 border border-slate-700/60 px-3 py-3 text-white focus:outline-none focus:ring-2 focus:ring-orange-500">
+  <option value="">कार्यक्रम का नाम चुनें</option>
+</select>
+    </div>
+
+    <!-- District -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">जिला *</label>
+      <select id="district" required class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+        <option value="">Select</option>
+      </select>
+    </div>
+
+    <!-- Vidhansabha -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">विधानसभा *</label>
+      <select id="vidhansabha" required class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+        <option value="">Select</option>
+      </select>
+    </div>
+
+    <!-- Mandal -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">मंडल *</label>
+      <select id="mandal" required class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500">
+        <option value="">Select</option>
+      </select>
+    </div>
+
+    <!-- Coordinator -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">संयोजक *</label>
+      <input id="coordinator_name" required placeholder="संयोजक का नाम"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">मोबाइल *</label>
+      <input id="coordinator_mobile" required inputmode="numeric" maxlength="10" placeholder="10 digit मोबाइल"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+
+    <!-- सह संयोजक 1 -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">सह संयोजक</label>
+      <input id="assistant_1_name" placeholder="सह संयोजक का नाम"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">मोबाइल</label>
+      <input id="assistant_1_mobile" inputmode="numeric" maxlength="10" placeholder="10 digit मोबाइल"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+
+    <!-- सह संयोजक 2 -->
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">सह संयोजक</label>
+      <input id="assistant_2_name" placeholder="सह संयोजक का नाम"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-slate-200 mb-2">मोबाइल</label>
+      <input id="assistant_2_mobile" inputmode="numeric" maxlength="10" placeholder="10 digit मोबाइल"
+        class="w-full rounded-xl bg-slate-900/60 border border-white/10 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div id="msg" class="text-sm text-slate-300"></div>
+    <button id="btn" type="submit"
+      class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 font-semibold text-white shadow-lg shadow-orange-500/20 hover:opacity-95 active:opacity-90">
+      Submit
+    </button>
+  </div>
+</form>
+
+    <div id="status" class="mt-4 text-center text-xs font-medium hidden"></div>
+    <div class="mt-4 text-center text-[11px] text-slate-400/80">
+      <span id="footer-text"></span>
+    </div>
+</div>
+
+    <!-- SUCCESS SCREEN -->
+<div id="success-screen" class="hidden w-full max-w-lg glass rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[420px]">
+    <div class="w-20 h-20 bg-emerald-500/15 text-emerald-400 rounded-full flex items-center justify-center mb-6 text-4xl shadow-lg shadow-emerald-500/10 border border-emerald-500/20">
+        <i class="fa-solid fa-check"></i>
+    </div>
+    <h2 class="text-2xl font-extrabold text-white mb-2">धन्यवाद!</h2>
+    <p id="success-msg" class="text-slate-200/90 mb-8 leading-relaxed">संयोजक की जानकारी सेव हो गई है।</p>
+    <button onclick="window.location.reload()" class="px-6 py-2.5 bg-white/10 hover:bg-white/15 border border-white/10 rounded-lg text-sm text-white transition">
+        <i class="fa-solid fa-rotate-right mr-2"></i> नया फॉर्म
+    </button>
+</div>
+
+    <script>
+    // ===============================
+// COMMON CONFIG & UTILS
+// ===============================
+const API_ID = "vxid0yoovj";
+const AWS_REGION = "ap-south-1";
+const BASE_URL = `https://${API_ID}.execute-api.${AWS_REGION}.amazonaws.com/prod`;
+  const URL_TOKEN = (new URLSearchParams(window.location.search)).get('token') || '';
+  const IS_PUBLIC = !!URL_TOKEN; // public link pages use token
+  const FORMS_PATH = '/political/public/forms';
+
+
+const $ = (id) => document.getElementById(id);
+const qs = (n) => { try { return (new URL(window.location.href)).searchParams.get(n) || ""; } catch (e) { return ""; } };
+
+  // === Embed / Preview flags (2026-02-17) ===
+  const __EL_PREVIEW_MODE = (qs("preview") === "1");
+  const __EL_EMBED_MODE = (qs("embed") === "1") || (window.self !== window.top);
+  const __EL_THEME_MODE = (qs("theme") || "").toLowerCase();
+  try {
+    if (__EL_EMBED_MODE) document.body.classList.add("el-embed");
+    if (__EL_PREVIEW_MODE) document.body.classList.add("el-preview");
+    if (__EL_THEME_MODE === "light") document.body.classList.add("el-light");
+  } catch(e) {}
+
+
+const token = (qs("token") || "").trim();
+
+// NOTE: In Admin Console Live Preview the form may open as a blob: URL (no querystring).
+// So we derive CID from querystring OR from the signed token payload OR from the first config response.
+function decodeTokenJson(t) {
+  try {
+    if (!t) return null;
+    const first = String(t).split(".")[0];
+    if (!first) return null;
+    const b64 = first.replace(/-/g, "+").replace(/_/g, "/");
+    const pad = b64 + "===".slice((b64.length + 3) % 4);
+    const jsonStr = decodeURIComponent(escape(window.atob(pad)));
+    const obj = JSON.parse(jsonStr);
+    return obj && typeof obj === "object" ? obj : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+const tokenObj = decodeTokenJson(token) || {};
+let currentCid = (qs("cid") || qs("collection_id") || qs("id") || "").trim();
+if (!currentCid) {
+  currentCid = (String(tokenObj.cid || tokenObj.collection_id || "").trim());
+}
+
+const levelParam = (qs("level") || "").trim().toLowerCase(); // district | vidhansabha | mandal
+const debug = (qs("debug") || "").trim() === "1";
+
+function isPublicMode() { return !!token; }
+
+function setThemeVars(c1, c2) {
+  if (c1) document.documentElement.style.setProperty("--c1", c1);
+  if (c2) document.documentElement.style.setProperty("--c2", c2);
+}
+function setBackgroundImage(url) {
+  if (!url) return;
+  document.documentElement.style.setProperty("--bgimg", `url('${url}')`);
+}
+
+function showStatus(msg, isError) {
+  const el = $("status");
+  if (!el) return;
+  el.classList.remove("hidden","text-green-400","text-red-400");
+  el.classList.add(isError ? "text-red-400" : "text-green-400");
+  el.textContent = msg || "";
+  if (!msg) el.classList.add("hidden");
+}
+
+async function apiCall(action, payload) {
+  // IMPORTANT:
+  // - When opened via token, page must call /political/public/forms (no auth)
+  // - Otherwise /political/forms can be used from dashboard (with auth)
+  const path = FORMS_PATH;
+  const url = `${BASE_URL}${path}`;
+  return fetch(url, {
+    method: "POST",
+    cache: "no-store",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ action, payload: payload || {} })
+  }).then(async (res) => {
+    const text = await res.text();
+    let data = {};
+    try { data = JSON.parse(text || "{}"); } catch (e) { data = { message: text }; }
+    if (!res.ok) throw Object.assign(new Error(data.message || "Request failed"), { status: res.status, data });
+    return data;
+  });
+}
+
+function safeStr(v) { return (v === null || v === undefined) ? "" : String(v); }
+
+async function sha256Hex(file) {
+  const buffer = await file.arrayBuffer();
+  const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function uploadToS3(url, file) {
+  await fetch(url, { method: "PUT", body: file, headers: { "Content-Type": file.type || "application/octet-stream" } });
+}
+
+function mergeObj(a, b) {
+  const out = Object.assign({}, a || {});
+  Object.keys(b || {}).forEach(k => {
+    if (b[k] && typeof b[k] === "object" && !Array.isArray(b[k])) out[k] = mergeObj(out[k], b[k]);
+    else out[k] = b[k];
+  });
+  return out;
+}
+
+
+function normalizeFormType(ft) {
+  const s = safeStr(ft || "").trim();
+  if (!s) return "";
+  const map = {
+    "coordinator": "coordinator_form",
+    "coordinator_entry": "coordinator_form",
+    "coordinator_entry_form": "coordinator_form",
+    "coordinator_form": "coordinator_form",
+    "visitor": "visitor_form",
+    "visitor_form": "visitor_form"
+  };
+  return map[s] || s;
+}
+
+// ===============================
+// BRANDING + PROGRAMS + FIXED LEVEL
+// ===============================
+async function loadRemoteConfig(formType) {
+  // Public forms should ALWAYS use public_get_config.
+  // Admin console uses admin_get_config on the private/admin page, not here.
+  try {
+    const cidClean = safeStr(currentCid).trim();
+    const payload = {
+      cid: cidClean,
+      collection_id: cidClean,
+      token: safeStr(token).trim(),
+      form_type: normalizeFormType(formType),
+      _ts: Date.now()
+    };
+    const res = await apiCall("public_get_config", payload);
+    // If the page is opened without query params (e.g. blob preview), backend may still resolve CID from token.
+    if (!currentCid && res && (res.cid || res.collection_id)) {
+      currentCid = String(res.cid || res.collection_id || "").trim();
+    }
+    return res || null; // keep full response (settings/config/form) // keep full response (settings/config/form)
+  } catch (e) {
+    if (debug) console.log("config load failed", e);
+    return null;
+  }
+}
+
+
+
+function cssUrl(u) {
+  const s = safeStr(u || "");
+  if (!s) return "";
+  return 'url("' + s.replace(/"/g, '\"') + '")';
+}
+
+function getDefaultsNode(resp) {
+  return (resp && resp.settings && resp.settings.defaults) ||
+         (resp && resp.config && resp.config.defaults) ||
+         null;
+}
+function getGlobalNode(resp) {
+  return (resp && resp.settings && resp.settings.global) ||
+         (resp && resp.config && resp.config.global) ||
+         null;
+}
+function getFormNode(resp, formType) {
+  if (!resp) return null;
+
+  if (resp.form && typeof resp.form === "object") return resp.form;
+
+  const raw = formType || resp.form_type || (typeof FORM_TYPE !== "undefined" ? FORM_TYPE : "");
+  const ft = normalizeFormType(raw);
+
+  // Try exact key first
+  if (resp.settings && resp.settings.forms && resp.settings.forms[ft]) return resp.settings.forms[ft];
+  if (resp.config && resp.config.forms && resp.config.forms[ft]) return resp.config.forms[ft];
+
+  // Try common aliases / legacy keys
+  const aliases = [raw, raw && (raw + "_form"), raw && raw.replace(/_form$/, ""), ft && ft.replace(/_form$/, ""), ft && (ft + "_entry")].filter(Boolean);
+  // Explicit alias for Coordinator (admin config uses coordinator_form, form uses coordinator_entry)
+  if (ft === "coordinator_entry" || raw === "coordinator_entry") aliases.push("coordinator_form");
+  if (ft === "coordinator_form" || raw === "coordinator_form") aliases.push("coordinator_entry");
+  for (const k of aliases) {
+    const nk = normalizeFormType(k);
+    if (resp.settings && resp.settings.forms && resp.settings.forms[nk]) return resp.settings.forms[nk];
+    if (resp.config && resp.config.forms && resp.config.forms[nk]) return resp.config.forms[nk];
+  }
+
+  return null;
+}
+
+function pickBranding(resp, formNode) {
+  const defaults = getDefaultsNode(resp) || {};
+  const globalNode = getGlobalNode(resp) || {};
+  // form branding > global branding > defaults branding > empty
+  return (formNode && formNode.branding) || (globalNode && globalNode.branding) || defaults.branding || {};
+}
+
+function pickAssetUrl(assetObj, fallbackUrl) {
+  if (!assetObj) return safeStr(fallbackUrl || "");
+  if (typeof assetObj === "string") return assetObj;
+  return safeStr(assetObj.url || fallbackUrl || "");
+}
+
+function safeSetImg(imgEl, url, onOk, onFail) {
+  if (!imgEl || !url) { if (onFail) onFail(); return; }
+  const probe = new Image();
+  probe.onload = () => { imgEl.src = url; if (onOk) onOk(); };
+  probe.onerror = () => { if (onFail) onFail(); };
+  probe.src = url;
+}
+
+function safeSetBgDiv(divEl, url) {
+  if (!divEl) return;
+  if (!url) { divEl.classList.add("hidden"); divEl.style.backgroundImage = ""; return; }
+  const probe = new Image();
+  probe.onload = () => {
+    divEl.style.backgroundImage = cssUrl(url);
+    divEl.classList.remove("hidden");
+  };
+  probe.onerror = () => {
+    divEl.classList.add("hidden");
+    divEl.style.backgroundImage = "";
+  };
+  probe.src = url;
+}
+
+function safeSetRootBg(url) {
+  if (!url) return;
+  const probe = new Image();
+  probe.onload = () => setBackgroundImage(url);
+  probe.onerror = () => {};
+  probe.src = url;
+}
+
+
+function _hexToRgb_(hex){
+  if(!hex) return null;
+  let h = String(hex).trim();
+  if(h.startsWith('#')) h = h.slice(1);
+  if(h.length===3) h = h.split('').map(c=>c+c).join('');
+  if(h.length!==6) return null;
+  const n = parseInt(h, 16);
+  if(Number.isNaN(n)) return null;
+  return {r:(n>>16)&255, g:(n>>8)&255, b:n&255};
+}
+function _isLightHex_(hex){
+  const rgb = _hexToRgb_(hex);
+  if(!rgb) return false;
+  const srgb = [rgb.r/255, rgb.g/255, rgb.b/255].map(v => (v<=0.04045)?(v/12.92):Math.pow((v+0.055)/1.055, 2.4));
+  const L = 0.2126*srgb[0] + 0.7152*srgb[1] + 0.0722*srgb[2];
+  return L > 0.55;
+}
+function applyThemeMode(globalTheme, backgroundHex){
+  try{
+    const raw = globalTheme && (globalTheme.mode || globalTheme.theme_mode || globalTheme.themeMode || globalTheme.appearance);
+    const mode = String(raw||'').toLowerCase();
+    let isLight = false;
+    if(mode==='light') isLight = true;
+    else if(mode==='dark') isLight = false;
+    else isLight = _isLightHex_(backgroundHex);
+
+    document.body.classList.toggle('mode-light', !!isLight);
+    document.body.classList.toggle('mode-dark', !isLight);
+  }catch(e){}
+}
+
+function applyBrandingFromResponse(resp, formType, fallbackTitle, fallbackSubtitle, fallbackTagline, defaultIconId) {
+  if (!resp) return;
+
+  const ft = formType || resp.form_type || (typeof FORM_TYPE !== "undefined" ? FORM_TYPE : "");
+  defaultIconId = defaultIconId || "default-icon";
+  const formNode = getFormNode(resp, ft) || {};
+  const defaultsNode = getDefaultsNode(resp) || {};
+  const globalNode = getGlobalNode(resp) || {};
+  const globalTheme = (globalNode && globalNode.theme) ? globalNode.theme : {};
+
+  // Branding object: form branding > defaults branding
+  const branding = mergeObj((defaultsNode && defaultsNode.branding) || {}, (formNode && formNode.branding) || {});
+
+  // Text
+  const title = safeStr(formNode.title || branding.title || fallbackTitle || "EventLens Form");
+  const subtitle = safeStr(formNode.subtitle || branding.subtitle || fallbackSubtitle || "");
+  const tagline = safeStr(formNode.tagline || branding.tagline || (globalNode && globalNode.tagline) || fallbackTagline || "");
+
+  if ($("org-name")) $("org-name").textContent = title;
+  if ($("org-subtitle")) $("org-subtitle").textContent = subtitle;
+  if ($("org-tagline")) $("org-tagline").textContent = tagline;
+  if ($("org-tagline")) { if (tagline) $("org-tagline").classList.remove("hidden"); else $("org-tagline").classList.add("hidden"); }
+
+  // Footer (global override)
+  if ($("footer-text")) $("footer-text").textContent = safeStr(formNode.footer_text || (defaultsNode && defaultsNode.branding && defaultsNode.branding.footer_text) || branding.footer_text || (globalNode && globalNode.tagline) || "Powered by EventLens");
+
+  // Assets (new preferred fields + branding nested + legacy fallbacks)
+  let logoUrl = safeStr(pickAssetUrl(branding.logo, formNode.logo_url) || branding.logo_url || (globalNode && globalNode.logo_url) || (globalNode && globalNode.branding && globalNode.branding.logo_url) || "");
+  let headerUrl = safeStr(pickAssetUrl(branding.header, formNode.header_url) || branding.header_image_url || branding.header_url || (globalNode && globalNode.header_url) || (globalNode && globalNode.branding && globalNode.branding.header_url) || "");
+  let bgUrl = safeStr(pickAssetUrl(branding.background, formNode.background_url) || branding.background_image_url || branding.background_url || "" || (globalNode && globalNode.background_url) || (globalNode && globalNode.branding && globalNode.branding.background_url));
+
+  // Legacy branding support (older admin config shape)
+  let legacyBrand = null;
+  if (resp && resp.branding) {
+    const gb = (resp.branding && resp.branding.global) ? resp.branding.global : {};
+    const fb = (resp.branding && resp.branding.forms && resp.branding.forms[ft]) ? resp.branding.forms[ft] : {};
+    legacyBrand = mergeObj(gb, fb);
+  }
+  if (legacyBrand) {
+    if (!logoUrl) logoUrl = safeStr(legacyBrand.logo_url || "");
+    if (!headerUrl) headerUrl = safeStr(legacyBrand.header_image_url || legacyBrand.header_url || "");
+    if (!bgUrl) bgUrl = safeStr(legacyBrand.background_image_url || legacyBrand.background_url || "");
+  }
+
+  // Theme colors
+  const primary = safeStr(branding.color1 || branding.theme_primary || (legacyBrand && (legacyBrand.color1 || legacyBrand.theme_primary)) || globalTheme.primary || "#f97316");
+  const secondary = safeStr(branding.color2 || branding.theme_secondary || (legacyBrand && (legacyBrand.color2 || legacyBrand.theme_secondary)) || globalTheme.secondary || "#ef4444");
+  setThemeVars(primary, secondary);
+
+  // Logo
+  const logoEl = $("custom-logo");
+  if (logoEl && logoUrl) {
+    safeSetImg(logoEl, logoUrl, () => {
+      logoEl.classList.remove("hidden");
+      if ($(defaultIconId)) $(defaultIconId).classList.add("hidden");
+    }, () => {
+      logoEl.classList.add("hidden");
+      if ($(defaultIconId)) $(defaultIconId).classList.remove("hidden");
+    });
+  } else {
+    if (logoEl) logoEl.classList.add("hidden");
+    if ($(defaultIconId)) $(defaultIconId).classList.remove("hidden");
+  }
+
+  // Header image (div bg)
+  safeSetBgDiv($("header-image"), headerUrl);
+
+  // Background image (css var)
+  if (bgUrl) safeSetRootBg(bgUrl);
+}
+
+
+function applyBrandingFromConfig(cfgOrResp, formType, fallbackTitle, fallbackSubtitle, fallbackTagline, defaultIconId) {
+  // Admin preview sends settings object directly; normalize into a response-like shape
+  const payload = cfgOrResp || {};
+  const resp = (payload.settings || payload.config || payload.forms || payload.defaults) ? { settings: payload, config: payload } : payload;
+  try { applyBrandingFromResponse(resp, formType, fallbackTitle, fallbackSubtitle, fallbackTagline, defaultIconId); } catch(e) {}
+}
+
+
+function fillProgramNamesFromResponse(resp, formType, selectId) {
+  selectId = selectId || "program_name";
+  formType = formType || (typeof FORM_TYPE !== "undefined" ? FORM_TYPE : "");
+  const sel = $(selectId);
+  if (!sel) return;
+
+  const ft = formType || (resp && resp.form_type) || (typeof FORM_TYPE !== "undefined" ? FORM_TYPE : "");
+
+  // Try to find form node (new + legacy response shapes)
+  const formNode = (resp && resp.form) ? resp.form
+    : (resp && resp.settings && resp.settings.forms && resp.settings.forms[ft]) ? resp.settings.forms[ft]
+    : (resp && resp.config && resp.config.forms && resp.config.forms[ft]) ? resp.config.forms[ft]
+    : null;
+
+  // Collect programs from multiple places (Admin Console saves mostly in defaults.programs or form.program_options)
+  const arrs = [];
+  if (formNode) {
+    if (Array.isArray(formNode.program_options)) arrs.push(formNode.program_options);
+    if (Array.isArray(formNode.programs)) arrs.push(formNode.programs);
+  }
+  if (resp) {
+    if (Array.isArray(resp.programs)) arrs.push(resp.programs);
+    if (resp.data && Array.isArray(resp.data.programs)) arrs.push(resp.data.programs);
+
+    // defaults in response
+    if (resp.defaults && Array.isArray(resp.defaults.programs_common) && resp.defaults.programs_common.length) arrs.push(resp.defaults.programs_common);
+    else if (resp.defaults && Array.isArray(resp.defaults.programs)) arrs.push(resp.defaults.programs);
+    if (resp.settings && resp.settings.defaults && Array.isArray(resp.settings.defaults.programs_common) && resp.settings.defaults.programs_common.length) arrs.push(resp.settings.defaults.programs_common);
+    else if (resp.settings && resp.settings.defaults && Array.isArray(resp.settings.defaults.programs)) arrs.push(resp.settings.defaults.programs);
+    if (resp.config && resp.config.defaults && Array.isArray(resp.config.defaults.programs_common) && resp.config.defaults.programs_common.length) arrs.push(resp.config.defaults.programs_common);
+    else if (resp.config && resp.config.defaults && Array.isArray(resp.config.defaults.programs)) arrs.push(resp.config.defaults.programs);
+
+    // global/programs (legacy)
+    if (resp.config && Array.isArray(resp.config.programs)) arrs.push(resp.config.programs);
+    if (resp.config && resp.config.data && Array.isArray(resp.config.data.programs)) arrs.push(resp.config.data.programs);
+  }
+
+  const programs = Array.from(new Set(arrs.flat().map(p => safeStr(p).trim()).filter(Boolean)));
+  if (!programs.length) return;
+
+  sel.innerHTML = '<option value="">— कार्यक्रम चुनें —</option>';
+  programs.forEach((v) => {
+    const opt = document.createElement("option");
+    opt.value = v;
+    opt.textContent = v;
+    sel.appendChild(opt);
+  });
+}
+
+function getFixedLevel(resp, formType) {
+  const formNode = getFormNode(resp, formType) || {};
+  const v = safeStr(formNode.fixed_level || "");
+  return v ? v.toLowerCase() : "";
+}
+
+function applyFixedProgramFromResponse(resp, formType, selectId) {
+  selectId = selectId || "program_name";
+  const sel = $(selectId);
+  if (!sel || !resp) return;
+
+  const ftRaw = formType || resp.form_type || (typeof FORM_TYPE !== "undefined" ? FORM_TYPE : "");
+  const node = getFormNode(resp, ftRaw) || {};
+  const fixedProgram = safeStr(node.fixed_program || "").trim();
+  const lock = (node.fixed_program_lock === undefined) ? true : !!node.fixed_program_lock;
+
+  if (fixedProgram) {
+    if (!Array.from(sel.options).some(o => (o.value||'') === fixedProgram)) {
+      const opt = document.createElement("option");
+      opt.value = fixedProgram;
+      opt.textContent = fixedProgram;
+      sel.appendChild(opt);
+    }
+    sel.value = fixedProgram;
+    if (lock) sel.disabled = true;
+  } else {
+    sel.disabled = false;
+  }
+}
+
+    const FORM_TYPE = "coordinator_entry";
+    const FIELD_IDS = ["level","program_name","district","vidhansabha","mandal","coordinator_name","coordinator_mobile","assistant_1_name","assistant_1_mobile","assistant_2_name","assistant_2_mobile"];
+
+    const DISTRICT_DATA = {
+  "मुरैना": {
+    "3. सबलगढ़": [
+      "सबलगढ़ नगर",
+      "सबलगढ़ गामीण",
+      "नेपरी",
+      "टेंटरा नया",
+      "रामपुर कलां नया"
+    ],
+    "4. जौरा": [
+      "कैलारस",
+      "जौरा नगर",
+      "जौरा ग्रामीण",
+      "पहाडगढ़",
+      "सरसैनी"
+    ],
+    "5. सुमावली": [
+      "सुमावली",
+      "छैरा",
+      "मुंगावली",
+      "बागचीनी",
+      "मुरैना गा्रमीण"
+    ],
+    "6. मुरैना": [
+      "मुरैना पूर्व",
+      "मुरैना पश्चिम",
+      "मुरैना दक्षिण",
+      "बानमौर",
+      "रिठौराकलाॅ",
+      "जडेरूआ नया"
+    ],
+    "7. दिमनी": [
+      "दिमनी",
+      "सिहोनियां",
+      "जीगनी",
+      "थरा",
+      "नावली बड़ागांव नया"
+    ],
+    "8. अम्बाह अजा": [
+      "अम्बाह नगर",
+      "अम्बाह ग्रामीण",
+      "पोरसा नगर",
+      "पोरसा ग्रामीण",
+      "नगरा"
+    ]
+  },
+  "भिण्ड": {
+    "9. अटेर": [
+      "अटेर",
+      "फूफ",
+      "पीपरी",
+      "सुरपुरा",
+      "सरायघार नया",
+      "जवासा नया"
+    ],
+    "10. भिण्ड": [
+      "भिण्ड गा्रमीण",
+      "महाराणा प्रताप",
+      "बनखण्डेश्वर",
+      "सुभाषचंद्र बोस",
+      "उमरी ,नयागांव",
+      "उमरी अकोड़ा नया"
+    ],
+    "11. लहार": [
+      "लहार",
+      "आलमपुर",
+      "दबोह",
+      "असवार",
+      "मिहोना",
+      "मछण्ड"
+    ],
+    "12. मेहगांव": [
+      "मेहगांव",
+      "आमायन",
+      "रौन",
+      "गोरमी",
+      "सोनी",
+      "दंदरौआ"
+    ],
+    "13. गोहद अजा": [
+      "गोहद नगर",
+      "गोहद गा्रमीण",
+      "मौ",
+      "चितौरा",
+      "मालनपुर नया"
+    ]
+  },
+  "दतिया": {
+    "20. सेवढ़ा": [
+      "सेवढ़ा नगर",
+      "सेवढ़ा ग्रामीण (बअुआपुरा)",
+      "इन्दरगढ़ नगर",
+      "इन्दरगढ़ ग्रामीण",
+      "थरेट नया"
+    ],
+    "21. भाण्डेर अजा": [
+      "सालौन बी",
+      "भाण्डेर",
+      "उन्नाव बालाजी",
+      "ईमलिया उन्नाव ग्रामीण",
+      "उडीना नया"
+    ],
+    "22. दतिया": [
+      "दतिया नगर",
+      "दतिया ग्रामीण",
+      "बडौनी",
+      "उदगुआ",
+      "बसई",
+      "सीतापुर नया"
+    ]
+  },
+  "ग्वालियर नगर": {
+    "15. ग्वालियर": [
+      "कोटेश्वर महादेव",
+      "संत रविदास",
+      "वीर दुर्गादास राठौर",
+      "रानी लक्ष्मीबाई",
+      "राजा मानसिंह तोमर",
+      "महाराजा अग्रसेन नया"
+    ],
+    "16. ग्वालियर पूर्व": [
+      "पं. दीनदयाल उपाध्याय",
+      "महाराणा प्रताप",
+      "शहीद भगत सिंह",
+      "स्वामी रामकृष्ण",
+      "वीर सावरकर",
+      "बाबासाहेब अंबेडकर नया"
+    ],
+    "17. ग्वालियर दक्षिण": [
+      "अटल बिहारी  वाजपाई",
+      "शहीद हेमू कालोनी",
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "स्वामी विवेकानंद",
+      "गुप्तेश्वर महादेव"
+    ]
+  },
+  "ग्वालियर ग्रा .": {
+    "14. ग्वालियर ग्रामीण": [
+      "तानसेन बेहट",
+      "उटिला",
+      "बेरजा",
+      "पुरानी छावनी",
+      "कैंटोमेंट",
+      "गिरवाई नया"
+    ],
+    "18. भितरवार": [
+      "भितरवार",
+      "आंतरी",
+      "चीनोर",
+      "घाटीगांव",
+      "मोहना",
+      "लखेश्वरी नया"
+    ],
+    "19. डबरा अजा": [
+      "डबरा नं.",
+      "डबरा गा्रं.",
+      "पिछोर",
+      "बिलौआ",
+      "छीमक"
+    ]
+  },
+  "श्योपुर": {
+    "1. श्योपुर": [
+      "श्योपुर",
+      "बडोदा",
+      "मानपुर",
+      "प्रेमसर",
+      "पाण्डोला नया",
+      "श्योपुर ग्रामीण नया",
+      "दांतरदा नया"
+    ],
+    "2.विजयपुर": [
+      "विजयपुर",
+      "वीरपुर",
+      "कराहल",
+      "गोरस",
+      "गसवानी",
+      "अगरा नया",
+      "रघुनाथपुर नया"
+    ]
+  },
+  "शिवपुरी": {
+    "23. करेरा अजा": [
+      "करेरा",
+      "सिरसौद",
+      "करही",
+      "दिनारा",
+      "नरवर"
+    ],
+    "24. पोहरी": [
+      "पोहरी",
+      "बैराड़",
+      "सतनवाड़ा (नरवर ग्रामीण)",
+      "सुभाषपुरा मुडैरी",
+      "झिरी-भटनावर नया",
+      "मुढैरी-कुंवरपुर नया"
+    ],
+    "25. शिवपुरी": [
+      "शिवपुरी नगर",
+      "शिवपुरी ग्रामीण",
+      "शिवपुरी पुरानी",
+      "खोड़",
+      "वीरा-सरवाया नया",
+      "शिवपुरी-फिजिकल नया"
+    ],
+    "26. पिछोर": [
+      "पिछोर",
+      "खनियाधाना",
+      "बामोरकला",
+      "मायापुर",
+      "भौती",
+      "मुहारी नया"
+    ],
+    "27. कोलारस": [
+      "कोलारस",
+      "बदरवास",
+      "रन्नौद",
+      "लुकवासा",
+      "खराई",
+      "खतौरा नया"
+    ]
+  },
+  "गुना": {
+    "28. बामोरी": [
+      "म्याना",
+      "बामोरी",
+      "सिरसी",
+      "झागर नया",
+      "उमरी नया"
+    ],
+    "29. गुना अजा": [
+      "गुना",
+      "गुना कैंट",
+      "बजरंगढ",
+      "पगारा",
+      "बूढे बालाजी नया"
+    ],
+    "30. चाचैड़ा": [
+      "चाचैडा",
+      "कुम्भराज",
+      "मकसूदनगढ़",
+      "रूठियाई",
+      "मृगवास",
+      "तेलीगांव नया"
+    ],
+    "31. राघोगढ़": [
+      "राघोगढ़",
+      "आरोन",
+      "जामनेर",
+      "पनवाडी",
+      "फतेहगढ़"
+    ]
+  },
+  "अशोक नगर": {
+    "32. अशोकनगर अजा": [
+      "अशोकनगर नगर",
+      "अशोकनगर गा्रमीण",
+      "शाढौरा",
+      "राजपुर",
+      "सोनेरा (कचनार)",
+      "पछार नया"
+    ],
+    "33. चंदेरी": [
+      "चंदेरी नगर",
+      "चंदेरी गा्रमीण",
+      "ईसागढ़",
+      "नईसराय",
+      "ढाकोनी (आनंदपुर)"
+    ],
+    "34. मुंगावली": [
+      "मुंगावली",
+      "बहादुरपुर",
+      "पिपरई",
+      "सहराई",
+      "थूवोन",
+      "अथाईखेडा नया"
+    ]
+  },
+  "सागर": {
+    "35. बीना अजा": [
+      "बीना नगर",
+      "बीना गा्रमीण",
+      "भानगढ़ नया",
+      "खिमलासा",
+      "मण्डी बामोरा"
+    ],
+    "36. खुरई": [
+      "खुरई नगर",
+      "खुरई गा्रमीण",
+      "मालथौन",
+      "वांदरी",
+      "धनौरा नया",
+      "बरोदिया कलां नया"
+    ],
+    "37. सुरखी": [
+      "सुरखी नगर",
+      "सिहोरा",
+      "राहतगढ़",
+      "जयसिंह नगर",
+      "बिलहरा",
+      "राहतगढ़ नगर नया"
+    ],
+    "40. नरियावली अजा": [
+      "नरयावली",
+      "सागर गा्रमीण",
+      "सदर",
+      "मकरोनिया नगर",
+      "मकरोनिया ग्रामीण"
+    ],
+    "41. सागर": [
+      "सागर नगर",
+      "डाॅ. हरिसिंह गौर",
+      "डाॅ. भीमराव अम्बेकर",
+      "यमुनाताई ठाकुर नया"
+    ]
+  },
+  "सागर ग्रामीण": {
+    "38. देवरी": [
+      "देवरी नगर",
+      "केसली",
+      "गोरझामर",
+      "महाराजपुर",
+      "सहजपुर",
+      "अनंतपुरा नया"
+    ],
+    "39. रेहली": [
+      "रहेली नगर",
+      "रहेली गा्रमीण",
+      "गढ़ाकोटा नगर",
+      "गढ़ाकोटा गा्रमीण",
+      "शाहपुर",
+      "पटना बुजुर्ग नया",
+      "बलेह नया"
+    ],
+    "42. बण्डा": [
+      "बण्डा नगर",
+      "शाहगढ़",
+      "बरोहल",
+      "दलपतपुर",
+      "बरा",
+      "बरायठा नया",
+      "छापरी नया"
+    ]
+  },
+  "टीकमगढ़": {
+    "43. टीकमगढ़": [
+      "टीकमगढ़ नगर",
+      "टीकमगढ़ गा्रमीण",
+      "बडागांवधसान",
+      "कुण्डेश्वर",
+      "बुडेरा",
+      "सावरकर नया"
+    ],
+    "44. जतारा अजा": [
+      "जतारा",
+      "लिधोरा",
+      "थर बराना",
+      "चंदेरा",
+      "बम्हौरी कलां नया"
+    ],
+    "47. खरगापुर": [
+      "पलेरा",
+      "बल्देवगढ़",
+      "खरगापुर",
+      "कुडीला",
+      "देरी नया"
+    ]
+  },
+  "निवाड़ी": {
+    "45. पृथ्वीपुर": [
+      "पृथ्वीपुर नगर",
+      "पृथ्वीपुर ग्रामीण नया",
+      "मोहनगढ़",
+      "जैरोन",
+      "दिगोड़ा"
+    ],
+    "46. निवाडी": [
+      "निवाडी नगर",
+      "निवाड़ी ग्रामीण नया",
+      "ओरछा",
+      "तरीचकला",
+      "नैगुआ नया"
+    ]
+  },
+  "छतरपुर": {
+    "48. महाराजपुर": [
+      "महाराजपुर",
+      "नौगांव नगर",
+      "हरपालपुर",
+      "लुगासी",
+      "गढ़ीमलहरा नया"
+    ],
+    "49. चन्दला": [
+      "चन्दला",
+      "बारीगढ़",
+      "सरवई",
+      "बाछौन",
+      "गौरीहार नया"
+    ],
+    "50. राजनगर": [
+      "राजनगर",
+      "बमीठा",
+      "लवकुश नगर",
+      "खजुराहो",
+      "विक्रमपुर  नया"
+    ],
+    "51. छतरपुर": [
+      "छतरपुर नगर",
+      "छतरपुर ग्रामीण",
+      "महेवा",
+      "पड़रिया",
+      "निवारी नया"
+    ],
+    "52. बिजावर": [
+      "बिजावर",
+      "सटई",
+      "ईसानगर",
+      "किशनगढ़",
+      "मातगुवां नया"
+    ],
+    "53. बड़ा मलेहरा": [
+      "बड़ामलेहरा नगर",
+      "बड़ामलेहरा ग्रामीण",
+      "घुवारा",
+      "बक्सवाहा",
+      "बाजना नया"
+    ]
+  },
+  "पन्ना": {
+    "58. पवई": [
+      "पवई",
+      "शाहनगर",
+      "रैपुरा",
+      "मोहन्द्रा, मोहर्रा सिमरिया",
+      "कल्दा (आदिवासी)",
+      "बिसानी नया",
+      "सिमरिया नया"
+    ],
+    "59. गुन्नौर अजा": [
+      "अमानगंज",
+      "गुन्नौर",
+      "देवेन्द्र नगर",
+      "सलेहा",
+      "ककरहटी",
+      "महेबा नया"
+    ],
+    "60. पन्ना": [
+      "पन्ना नगर",
+      "पन्ना ग्रा.",
+      "अजयगढ़",
+      "धरमपुर",
+      "बृजपुर",
+      "बीरा नया"
+    ]
+  },
+  "सतना": {
+    "61. चित्रकुट": [
+      "बिरसिंहपुर",
+      "मझगवां",
+      "बरौधा",
+      "जैतवारा",
+      "चित्रकुट नया"
+    ],
+    "62. रैगांव अजा": [
+      "सोहावल",
+      "सिंहपुर",
+      "कोठी",
+      "सेमरवारा",
+      "भरजूना  नया"
+    ],
+    "63. सतना": [
+      "सतना नगर पश्चिमी (कुशाभाऊ ठाकरे)",
+      "सतना पूर्वी  (पं. दीनदयाल उपाध्याय)",
+      "बाबूपुर",
+      "अटल बिहारी वाजपेयी",
+      "डाॅ. श्यामा प्रसाद मुखर्जी नया"
+    ],
+    "64. नागौद": [
+      "नागौद",
+      "उचेहरा",
+      "परसमनिया",
+      "अटरा",
+      "जसो",
+      "भरहुत  नया"
+    ],
+    "67. रामपुर बघेलान": [
+      "रामपुर बघेलान",
+      "मोहारी कटरा",
+      "कोटर",
+      "सज्जनपुर",
+      "छिबौरा"
+    ]
+  },
+  "मैहर  नया जिला": {
+    "65. मैहर": [
+      "मेैहर नगर",
+      "नादन",
+      "बदेरा",
+      "अमदरा",
+      "सोनवारी नया",
+      "बेरमा नया"
+    ],
+    "66. अमरपाटन": [
+      "अमरपाटन",
+      "रामनगर",
+      "ताला",
+      "मर्यादापुर",
+      "कठहा नया",
+      "बड़वार नया"
+    ]
+  },
+  "रीवा": {
+    "68. सिरमौर": [
+      "सिरमौर",
+      "जवा",
+      "डभौरा",
+      "बैकुण्ठपुर नया",
+      "अतरैला नया"
+    ],
+    "69. सेमरिया": [
+      "सेमरिया",
+      "शाहपुर",
+      "बनकुंइया",
+      "मनकहरी  नया"
+    ],
+    "70. त्याथौर": [
+      "त्यौथर",
+      "गढ़ी",
+      "रायपुर सोनौरी",
+      "कटरा नया"
+    ],
+    "73. मनगवां अजा": [
+      "मनगवां",
+      "रामपुर सर्किल",
+      "लालगांव (गढ)",
+      "देवास नया",
+      "सूरा नया"
+    ],
+    "74. रीवा": [
+      "अटल (रीवा नगर)",
+      "रीवा ग्रामीण",
+      "बिछिया",
+      "बोदाबाग (दीनदयाल)"
+    ],
+    "75. गुढ़": [
+      "गुढ़",
+      "गोविन्दगढ़",
+      "रायपुरकुर्चलियान",
+      "महसांव नया"
+    ]
+  },
+  "मऊगंज  नया जिलाा": {
+    "71. मउगंज": [
+      "मउगंज",
+      "हनुमना",
+      "खटकरी",
+      "शाहपुर नया",
+      "पिपराही नया"
+    ],
+    "72. देवतालाब": [
+      "देवतालाब",
+      "रघुराज गढ़",
+      "नईगढ़ी",
+      "सीतापुर",
+      "तमरी नया"
+    ]
+  },
+  "सीधी": {
+    "76. चुरहट": [
+      "चुरहट",
+      "रामपुरनैकिन",
+      "खड्डी",
+      "पटपरा",
+      "चोरगड़ी",
+      "पड़खुरी नया",
+      "हनुमानगढ़ नया"
+    ],
+    "77. सीधी": [
+      "सीधी नगर",
+      "कुचवाही",
+      "सेमरिया",
+      "बरमबाबा",
+      "अमरपुर",
+      "चैफाल"
+    ],
+    "78. सिंहावल": [
+      "सिंहावल",
+      "बहरी",
+      "सोनवर्षा",
+      "अमिलिया नया",
+      "मायापुर नया"
+    ],
+    "82. धौहनी अजजा": [
+      "मझौली",
+      "मडवास",
+      "कुसमी",
+      "पौंडी निवास",
+      "खडौरा नया"
+    ]
+  },
+  "सिंगरौली": {
+    "79. चितरंगी अजजा": [
+      "चितरंगी",
+      "गौरबी",
+      "बगदरा",
+      "कर्थुआ",
+      "मौहरिया",
+      "बगैया"
+    ],
+    "80. सिंगरौली": [
+      "सिंगरौली",
+      "बैढन",
+      "तियरा",
+      "विन्ध्यनगर",
+      "जयन्त नगर"
+    ],
+    "81. देवसर अजा": [
+      "खुटार",
+      "माडा",
+      "सरई",
+      "बरगवां",
+      "लंघाडोल",
+      "रजमिलान"
+    ],
+    "82. धौहनी": [
+      "निवास",
+      "रजनिया  नया"
+    ],
+    "78. सिंहावल": [
+      "देवसर जियावन",
+      "नौड़िया"
+    ]
+  },
+  "शहडोल": {
+    "83. ब्यौहारी अजजा": [
+      "बाणसागर",
+      "ब्यौहारी",
+      "पपौध",
+      "सीधी",
+      "आमडीह (करकी)",
+      "टिकही नया",
+      "मऊ नया"
+    ],
+    "84. जयसिंह नगर अजजा": [
+      "जयसिंह नगर",
+      "गोहपारू",
+      "शहडोल नगर",
+      "सोहागपुर",
+      "सिंहपुर",
+      "चुहरी  नया"
+    ],
+    "85. जैतपुर अजजा": [
+      "बुढार",
+      "खैहरा",
+      "धनपुरी",
+      "केशवाही",
+      "जैतपुर",
+      "बकहो नया"
+    ]
+  },
+  "अनूपपुर": {
+    "86. कोतमा": [
+      "कोतमा नगर",
+      "कोतमा गा्रमीण",
+      "बिजुरी नगर",
+      "राजनगर नगर",
+      "राजनगर ग्रामीण"
+    ],
+    "87. अनूपपुर": [
+      "अनूपपुर नगर",
+      "अनूपपुर गा्रमीण",
+      "फुनगा",
+      "पसान",
+      "जैतहरी"
+    ],
+    "88. पुष्पराजगढ़ अजजा": [
+      "अमरकंटक",
+      "राजेन्द्रगा्रम नगर",
+      "बेनीवारी",
+      "करपा",
+      "वैंकट नगर",
+      "दमेहडी  नया"
+    ]
+  },
+  "उमरिया": {
+    "89. बांधगढ़ अजजा": [
+      "चंदिया",
+      "उमरिया नगर",
+      "उमरिया ग्रामीण",
+      "करकेली",
+      "नौरोजाबाद",
+      "बिलासपुर नया",
+      "कोहका  नया"
+    ],
+    "90. मानपुर अजजा": [
+      "अमरपुर",
+      "मानपुर",
+      "पाली नगर",
+      "पाली ग्रामीण",
+      "पिपरिया",
+      "बिजौरी नया",
+      "इंदवार नया"
+    ]
+  },
+  "जबलपुर नगर": {
+    "97. जबलपुर पूर्व अजा": [
+      "डाॅ. श्याम प्रसाद मुखर्जी",
+      "लोकमान्य बाल गंगाधर तिलक",
+      "शहीद अब्दुल हमीद",
+      "नेता जी सुभाषचंद्र बोस"
+    ],
+    "98. जबलपुर उत्तर": [
+      "शहीद चन्द्रशेखर आजाद",
+      "स्वामी विवेकानंद",
+      "पं. दीनदयाल उपाध्याय",
+      "कुशाभाऊ ठाकरे",
+      "आचार्य विद्यासागर  नया"
+    ],
+    "99. जबलपुर केन्ट": [
+      "वीर सावरकर",
+      "शहीद भगत सिंह",
+      "छत्रपति शिवाजी",
+      "अटल बिहारी वाजपेयी"
+    ],
+    "100. जबलपुर पश्चिम": [
+      "गिरीराज किशोर कपूर",
+      "रानी दुर्गावती",
+      "मां नर्मदा",
+      "महाराणा प्रताप",
+      "महर्षि वाल्मिकी  नया"
+    ]
+  },
+  "जबलपुर गा्र.": {
+    "95. पाटन": [
+      "पाटन",
+      "मझोली पश्चिम",
+      "मझोली पूर्व",
+      "कटंगी",
+      "पोडा",
+      "नुनसर"
+    ],
+    "96. बरगी": [
+      "बरगी",
+      "चरगवां",
+      "शहपुरा",
+      "भेडाघाट",
+      "तिलवारा",
+      "बेलखेड़ा"
+    ],
+    "101. पनागर": [
+      "पनागर नगर",
+      "पनागर पूर्व",
+      "पनागर पश्चिम",
+      "सोहागी करमेता",
+      "बरेला",
+      "महाराजपुर नया",
+      "रानी दुर्गावती"
+    ],
+    "102. सीहोरा अजजा": [
+      "सीहोरा नगर",
+      "गोसलपुर (सीहोरा ग्रा.)",
+      "मझगवां",
+      "बघराजी",
+      "कुण्डम",
+      "चैरई कलां  नया"
+    ]
+  },
+  "कटनी": {
+    "91. बडवारा अजजा": [
+      "बडवारा",
+      "ढीमरखेडा",
+      "सिलोडी",
+      "देवरी हटाई",
+      "कैमोर",
+      "विलायतकला",
+      "पान उमरिया"
+    ],
+    "92. विजयराघोगढ़": [
+      "विजय राघवगढ़",
+      "सिनगोडी",
+      "बरही",
+      "खितौली",
+      "कांटी",
+      "पिपरिया कलां नया"
+    ],
+    "93. मुडवारा": [
+      "मुडवारा (कटनीनगर)",
+      "माधवनगर",
+      "न्यू कटनी",
+      "कटनी गा्रमीण",
+      "निवार",
+      "स्लीमनाबाद",
+      "पं. दीनदयाल उपाध्याय नया"
+    ],
+    "94. बहोरीबंद": [
+      "बहोरीबंद",
+      "रीठी",
+      "बिलहरी",
+      "बाकल",
+      "कुआ",
+      "देवगांव  नया"
+    ]
+  },
+  "डिण्डौरी": {
+    "103. शाहपुरा अजजा": [
+      "मेहंदवानी",
+      "अमरपुर",
+      "शाहपुर",
+      "शहपुरा",
+      "मानिकपुर नया",
+      "सक्का  नया"
+    ],
+    "104. डिण्डौरी अजजा": [
+      "करंजिया",
+      "बजाग",
+      "समनापुर",
+      "डिण्डौरी",
+      "गोपालपुर नया",
+      "गाड़ासरई नया",
+      "बम्हनी नया"
+    ]
+  },
+  "मण्डला": {
+    "105. बिछिया अजजा": [
+      "बिछिया",
+      "मवई",
+      "घुघरी",
+      "अंजनिया",
+      "घुटास नया",
+      "सलवाह नया"
+    ],
+    "106. निवास अजजा": [
+      "निवास",
+      "नारायणगंज",
+      "बीजाहाडी",
+      "बकोरी",
+      "मोहगांव",
+      "बबलिया नया"
+    ],
+    "107. मण्डला अजजा": [
+      "मण्डला नगर",
+      "मण्डला ग्रामीण",
+      "नैनपुर नगर",
+      "नैनपुर ग्रामीण",
+      "चिरई डोंगरी",
+      "बम्हनी बंजर नगर",
+      "पदमी चैराह नया"
+    ]
+  },
+  "बालाघाट": {
+    "108. बैहर अजजा": [
+      "बिरसा",
+      "मलाजखण्ड",
+      "बैहर",
+      "उकवा",
+      "गढ़ी",
+      "मंडई नया"
+    ],
+    "109. लांजी": [
+      "किरनापुर",
+      "लांजी",
+      "भाडरा",
+      "भानेगांव",
+      "कारंजा नया",
+      "माटे नया",
+      "बिसोनी नया"
+    ],
+    "110. परसवाडा": [
+      "हट्टा",
+      "बालाघाट ग्रामीण",
+      "लामटा",
+      "परसवाडा",
+      "मझगांव नया",
+      "समनापुर नया",
+      "रजेगांव नया"
+    ],
+    "111. बालाघाट": [
+      "बालाघाट नगर",
+      "लालबर्रा",
+      "खमरिया",
+      "भरवेली",
+      "बालाघाट उत्तर नया",
+      "मोहगांव नया"
+    ],
+    "112. वारासिवनी": [
+      "वारासिवनी नगर",
+      "वारासिवनी ग्रामीण",
+      "खैरलाजी",
+      "आरंभा नया",
+      "रामपायली नया"
+    ],
+    "113. कटंगी": [
+      "कटंगी",
+      "कटोरी",
+      "तिरोडी",
+      "कटंगी पश्चिम नया",
+      "मिरगपुर नया",
+      "महकेपार नया"
+    ]
+  },
+  "सिवनी": {
+    "114. बरघाट अजजा": [
+      "कुरई",
+      "सुखतरा",
+      "बरघाट",
+      "धारना",
+      "गंगेरूआ"
+    ],
+    "115. सिवनी": [
+      "बारापत्थर (सिवनी उत्तर )",
+      "मंगलीपेठ (सिवनी दक्षिण)",
+      "करकोटी (सिवनी ग्रामीण)",
+      "लखनवाडा नया",
+      "मुगवानी",
+      "बण्डोल",
+      "चमारी",
+      "बीजादेवरी"
+    ],
+    "116. केवलारी": [
+      "केवलारी",
+      "छपारा",
+      "उगली",
+      "धनोरा",
+      "कान्हीवाडा",
+      "पलारी",
+      "छींद खैरलांजी नया"
+    ],
+    "117.लखनादौनअजजा": [
+      "लखनादौन नगर",
+      "आंदेगांव",
+      "घूमा",
+      "कहानी",
+      "घंसोर",
+      "केदारपुर",
+      "नागनदेवरी नया"
+    ]
+  },
+  "नरसिंहपुर": {
+    "118. गोटेंगांव अजा": [
+      "गोटेगांव नगर",
+      "गोटेगांव ग्रामीण",
+      "करकबेल",
+      "मुंगवानी",
+      "श्रीनगर नया",
+      "ढांगीढाना नया"
+    ],
+    "119. नरसिंहपुर": [
+      "नरसिंहपुर नगर",
+      "नरसिंहपुर ग्रामीण",
+      "करेली नगर",
+      "करेली ग्रामीण",
+      "नर्मदा",
+      "सिंहपुर नया"
+    ],
+    "120. तेन्दूखेडा": [
+      "चैगान",
+      "सिहोरा",
+      "चावरपाठा (तेंदूखेड़ा)",
+      "कौड़िया नया",
+      "तेंदूखेड़ा नया"
+    ],
+    "121. गाडरवाडा": [
+      "गाडरवारा नगर",
+      "साईखेडा",
+      "चीचली",
+      "सालीचैका",
+      "आमगांव छोटा नया"
+    ]
+  },
+  "छिंदवाड़ा": {
+    "122. जुन्नारदेव अजजा": [
+      "जुन्नारदेव नगर",
+      "जुन्नारदेव ग्रामीण",
+      "दमुआ नगर",
+      "दमुआ ग्रामीण",
+      "तामिया",
+      "चावलपानी नया"
+    ],
+    "123. अमरवाडा अजजा": [
+      "अमरवाडा नगर",
+      "अमरवाडा ग्रामीण",
+      "सिंगोडी",
+      "बटकाखापा",
+      "हरई",
+      "छिन्दी",
+      "सुरलाखापा"
+    ],
+    "124. चैरई": [
+      "चैरई नगर",
+      "चैरई ग्रामीण",
+      "चांद",
+      "बिछुआ",
+      "कुण्डा",
+      "खमारपानी नया"
+    ],
+    "126. छिन्दवाडा": [
+      "छिन्दवाडा नगर (एक)",
+      "छिन्दवाडा नगर (दो)",
+      "छिन्दवाडा ग्रामीण",
+      "सारना",
+      "धरमटेकड़ी नया",
+      "गुलाबरा नया"
+    ],
+    "127. परासिया अजा": [
+      "परासिया नगर",
+      "पगारा (परासिया ग्रा.)",
+      "उमरेठ",
+      "शिवपुरी",
+      "पटपड़ा नया"
+    ]
+  },
+  "पांढुर्णा नया जिला": {
+    "125. सौसर": [
+      "सौसर",
+      "लोधीखेडा ग्रा.",
+      "पिपल्यानारायणवार",
+      "मोहखेडा",
+      "रामाकोना नया",
+      "लिंगा नया"
+    ],
+    "128. पांढुर्णा अजजा": [
+      "पांढुर्णा नगर",
+      "पांढुर्णा ग्रा.",
+      "नंदनवाडी",
+      "सावरी",
+      "कुशाभाऊ ठाकरे नया",
+      "श्यामाप्रसाद मुखर्जी (देवगढ़) नया"
+    ]
+  },
+  "नर्मदापुरम्": {
+    "136. सिवनी मालवा": [
+      "सिवनीमालवा नगर",
+      "सिवनीमालवा ग्रामीण",
+      "केसला",
+      "शिवपुर",
+      "भीलटदेव",
+      "डोलरिया"
+    ],
+    "137. नर्मदापुरम्": [
+      "नर्मदापुरम् नगर",
+      "नर्मदापुर नगर",
+      "इटारसी नगर",
+      "पुरानी इटारसी",
+      "नर्मदापुरम् ग्रामीण"
+    ],
+    "138. सोहागपुर": [
+      "सोहागपुर",
+      "सेमरी",
+      "माखन नगर (बावई)",
+      "आरी बाबई पश्चिम",
+      "रामपुर",
+      "शोभापुर"
+    ],
+    "139. पिपरिया अजा": [
+      "पिपरिया नगर",
+      "पिपरिया ग्रामीण",
+      "बनखेडी नगर",
+      "पंचमढ़ी",
+      "चांदौन ग्रामीण",
+      "खापरखेड़ा",
+      "बनखेडी ग्रामीण नया"
+    ]
+  },
+  "हरदा": {
+    "134. टिमरनी अजजा": [
+      "टिमरनी",
+      "कायदा नया",
+      "रेहटगांव",
+      "सिराली",
+      "करताना नया",
+      "पहटकलां  नया"
+    ],
+    "135. हरदा": [
+      "हरदा नगर",
+      "हरदा ग्रा.",
+      "खिरकिया",
+      "हाण्डिया",
+      "सोनतलाई नया",
+      "चारूवा नया"
+    ]
+  },
+  "बैतूल": {
+    "129. मुलताईृ": [
+      "मुलताई नगर",
+      "मुलताई ग्रामीण",
+      "प्रभात पटट्नम",
+      "दुनावा",
+      "मासौदा"
+    ],
+    "130. आमला अजा": [
+      "आमला नगर",
+      "आमला ग्रामीण",
+      "सारणी नगर",
+      "सारणी ग्रामीण",
+      "मोरखा"
+    ],
+    "131. बैतूल": [
+      "बैतूल गंज",
+      "बतूल ग्रामीण",
+      "बैतूल बाजार",
+      "आठनेर नगर",
+      "बडोरा",
+      "कोठी बाजार"
+    ],
+    "132. घोडाडोंगरी अजजा": [
+      "घोडाडोंगरी",
+      "चिचोली नगर",
+      "चिचैली ग्रामीण",
+      "शाहपुर",
+      "भौरा",
+      "चोपना",
+      "पाढर"
+    ],
+    "133. भैंसदेही अजजा": [
+      "भैंसदेही नगर",
+      "भैंसदेही ग्रामीण",
+      "आठनेर ग्रामीण",
+      "भीमपुर",
+      "दामजीपुरा",
+      "रतनपुर नया",
+      "सावलमेढ़ा नया"
+    ]
+  },
+  "भोपाल नगर": {
+    "150. भोपाल उत्तर": [
+      "रानी कमलपती (शाहजहानाबाद)",
+      "गुरूनानक(शाहजहानाबाद)",
+      "वीर सावरकर (बस स्टैण्ड)",
+      "राजाभोज (अग्रसेन)",
+      "नवल शाह नया मण्डल"
+    ],
+    "151. नरेला": [
+      "स्टेशन",
+      "सुभाष",
+      "स्वामी विवेकानंद (करोंद)",
+      "शहीद भगत सिंह (करोंद)",
+      "अशोका गार्डन",
+      "महामाई"
+    ],
+    "152. दक्षिण पश्चिम": [
+      "टैगोर  (टी.टी. नगर)",
+      "तात्याटोपे",
+      "करूणाधाम ( नेहरू नगर )",
+      "पंचशील नगर",
+      "माता शबरी नया"
+    ],
+    "153. भोपाल मध्य": [
+      "बरखेडी",
+      "चैक",
+      "अरेरा",
+      "महाराणाप्रताप",
+      "शाहपुरा"
+    ],
+    "154. गोविंदपुरा": [
+      "अवधपुरी",
+      "मिसरोद",
+      "साकेतनगर",
+      "आनंदनगर",
+      "इन्द्रपुरी",
+      "भानपुर"
+    ],
+    "155. हुजुर": [
+      "बैरागढ़ संतहिरदाराम नगर",
+      "गांधीनगर",
+      "डाॅ. श्यामा प्रसाद मुखर्जी नगर (कोलार)",
+      "अटल बिहारी वाजपेयी (कोलार)"
+    ]
+  },
+  "भोपाल ग्रामीण": {
+    "149. बैरसिया अजा": [
+      "नजीराबाद",
+      "हर्राखेडा",
+      "बैरसिया नगर",
+      "बैरसिया ग्रामीण",
+      "हरिसिद्धि",
+      "परवलिया सड़क"
+    ],
+    "155. हुजुर": [
+      "बिलखिरिया",
+      "फन्दा",
+      "पं. दीनदयाल",
+      "नीलबड़ (रातीबड़)"
+    ]
+  },
+  "रायसेन": {
+    "140. उदयपुरा": [
+      "उदयपुरा",
+      "बरेली नगर",
+      "भारकच्छ",
+      "देवरी",
+      "बरेली ग्रामीण",
+      "खरगोन नया मण्डल",
+      "नूरनगर नया मण्डल"
+    ],
+    "141. भोजपुर": [
+      "मंडीदीप नगर",
+      "औबेदुल्लागंज",
+      "बाडी",
+      "सुल्तानपुर",
+      "मण्डीदीप ग्रामीण",
+      "भोजपुर"
+    ],
+    "142. सांची अजा": [
+      "रायसेन",
+      "सांची",
+      "गैरतगंज",
+      "खरबई",
+      "साॅचेत",
+      "देवनगर (देवगांव)",
+      "गैरतगंज ग्रामीण नया",
+      "सलामतपुर नया"
+    ],
+    "143. सिलवानी": [
+      "सिलवानी पूर्व",
+      "सिलवानी पश्चिम",
+      "बेगमगंज नं.",
+      "बेगमगंज ग्रा.",
+      "सुल्तानगंज ग्रामीण",
+      "प्रतापगढ़ नया"
+    ]
+  },
+  "विदिशा": {
+    "144. विदिशा": [
+      "गुलाबगंज",
+      "वैत्रवति (विदिशा नगर)",
+      "दुर्गानगर (विदिशा नगर)",
+      "बैसनगर (विदिशा ग्रामीण)",
+      "अहमदपुर",
+      "ढोलखेड़ी नया"
+    ],
+    "145. बासौदा": [
+      "गंजबासोदा नगर",
+      "गंजबासोदा ग्रामीण",
+      "ग्यारसपुर",
+      "त्योंदा",
+      "सिरनोटा नया"
+    ],
+    "146. कुरवाई अजा": [
+      "कुरवाई",
+      "पथरिया",
+      "मेहलुआ चैराहा",
+      "पठारी",
+      "उदयपुर",
+      "दीपनाखेड़ा नया",
+      "अम्बानगर नया"
+    ],
+    "147. सिरोज": [
+      "सिरोज नगर",
+      "लटेरी",
+      "आनंदपुर",
+      "चितावर",
+      "देवपुर"
+    ],
+    "148. शमशाबाद": [
+      "नटेरन",
+      "शमशाबाद",
+      "खामखेडा",
+      "सतपाडा हाट",
+      "देव खाजूरी नया"
+    ]
+  },
+  "सीहोर": {
+    "156. बुदनी": [
+      "नसरूल्लागंज",
+      "सलकनपुर",
+      "शाहगंज",
+      "बुधनी",
+      "गोपालपुर",
+      "लाड़कुई",
+      "चकल्दी"
+    ],
+    "157. आष्टा अजा": [
+      "आष्टा नगर",
+      "आष्टा ग्रा.",
+      "जावर",
+      "कोठरी",
+      "सिद्विकगंज",
+      "मैना नया",
+      "खाचरोद नया",
+      "डोडी नया"
+    ],
+    "158. इच्छावर": [
+      "इच्छावर",
+      "बिलकिसगंज",
+      "बरखेडी",
+      "गुड़भेला",
+      "दीवड़िया"
+    ],
+    "159. सीहोर": [
+      "सीहोर नगर-1",
+      "श्यामपुर",
+      "दोराहा",
+      "अहमदपुर",
+      "सीहोर नगर - 2 नया"
+    ]
+  },
+  "राजगढ़": {
+    "160. नरसिंहगढ़": [
+      "नरसिंहगढ़",
+      "कुरावर",
+      "तलेन",
+      "बोड़ा",
+      "झाड़ला नया",
+      "मण्डावर नया"
+    ],
+    "161. ब्यावरा": [
+      "ब्यावरा",
+      "गादिया",
+      "सुठालिया",
+      "पिपलहेला",
+      "मलावर नया",
+      "गिन्दौरहाट नया"
+    ],
+    "162. राजगढ़": [
+      "राजगढ़",
+      "खुजनेर",
+      "कालीपीठ",
+      "पपडेल",
+      "करेड़ी नया",
+      "पिपलोदी नया"
+    ],
+    "163. खिलचीपुर": [
+      "खिलचीपुर",
+      "जीरापुर",
+      "माचलपुर",
+      "छापीहेड़ा",
+      "रामगढ़ नया",
+      "भण्डावद नया"
+    ],
+    "164. सांरगपुर अजा": [
+      "सांरगपुर नगर",
+      "संडावता",
+      "पचैर",
+      "गुलावता",
+      "पड़ाना नया"
+    ]
+  },
+  "इंदौर नगर": {
+    "204. इन्दौर-1": [
+      "सुभाषचन्द्र बोस",
+      "लक्ष्मीबाई",
+      "सम्राट अशोक",
+      "चन्द्रशेखर आजाद",
+      "लवकुश",
+      "गुरू टेकचंद  नया"
+    ],
+    "205. इन्दौर-2": [
+      "डाॅ. अम्बेडकर",
+      "रामायण",
+      "पं. दीनदयाल उपाध्याय",
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "संतश्री मोनी बाबा",
+      "संतश्री बालीनाथ",
+      "राजमाता जीजाबाई नया",
+      "संतश्री रविदास  नया"
+    ],
+    "206. इन्दौर-3": [
+      "कुशाभाउ ठाकरे",
+      "देवी अहिल्या बाई",
+      "अटल बिहारी वाजपेयी",
+      "राजेन्द्र धारकर नया"
+    ],
+    "207. इन्दौर-4": [
+      "हेमू कालोनी",
+      "महाराणाप्रताप",
+      "लक्ष्मण सिंह गौड",
+      "शहीद भगत सिंह"
+    ],
+    "208. इन्दौर-5": [
+      "शिवाजी",
+      "सरदार बल्लभ पटेल तिलक",
+      "छत्रसाल",
+      "वीर सावरकर",
+      "ऐ. पी. जे. अब्दुल कलाम",
+      "संत कबीरदास नया",
+      "ज्योतिबा फुले नया"
+    ],
+    "210. राऊ": [
+      "निर्भय सिंह पटेल",
+      "समा्रट चंद्रगुप्त मौर्य",
+      "गुरू गोविंद सिंह"
+    ],
+    "203. देपालपुर": [
+      "सरदार पटेल"
+    ],
+    "211. सांवेर": [
+      "निपानिया"
+    ]
+  },
+  "इंदौर गा्र.": {
+    "209. महू": [
+      "भीमराव अंबेडकर -कोदरिया",
+      "केजी माहेष्वरी- मंहू नगर",
+      "शहीद टंट्यामामा- सिमरोल",
+      "भेरूलाल पाटीदार- मंहूगांव",
+      "भगवान परषुराम- मानपुर"
+    ],
+    "203. देपालपुर": [
+      "चैबीस अवतार- देपालपुर",
+      "धन्नालाल पटैल- गौतमपुरा",
+      "गुरूनानक देव- बेटमा",
+      "महाराज यषवंत राव- हातोद"
+    ],
+    "211. सांवेर": [
+      "प्रकाश सोनकर- सांवेर",
+      "मां षिप्रा- शिप्रा",
+      "मां अहिल्या- पालिया",
+      "मां नर्मदा -खुडेल"
+    ],
+    "210. राऊ": [
+      "राऊ",
+      "कैलाश पाटीदार",
+      "राऊ ग्रामीण नया"
+    ]
+  },
+  "खण्डवा": {
+    "175. मांधाता": [
+      "पुनासा",
+      "किल्लोद",
+      "मूंदी",
+      "ओंकारेश्वर",
+      "कावेरी नया"
+    ],
+    "176. हरसूद": [
+      "हरसूद नगर",
+      "हरसूद ग्रामीण",
+      "रोशनी",
+      "खालवा",
+      "खार",
+      "आशापुर नया"
+    ],
+    "177. खण्डवा अजजा": [
+      "कुशाभाउ ठाकरे  (खण्डवा नगर)",
+      "अटल बिहारी वाजपेयी",
+      "जावर (खण्डवा ग्रा.)",
+      "अमलपुरा",
+      "पं. दीनदयाल उपाध्याय नया"
+    ],
+    "178. पंधाना अजजा": [
+      "पंधाना",
+      "छैगांव माखन",
+      "बोरगांव",
+      "चिचगोहन",
+      "गुडीखेड़ा",
+      "सिंगोठ"
+    ]
+  },
+  "बुरहानपुर": {
+    "179. नेपानगर अजजा": [
+      "नेपानगर नगर.",
+      "नावरा (नेपानगर ग्रा.)",
+      "खकनार",
+      "धुलकोट",
+      "अटलबिहारी बाजपेयी(दर्यापुर)",
+      "कुशाभाऊ ठाकरे"
+    ],
+    "180. बुरहानुपर": [
+      "बहादरपुर (बुरहानपुर नगर)",
+      "डाॅ.श्यामा प्रसाद मुखर्जी लालबाग (बुरहानपुर ग्रा.)",
+      "लोकमान्य तिलक",
+      "सरदार बल्लभ भाई पटेल",
+      "शाहपुर",
+      "पंडित दीनदयाल उपाध्याय",
+      "लोकमाता अहिल्या देवी नया"
+    ]
+  },
+  "खरगौन": {
+    "181.  भीकनगांव अजजा": [
+      "भीकनगांव",
+      "झिरन्या",
+      "चिरिया",
+      "आभापुरी (शिवना) नया",
+      "भीकनगांव (पश्चिम) नया"
+    ],
+    "182. बड़वाह": [
+      "बड़वाह नगर",
+      "बड़वाह ग्रा.",
+      "सनावद नगर",
+      "सनावद ग्रा.",
+      "बैड़िया"
+    ],
+    "183. महेश्वर अजा": [
+      "महेश्वर",
+      "करही",
+      "बलवाड़ा",
+      "मंडलेश्वर"
+    ],
+    "184. कसरावद": [
+      "कसरावद पूर्व",
+      "कसरावद पश्चिम",
+      "अंदड़",
+      "कसरावद दक्षिण नया",
+      "कसरावद नगर नया"
+    ],
+    "185. खरगौन": [
+      "खरगौन नगर (पूर्व)",
+      "खरगौन ग्रा.",
+      "गोगावा",
+      "खरगौन नगर (पश्चिम) नया"
+    ],
+    "186. भगवानपुरा अजजा": [
+      "भगवानपुरा",
+      "बिस्टान",
+      "सैगांव",
+      "बरूड़",
+      "सिरवेल महादेव नया"
+    ]
+  },
+  "बड़वानी": {
+    "187. सेंधवा अजजा": [
+      "सेंधवा नगर",
+      "संेधवा ग्रामीण",
+      "धनोरा",
+      "बलवाड़ी",
+      "चाचरिया",
+      "धवली",
+      "शाहपुरा नया"
+    ],
+    "188. राजपुर अजजा": [
+      "राजपुर",
+      "जुलवानीया",
+      "ठीकरी",
+      "अंजड़",
+      "तलवाडा",
+      "ओझर"
+    ],
+    "189. पानसेमल अजजा": [
+      "पानसेमल नगर",
+      "चाटली",
+      "खेतिया",
+      "पलसूद",
+      "निवाली",
+      "जलगोन नया"
+    ],
+    "190. बड़वानी अजजा": [
+      "बड़वानी नगर",
+      "बड़वानी ग्रामीण",
+      "पाटी",
+      "सिलावद",
+      "गंधावल बोकराटा",
+      "भवती बिजासन",
+      "मेणीमाता"
+    ]
+  },
+  "अलीराजपुर": {
+    "191. अलीराजपुर अजजा": [
+      "अलीराजपुर नगर",
+      "अलीराजपुर ग्रामीण",
+      "सौरवा",
+      "छकतला",
+      "सोण्डवा",
+      "उमराली नया"
+    ],
+    "192. जोबट अजजा": [
+      "चन्द्रशेखर आजाद नगर",
+      "उदयगढ़",
+      "कटटीवाड़ा",
+      "जोबट",
+      "खटटाली",
+      "आम्बुआ",
+      "बरझर"
+    ]
+  },
+  "झाबुआ": {
+    "193. झाबुआ अजजा": [
+      "झाबुआ नगर",
+      "पिटोल (झाबुआ ग्रा.)",
+      "देवझरी नया",
+      "राणापुर",
+      "वन (राणापुर ग्रा.)",
+      "कल्याणपुरा",
+      "बोरी"
+    ],
+    "194. थांदला अजजा": [
+      "थांदला",
+      "काकनवानी  (थांदला ग्रा.)",
+      "मेघनगर",
+      "मदरानी",
+      "नौगांवा",
+      "खवासा"
+    ],
+    "195. पेटलावद अजजा": [
+      "पेटलावद",
+      "सारंगी (पेटलावद ग्रा.)",
+      "रायपुरिया",
+      "पारा",
+      "रामा",
+      "कुंदनपुर",
+      "झकनावद नया"
+    ]
+  },
+  "धार": {
+    "196. सरदारपुर अजजा": [
+      "सरदारपुर",
+      "राजगढ़ नगर",
+      "राजगढ़ ग्रामीण",
+      "अमझेरा दसाई",
+      "लाबरिया (राजोद)"
+    ],
+    "201. धार": [
+      "कुशाभाउ ठाकरे",
+      "धार ग्रामीण",
+      "तिरला",
+      "दिग्ठान",
+      "पीथमपुर",
+      "सेनापति",
+      "सागौर"
+    ],
+    "202. बदनावर": [
+      "बदनावर नगर",
+      "बदनावर ग्रा.",
+      "कानवन",
+      "सादलपुर",
+      "बखतगढ़",
+      "बिडवाल"
+    ]
+  },
+  "धार ग्रामीण": {
+    "197. गंधवानी": [
+      "गंधवानी",
+      "बाग",
+      "कछावदा",
+      "जीराबाद",
+      "टाण्डा"
+    ],
+    "198. कुक्षी अजजा": [
+      "कुक्षी नगर",
+      "कुक्षी ग्रामीण",
+      "निसरपुर",
+      "डही",
+      "बडदा"
+    ],
+    "199. मनावर अजजा": [
+      "मनावर नगर",
+      "मनावर ग्रा.",
+      "उमरबन",
+      "सिंघाना",
+      "बाकानेर"
+    ],
+    "200. धरमपुरी अजजा": [
+      "धरमपुरी",
+      "धामनोद",
+      "नालक्षा",
+      "गुजरी",
+      "बगड़ी नया"
+    ]
+  },
+  "उज्जैन नगर": {
+    "216. उज्जैन उत्तर": [
+      "दौलतगंज",
+      "सराफा",
+      "जीवाजीगंज",
+      "कार्तिक चैक",
+      "विक्रमादित्य",
+      "डाॅ. श्यामा प्रसाद मुखजी  नया"
+    ],
+    "217. उज्जैन दक्षिण": [
+      "माधवनगर",
+      "केशवनगर",
+      "महाराजवाडा",
+      "पं. दीनदयाल",
+      "शहीद राजभाऊ महाकाल  नया"
+    ]
+  },
+  "उज्जैन ग्रा.": {
+    "212. नागदा": [
+      "नागदा नगर",
+      "नागदा ग्रामीण",
+      "खाचरौद नगर",
+      "खाचरौद ग्रामीण",
+      "खाचरौद ग्रामीण (दक्षिण) नया",
+      "नागदा बिरलाग्राम नया"
+    ],
+    "213. महिदपुर": [
+      "महिदपुर नगर",
+      "महिदपुर ग्रामीण",
+      "झारडा",
+      "महिदपुर रोड़"
+    ],
+    "214. तराना अजा": [
+      "तराना नगर",
+      "तराना ग्रामीण",
+      "माकडोन",
+      "कनासिया"
+    ],
+    "215. घटिया अजा": [
+      "घटिया",
+      "ताजपुर",
+      "पानबिहार",
+      "उन्हेल"
+    ],
+    "218. बडनगर": [
+      "बडनगर नगर",
+      "बडनगर ग्रामीण",
+      "इन्गोरिया",
+      "खरसोदकलां",
+      "खरसौद खुर्द नया"
+    ],
+    "217. उज्जैन दक्षिण": [
+      "उज्जैन ग्रामीण (दक्षिण)"
+    ]
+  },
+  "शाजापुर": {
+    "167. शाजापुर": [
+      "शाजापुर नगर",
+      "शाजापुर ग्रामीण",
+      "पनवाडी",
+      "मोहन बडोदिया",
+      "बेरछा",
+      "मक्सी"
+    ],
+    "168. शुजालपुर": [
+      "शुजालपुर नगर",
+      "शुजालपुर ग्रामीण",
+      "अकोदिया",
+      "गुलाना",
+      "सुन्दरसी"
+    ],
+    "169. कालापीपल": [
+      "कालापीपल",
+      "खोकराकलां",
+      "अरनियाकलां",
+      "पोलायकलां",
+      "अवंतीपुर बड़ोदिया  नया",
+      "लसुल्डिया  नया"
+    ]
+  },
+  "आगर": {
+    "165. सुसनेर": [
+      "सुसनेर",
+      "नलखेड़ा",
+      "बड़ागांव",
+      "सोयत",
+      "मोड़ी नया",
+      "मोहना नया",
+      "धरोला नया"
+    ],
+    "166. आगर अजा": [
+      "आगर नगर",
+      "कानड़",
+      "बड़ौद",
+      "बीजानगरी",
+      "आगर ग्रामीण",
+      "तनोड़िया नया",
+      "मदकोटा नया"
+    ]
+  },
+  "देवास": {
+    "170. सोनकच्छ अजा": [
+      "टोकखुर्द नगर",
+      "टोकखुर्द ग्रामीण",
+      "सोनकच्छ नगर",
+      "सोनकच्छ (काशी)",
+      "भौरासा नया"
+    ],
+    "171. देवास": [
+      "देवास सीनियर",
+      "देवास जूनियर",
+      "देवास ग्रामीण",
+      "श्रीमंत महाराजा",
+      "सतगुरू शीलनाथ नया"
+    ],
+    "172. हाटपिपल्या": [
+      "हाटपिपल्या नगर",
+      "हाटपीपल्या ग्रामीण",
+      "बरोठा",
+      "क्षिप्रा",
+      "राजोदा नया"
+    ],
+    "173. खातेगांव": [
+      "खातेगांव",
+      "कन्नौद",
+      "हरनगांव",
+      "नेमावर मंदसौर",
+      "पानीगांव नया"
+    ],
+    "174. बागली अजजा": [
+      "बागली",
+      "सतवास",
+      "उदयनगर",
+      "काॅटाफोड लोहारदा",
+      "कर्णेश्वर नया"
+    ]
+  },
+  "रतलाम": {
+    "219. रतलाम ग्रा. अजा": [
+      "नामली",
+      "धराड",
+      "शबरी",
+      "शहीद चन्द्रशेखर आजाद",
+      "बांगरोद"
+    ],
+    "220. रतलाम सिटी": [
+      "डाॅ. श्यामा प्रसाद मुखर्जी",
+      "पं. दीनदयाल दीनदयाल",
+      "सूरजमल जैन",
+      "डाॅ. अम्बेडकर",
+      "कुशाभाउ ठाकरे"
+    ],
+    "221. सैलाना अजजा": [
+      "बाजना",
+      "रावटी शिवगढ़",
+      "सैलाना",
+      "बेडदा",
+      "राजपुरा"
+    ],
+    "222. जावरा": [
+      "जावरा ग्रामीण",
+      "पिपलोदा",
+      "जावरा नगर",
+      "सूखेडा",
+      "डाॅ. लक्ष्मीनारायण पांडे नया"
+    ],
+    "223. आलोट अजा": [
+      "आलोट",
+      "ताल",
+      "बडावदा",
+      "श्रीमंत राजमाता विजयाराजे सिंधिया",
+      "जोगणिया माता"
+    ]
+  },
+  "मंदसौर": {
+    "224. मंदसौर": [
+      "मंदसौर ग्रामीण",
+      "मंदसौर दक्षिण",
+      "दलौदा",
+      "मंदसौर उत्तर",
+      "मगरा माताजी  नया"
+    ],
+    "225. मल्हारगढ़ अजा": [
+      "मल्हारगढ़",
+      "बूढा बुरहानपुर",
+      "घुन्धडका",
+      "पिपल्यामण्डी",
+      "गुर्जर बर्ड़िया नया"
+    ],
+    "226. सुवासरा": [
+      "सुवासरा",
+      "सीतामउ नगर",
+      "सीतामउ ग्रामीण",
+      "कयामपुर",
+      "शामगढ़",
+      "बसई नया"
+    ],
+    "227. गरोठ": [
+      "गरोठ",
+      "भानपुरा",
+      "मेलखेडा",
+      "भैसोदा",
+      "खडावदा"
+    ]
+  },
+  "नीमच": {
+    "228. मनासा": [
+      "श्यामाप्रसाद मुखर्जी (मनासा नगर)",
+      "पं. दीनदयाल  (मनासा ग्रामीण)",
+      "कुकडेश्वर",
+      "रामपुरा",
+      "कुशाभाऊ ठाकरे (मनासा) नया"
+    ],
+    "229. नीमच": [
+      "पं. दीनदयाल (नीमच सिटी)",
+      "भादवामाता",
+      "नीमच उत्तर",
+      "नीमच दक्षिण",
+      "श्यामाप्रसाद मुखर्जी (बघाना)",
+      "कुशाभाऊ ठाकरे (नीमच) नया"
+    ],
+    "230. जावद": [
+      "जावद",
+      "मोरवन",
+      "रतनगढ",
+      "सिगोली"
+    ]
+  }
+};
+    // ===============================
+// LOCATION HELPERS (district -> vidhansabha -> mandal)
+// ===============================
+  // ==== District / Assembly / Mandal data (MP) ====
+  // NOTE: This dataset comes from your existing dropdown file. If you later replace it with Unicode dataset,
+  // just update DISTRICT_DATA below — rest of the code will remain same.
+
+function initDistrictCascade() {
+  const dEl = $("district");
+  const vEl = $("vidhansabha");
+  const mEl = $("mandal");
+  if (!dEl || !vEl || !mEl) return;
+
+  // Populate Districts
+  dEl.innerHTML = '<option value="">— जिला चुनें —</option>';
+  Object.keys(DISTRICT_DATA).sort((a,b)=>a.localeCompare(b,"hi")).forEach((d) => {
+    const opt = document.createElement("option");
+    opt.value = d;
+    opt.textContent = d;
+    dEl.appendChild(opt);
+  });
+
+  dEl.addEventListener("change", () => {
+    const dVal = dEl.value;
+    vEl.innerHTML = '<option value="">— विधानसभा चुनें —</option>';
+    mEl.innerHTML = '<option value="">— पहले विधानसभा चुनें —</option>';
+    vEl.disabled = !dVal;
+    mEl.disabled = true;
+
+    if (dVal && DISTRICT_DATA[dVal]) {
+      Object.keys(DISTRICT_DATA[dVal]).sort((a,b)=>a.localeCompare(b,"hi")).forEach((v) => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        vEl.appendChild(opt);
+      });
+    }
+  });
+
+  vEl.addEventListener("change", () => {
+    const dVal = dEl.value;
+    const vVal = vEl.value;
+    mEl.innerHTML = '<option value="">— मंडल चुनें —</option>';
+    mEl.disabled = !vVal;
+
+    if (dVal && vVal && DISTRICT_DATA[dVal] && DISTRICT_DATA[dVal][vVal]) {
+      DISTRICT_DATA[dVal][vVal].slice().sort((a,b)=>a.localeCompare(b,"hi")).forEach((m) => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        mEl.appendChild(opt);
+      });
+    }
+  });
+}
+
+function applyLocationAutofill(info) {
+  // info: {district, vidhansabha, mandal}
+  if (!info) return;
+  const d = safeStr(info.district).trim();
+  const v = safeStr(info.vidhansabha).trim();
+  const m = safeStr(info.mandal).trim();
+
+  if (d && $("district")) {
+    $("district").value = d;
+    $("district").dispatchEvent(new Event("change"));
+    setTimeout(() => {
+      if (v && $("vidhansabha")) {
+        $("vidhansabha").value = v;
+        $("vidhansabha").dispatchEvent(new Event("change"));
+        setTimeout(() => {
+          if (m && $("mandal")) $("mandal").value = m;
+        }, 120);
+      }
+    }, 120);
+  }
+}
+    // ===============================
+// LEVEL (optional fixed)
+// ===============================
+const LEVELS = ["district","vidhansabha","mandal"];
+
+function setLocationVisibility(level) {
+  const dWrap = $("wrap-district");
+  const vWrap = $("wrap-vidhansabha");
+  const mWrap = $("wrap-mandal");
+  if (!dWrap || !vWrap || !mWrap) return;
+
+  // default show all
+  dWrap.classList.remove("hidden");
+  vWrap.classList.remove("hidden");
+  mWrap.classList.remove("hidden");
+
+  if (level === "district") {
+    vWrap.classList.add("hidden");
+    mWrap.classList.add("hidden");
+  } else if (level === "vidhansabha") {
+    mWrap.classList.add("hidden");
+  }
+}
+
+function initLevelControl(cfg, formType) {
+  const levelEl = $("level");
+  if (!levelEl) return;
+
+  // decide fixed: url param > config fixed > none
+  const fixedFromCfg = getFixedLevel(cfg, formType);
+  const fixed = (LEVELS.includes(levelParam) ? levelParam : "") || (LEVELS.includes(fixedFromCfg) ? fixedFromCfg : "");
+
+  if (fixed) {
+    levelEl.value = fixed;
+    levelEl.disabled = true;
+    if ($("level-note")) $("level-note").textContent = `Level locked: ${fixed}`;
+  } else {
+    levelEl.disabled = false;
+    if ($("level-note")) $("level-note").textContent = "Level: आप बदल सकते हैं";
+  }
+
+  setLocationVisibility(levelEl.value);
+
+  levelEl.addEventListener("change", () => {
+    setLocationVisibility(levelEl.value);
+  });
+}
+    // ===============================
+// COORDINATOR FORM (NO PHOTO)
+  function normalizePhone(v){
+    const s = String(v||'').replace(/\D/g,'').slice(0,10);
+    return s;
+  }
+
+  function collectPayload(){
+    return {
+      level: byId('level').value || '',
+      program_name: (byId('program_name').value || '').trim(),
+      district: byId('district').value || '',
+      vidhansabha: byId('vidhansabha').value || '',
+      mandal: byId('mandal').value || '',
+      coordinator_name: (byId('coordinator_name').value || '').trim(),
+      coordinator_mobile: normalizePhone(byId('coordinator_mobile').value),
+      assistant_1_name: (byId('assistant_1_name').value || '').trim(),
+      assistant_1_mobile: normalizePhone(byId('assistant_1_mobile').value),
+      assistant_2_name: (byId('assistant_2_name').value || '').trim(),
+      assistant_2_mobile: normalizePhone(byId('assistant_2_mobile').value),
+    };
+  }
+
+  async function submitNoPhoto(){
+    const payload = collectPayload();
+
+    // basic validation
+    if(!payload.level || !payload.program_name || !payload.district || !payload.vidhansabha || !payload.mandal || !payload.coordinator_name || !payload.coordinator_mobile){
+      throw new Error('कृपया सभी * वाले फ़ील्ड भरें।');
+    }
+    if(payload.coordinator_mobile.length !== 10){
+      throw new Error('मोबाइल नंबर 10 digit होना चाहिए।');
+    }
+
+    // keep same backend flow: public_create_entry -> (optional) public_finalize_entry
+    const createRes = await apiCall('/political/public/forms', {
+      action: 'public_create_entry',
+      form_type: 'coordinator_form',
+      no_photo: true,
+      payload
+    });
+
+    // some lambdas may still return finalize_token; safe to call finalize.
+    if(createRes && createRes.finalize_token){
+      await apiCall('/political/public/forms', {
+        action: 'public_finalize_entry',
+        finalize_token: createRes.finalize_token
+      });
+    }
+
+    return createRes;
+  }
+
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+        if (typeof __EL_PREVIEW_MODE !== "undefined" && __EL_PREVIEW_MODE) {
+          try { showStatus("🔎 Preview Mode: submit disabled", false); } catch(e) {}
+          return;
+        }
+
+    setMsg('');
+    setLoading(true);
+
+    try{
+      const r = await submitNoPhoto();
+      setMsg('✅ सबमिट हो गया। Entry ID: ' + (r.entry_id || ''), 'ok');
+      f.reset();
+      // repopulate district dropdown (reset clears options)
+      try{ initDistrictCascade(); }catch(_e){}
+    }catch(err){
+      setMsg('❌ ' + (err?.message || 'Error'), 'err');
+      console.error(err);
+    }finally{
+      setLoading(false);
+    }
+  });
+
+// ---- AUTO BOOT (added) ----
+async function bootPage(){
+  try{
+    initDistrictCascade();
+  }catch(e){ console.log("boot initDistrictCascade error", e); }
+  try{
+    const cfg = await loadRemoteConfig(FORM_TYPE);
+    if(cfg){
+      try{ applyBrandingFromResponse(cfg); }catch(e){ console.log("boot applyBranding error", e); }
+      try{ fillProgramNamesFromResponse(cfg, FORM_TYPE, "program_name"); }catch(e){ console.log("boot fillProgramNames error", e); }
+      try{ applyFixedProgramFromResponse(cfg, FORM_TYPE, "program_name"); }catch(e){ console.log("boot fixed program error", e); }
+    }
+  }catch(e){ console.log("boot loadRemoteConfig error", e); }
+}
+document.addEventListener("DOMContentLoaded", bootPage);
+// ---- END AUTO BOOT ----
+
+</script>
+
+    <!-- ══════════════════════════════════════════════════════════
+  EventLens Universal Branding Patch v4
+  इसे हर political form के </body> से पहले paste करें।
+  यह existing applyBrandingFromConfig को enhance करता है।
+  Logo, Header, Background, Footer, Tagline, Programs, Level Lock
+  सब admin console से save किया हुआ properly apply होगा।
+══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ─── Helpers ───
+  function _s(id) { return document.getElementById(id); }
+  function _safeStr(v) { return (v == null) ? '' : String(v); }
+
+  function _pickUrl(asset) {
+    if (!asset) return '';
+    if (typeof asset === 'string') return asset.startsWith('http') ? asset : '';
+    if (typeof asset === 'object') {
+      return _safeStr(asset.url || asset.previewUrl || asset.value || '');
+    }
+    return '';
+  }
+
+  function _mergeDeep(base, over) {
+    const out = Object.assign({}, base || {});
+    Object.keys(over || {}).forEach(k => {
+      if (over[k] && typeof over[k] === 'object' && !Array.isArray(over[k]) &&
+          out[k] && typeof out[k] === 'object') {
+        out[k] = _mergeDeep(out[k], over[k]);
+      } else {
+        out[k] = over[k];
+      }
+    });
+    return out;
+  }
+
+  function _safeSetImg(el, url, onOk, onFail) {
+    if (!el || !url) { if (onFail) onFail(); return; }
+    const tmp = new Image();
+    tmp.onload = () => { el.src = url; if (onOk) onOk(); };
+    tmp.onerror = () => { if (onFail) onFail(); };
+    tmp.src = url;
+  }
+
+  // ─── Extract branding from any response shape ───
+  function _extractBrand(resp, formType) {
+    if (!resp) return {};
+    const ft = formType || '';
+
+    // Navigate the response
+    const settings = resp.settings || resp.config || resp;
+    const defaults = settings.defaults || {};
+    const global_  = settings.global  || resp.global || {};
+    const formsCfg = settings.forms   || resp.forms  || {};
+
+    // Per-form node (try multiple aliases)
+    const formCfg  = formsCfg[ft] ||
+                     formsCfg[ft.replace('_form','')] ||
+                     resp.form || {};
+
+    const defBrand  = defaults.branding || {};
+    const formBrand = formCfg.branding  || {};
+
+    // Merge: defaults < form-specific
+    const brand = _mergeDeep(defBrand, formBrand);
+
+    // Text
+    const title    = _safeStr(formCfg.title    || brand.title    || defBrand.title    || '');
+    const subtitle = _safeStr(formCfg.subtitle || brand.subtitle || defBrand.subtitle || '');
+    const tagline  = _safeStr(formCfg.tagline  || brand.tagline  || global_.tagline   || defBrand.tagline  || '');
+    const footer   = _safeStr(formCfg.footer_text || brand.footer_text || defBrand.footer_text || global_.tagline || '');
+
+    // Colors
+    const c1 = _safeStr(brand.color1 || defBrand.color1 ||
+                        (global_.theme && global_.theme.primary) || '#f97316');
+    const c2 = _safeStr(brand.color2 || defBrand.color2 ||
+                        (global_.theme && global_.theme.secondary) || '#ef4444');
+
+    // Asset URLs — new shape first, then legacy fallbacks
+    const logoUrl   = _pickUrl(brand.logo)   || _safeStr(formCfg.logo_url   || brand.logo_url   || defBrand.logo_url   || '');
+    const headerUrl = _pickUrl(brand.header) || _safeStr(formCfg.header_url || brand.header_url ||
+                      formCfg.header_image_url || defBrand.header_url || defBrand.header_image_url || '');
+    const bgUrl     = _pickUrl(brand.background) || _safeStr(
+                      formCfg.background_url || brand.background_url || formCfg.background_image_url ||
+                      defBrand.background_url || defBrand.background_image_url || '');
+    const bgOpacity = parseFloat(brand.bg_opacity || defBrand.bg_opacity || 35) / 100;
+
+    // Programs
+    const programs = (
+      (Array.isArray(formCfg.program_options) && formCfg.program_options.length ? formCfg.program_options : null) ||
+      (Array.isArray(formCfg.programs) && formCfg.programs.length ? formCfg.programs : null) ||
+      (Array.isArray(defaults.programs) && defaults.programs.length ? defaults.programs : null) ||
+      []
+    );
+
+    // Fixed level
+    const fixedLevel = _safeStr(formCfg.fixed_level || '');
+
+    return { title, subtitle, tagline, footer, c1, c2, logoUrl, headerUrl, bgUrl, bgOpacity, programs, fixedLevel };
+  }
+
+  // ─── Apply everything ───
+  function _applyAll(brand, iconId) {
+    // 1. Title / Subtitle / Tagline
+    if (brand.title    && _s('org-name'))     _s('org-name').textContent    = brand.title;
+    if (brand.subtitle && _s('org-subtitle')) _s('org-subtitle').textContent = brand.subtitle;
+    const tagEl = _s('org-tagline');
+    if (tagEl) {
+      if (brand.tagline) { tagEl.textContent = brand.tagline; tagEl.classList.remove('hidden'); }
+      else tagEl.classList.add('hidden');
+    }
+
+    // 2. Footer
+    const footerEl = _s('footer-text') || _s('footer-cam');
+    if (footerEl && brand.footer) footerEl.textContent = brand.footer;
+
+    // 3. Colors → CSS vars
+    if (brand.c1) document.documentElement.style.setProperty('--c1', brand.c1);
+    if (brand.c2) document.documentElement.style.setProperty('--c2', brand.c2);
+    // Also set --brand for forms using that var
+    if (brand.c1) document.documentElement.style.setProperty('--brand', brand.c1);
+
+    // 4. Logo
+    const logoEl  = _s('custom-logo');
+    const iconEl  = _s(iconId || 'default-icon');
+    if (brand.logoUrl && logoEl) {
+      _safeSetImg(logoEl, brand.logoUrl,
+        () => { logoEl.classList.remove('hidden'); if (iconEl) iconEl.classList.add('hidden'); },
+        () => { logoEl.classList.add('hidden');    if (iconEl) iconEl.classList.remove('hidden'); }
+      );
+    } else if (logoEl) {
+      logoEl.classList.add('hidden');
+      if (iconEl) iconEl.classList.remove('hidden');
+    }
+
+    // 5. Header image
+    if (brand.headerUrl) {
+      const hImg  = _s('header-image');
+      const hWrap = _s('header-wrap') || _s('form-hdr-img-wrap');
+      const hImgEl = _s('form-hdr-img') || hImg;
+      if (hWrap && hImgEl) {
+        _safeSetImg(hImgEl, brand.headerUrl, () => {
+          hWrap.style.display = '';
+          hWrap.classList.remove('hidden');
+        }, () => { hWrap.style.display = 'none'; });
+      } else if (hImg) {
+        if (hImg.tagName && hImg.tagName.toLowerCase() === 'img') {
+          _safeSetImg(hImg, brand.headerUrl, () => hImg.classList.remove('hidden'), null);
+        } else {
+          hImg.style.backgroundImage = `url('${brand.headerUrl}')`;
+          hImg.classList.remove('hidden');
+        }
+      }
+    }
+
+    // 6. Background image + opacity
+    if (brand.bgUrl) {
+      // CSS var (used by most forms)
+      document.documentElement.style.setProperty('--bgimg', `url('${brand.bgUrl}')`);
+      // Direct body style as fallback
+      document.body.style.backgroundImage   = `url('${brand.bgUrl}')`;
+      document.body.style.backgroundSize    = 'cover';
+      document.body.style.backgroundPosition = 'center fixed';
+      // BG overlay to control opacity
+      let ov = _s('__el_bg_overlay');
+      if (!ov) {
+        ov = document.createElement('div');
+        ov.id = '__el_bg_overlay';
+        ov.style.cssText =
+          'position:fixed;inset:0;z-index:-1;pointer-events:none;background:#0f172a;transition:opacity .4s;';
+        document.body.insertBefore(ov, document.body.firstChild);
+      }
+      ov.style.opacity = String(Math.max(0, 1 - brand.bgOpacity));
+    }
+  }
+
+  // ─── Fill program dropdown ───
+  function _fillPrograms(programs, selectId, placeholder) {
+    const sel = _s(selectId || 'program_name');
+    if (!sel || !programs || !programs.length) return;
+    // Save current value
+    const cur = sel.value;
+    sel.innerHTML = '';
+    const ph = document.createElement('option');
+    ph.value = ''; ph.textContent = placeholder || '— कार्यक्रम चुनें —';
+    sel.appendChild(ph);
+    programs.forEach(p => {
+      const v = _safeStr(p).trim();
+      if (!v) return;
+      const opt = document.createElement('option');
+      opt.value = v; opt.textContent = v;
+      sel.appendChild(opt);
+    });
+    // Restore selection if still valid
+    if (cur) sel.value = cur;
+  }
+
+  // ─── Apply level lock ───
+  function _applyLevelLock(fixedLevel, selectId) {
+    const sel = _s(selectId || 'level');
+    if (!sel || !fixedLevel) return;
+    // Set value
+    sel.value = fixedLevel;
+    // Disable
+    sel.disabled = true;
+    sel.style.cssText += ';opacity:.75;cursor:not-allowed;';
+    // Remove existing lock badge first
+    const existing = _s('__el_level_lock_badge');
+    if (existing) existing.remove();
+    // Add badge
+    const badge = document.createElement('div');
+    badge.id = '__el_level_lock_badge';
+    badge.style.cssText = 'margin-top:5px;font-size:11px;color:#f87171;font-weight:700;display:flex;align-items:center;gap:5px;';
+    badge.innerHTML = '<i class="fa-solid fa-lock" style="font-size:10px;"></i> Level admin द्वारा lock है: <strong>' + fixedLevel + '</strong>';
+    if (sel.parentNode) sel.parentNode.appendChild(badge);
+
+    // Also trigger visibility update if setLocationVisibility exists
+    if (typeof setLocationVisibility === 'function') {
+      try { setLocationVisibility(fixedLevel); } catch(e) {}
+    }
+  }
+
+  // ─── Master function — called from each form's boot ───
+  function applyFullBranding(resp, formType, options) {
+    if (!resp) return;
+    options = options || {};
+    try {
+      const brand = _extractBrand(resp, formType);
+
+      // Text + images + colors
+      _applyAll(brand, options.iconId || 'default-icon');
+
+      // Programs
+      if (brand.programs && brand.programs.length) {
+        const programSelIds = options.programSelIds || ['program_name','program_type','activity'];
+        programSelIds.forEach(id => _fillPrograms(brand.programs, id, options.programPlaceholder));
+      }
+
+      // Level lock
+      if (brand.fixedLevel) {
+        const levelSelId = options.levelSelId || 'level';
+        _applyLevelLock(brand.fixedLevel, levelSelId);
+      }
+
+    } catch(e) {
+      console.warn('[EL Branding] applyFullBranding error:', e);
+    }
+  }
+
+  // ─── Expose globally ───
+  window.EL = window.EL || {};
+  window.EL.applyFullBranding = applyFullBranding;
+  window.EL.extractBrand = _extractBrand;
+  window.EL.fillPrograms = _fillPrograms;
+  window.EL.applyLevelLock = _applyLevelLock;
+
+  // ─── Auto-hook: intercept existing bootPage / initAll ───
+  // Forms में bootPage या initAll already call करती है loadRemoteConfig + applyBrandingFromConfig
+  // हम उसे wrap करते हैं ताकि extra features भी apply हों
+
+  function _patchBootIfNeeded() {
+    // Find the form type from existing constants
+    const ft = (typeof FORM_TYPE !== 'undefined' && FORM_TYPE) ||
+               (typeof window.FORM_TYPE !== 'undefined' && window.FORM_TYPE) || '';
+
+    // Patch applyBrandingFromConfig if it exists — wrap it
+    const origFn = window.applyBrandingFromConfig || window.applyBrandingFromResponse;
+    if (origFn && typeof origFn === 'function') {
+      const patched = function(cfg, formType, ...rest) {
+        // Call original
+        try { origFn.call(this, cfg, formType, ...rest); } catch(e) {}
+        // Then apply our extras
+        try { applyFullBranding(cfg, formType || ft, {}); } catch(e) {}
+      };
+      if (window.applyBrandingFromConfig)  window.applyBrandingFromConfig  = patched;
+      if (window.applyBrandingFromResponse) window.applyBrandingFromResponse = patched;
+    }
+
+    // Patch fillProgramNames if it exists
+    const origProg = window.fillProgramNames || window.fillProgramNamesFromResponse;
+    if (origProg && typeof origProg === 'function') {
+      const patchedProg = function(cfg, selectId, ...rest) {
+        // Call original
+        try { origProg.call(this, cfg, selectId, ...rest); } catch(e) {}
+        // Also fill from new response shape
+        try {
+          const brand = _extractBrand(cfg, ft);
+          if (brand.programs && brand.programs.length) {
+            _fillPrograms(brand.programs, selectId || 'program_name');
+          }
+        } catch(e) {}
+      };
+      if (window.fillProgramNames)             window.fillProgramNames             = patchedProg;
+      if (window.fillProgramNamesFromResponse) window.fillProgramNamesFromResponse = patchedProg;
+    }
+  }
+
+  // Run patch after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _patchBootIfNeeded);
+  } else {
+    _patchBootIfNeeded();
+  }
+
+})();
+</script>
+
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}
+let _deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();_deferredInstallPrompt=e;var btn=document.getElementById('installAppBtn');if(btn)btn.style.display='inline-flex';});
+window._installApp=function(){if(!_deferredInstallPrompt)return;_deferredInstallPrompt.prompt();_deferredInstallPrompt.userChoice.then(function(){_deferredInstallPrompt=null;var btn=document.getElementById('installAppBtn');if(btn)btn.style.display='none';});};
+</script>
+</body>
+    </html>

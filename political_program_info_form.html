@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+
+<!-- EventLens build: 2026-02-17 04:08:31 -->
+<html lang="hi">
+<head>
+  <meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#0f172a"/>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Program Info - EventLens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // === EventLens Admin Console Live Preview Bridge (2026-02-17) ===
+    (function() {
+      const __ft = (typeof FORM_TYPE !== "undefined") ? FORM_TYPE : ((typeof FORM_TYPE_RAW !== "undefined") ? FORM_TYPE_RAW : "");
+      const __cid = (qs("cid") || qs("collection_id") || qs("cid") || "").trim();
+
+      function __applyPreview(payload) {
+        try {
+          const fb = window.__EL_PREVIEW_FALLBACKS || {};
+          applyBrandingFromConfig(payload, __ft, fb.title || "", fb.subtitle || "", fb.tagline || "", fb.iconId || "default-icon");
+
+          // Keep tagline visibility consistent
+          const tg = document.getElementById("org-tagline");
+          if (tg) {
+            if ((tg.textContent || "").trim()) tg.classList.remove("hidden");
+            else tg.classList.add("hidden");
+          }
+        } catch(e) {}
+      }
+
+      window.addEventListener("message", (ev) => {
+        const d = ev && ev.data;
+        if (!d || typeof d !== "object") return;
+        if (d.type !== "EL_PREVIEW_SETTINGS") return;
+        if (d.form_type && __ft && d.form_type !== __ft) return;
+        if (d.cid && __cid && d.cid !== __cid) return;
+        __applyPreview(d.payload || {});
+      });
+
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "EL_PREVIEW_READY", cid: __cid, form_type: __ft }, "*");
+        }
+      } catch(e) {}
+
+      window.__EL_applyPreviewSettings = __applyPreview;
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --c1: #f97316; /* primary */
+      --c2: #ef4444; /* secondary */
+      --bgimg: none;
+    }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.14), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(234, 88, 12, 0.10), transparent 50%),
+        linear-gradient(180deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.98)),
+        var(--bgimg);
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+    }
+    .glass {
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.40);
+    }
+    .input-field {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: white;
+      transition: all 0.25s ease;
+    }
+    .input-field:focus {
+      border-color: var(--c1);
+      box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.18);
+      outline: none;
+    }
+    .input-field:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: rgba(15, 23, 42, 0.35);
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+    .brand-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-image: linear-gradient(to right, var(--c1), var(--c2));
+    }
+    .brand-bg { background-image: linear-gradient(to right, var(--c1), var(--c2)); }
+    .brand-ring { box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.16); }
+  
+
+    /* === EventLens Embed/Light/Preview Patch (2026-02-17) === */
+    html, body { min-height: 100%; }
+    body.el-embed {
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden;
+      background-attachment: scroll !important;
+    }
+    body.el-embed [class*="max-w-"] {
+      max-width: 100% !important;
+    }
+    body.el-embed img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    /* Light mode (optional via ?theme=light) */
+    body.el-light {
+      color: #0f172a !important;
+      background: #f8fafc !important;
+    }
+    body.el-light .glass {
+      background: rgba(255, 255, 255, 0.88) !important;
+      border: 1px solid rgba(15, 23, 42, 0.10) !important;
+      box-shadow: 0 14px 28px rgba(2, 6, 23, 0.10) !important;
+    }
+    body.el-light .input-field {
+      background: rgba(255, 255, 255, 0.96) !important;
+      color: #0f172a !important;
+      border: 1px solid rgba(15, 23, 42, 0.18) !important;
+    }
+    body.el-light .input-field::placeholder {
+      color: rgba(15, 23, 42, 0.45) !important;
+    }
+
+
+/* ===== EventLens: Light mode visibility fixes (auto) ===== */
+body.mode-light{ color:#0f172a !important; }
+body.mode-light .card,
+body.mode-light .panel,
+body.mode-light .section,
+body.mode-light .container,
+body.mode-light .wrap,
+body.mode-light .box{
+  background: rgba(255,255,255,.92) !important;
+  border-color: rgba(15,23,42,.14) !important;
+}
+body.mode-light input,
+body.mode-light select,
+body.mode-light textarea{
+  background: rgba(255,255,255,.96) !important;
+  color:#0f172a !important;
+  border-color: rgba(15,23,42,.18) !important;
+}
+body.mode-light input::placeholder,
+body.mode-light textarea::placeholder{
+  color: rgba(15,23,42,.45) !important;
+}
+body.mode-light label,
+body.mode-light .label{ color: rgba(15,23,42,.85) !important; }
+body.mode-light .muted,
+body.mode-light .hint,
+body.mode-light .help{ color: rgba(15,23,42,.65) !important; }
+body.mode-light select option{ background:#ffffff; color:#0f172a; }
+/* ===== /EventLens: Light mode visibility fixes ===== */
+
+/* Body layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 12px 32px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+/* Main container: full width up to max */
+#main-container {
+  width: 100%;
+  max-width: 520px;
+}
+/* Success screen same width */
+#success-screen {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* === Mobile Responsive === */
+@media(max-width:600px){
+  body { padding: 8px 8px 24px !important; }
+  input,select,textarea{font-size:16px!important;min-height:44px;}
+  #main-container{padding:14px!important;border-radius:16px!important;}
+}
+
+/* Header image: show when branding loaded */
+#header-image{display:none;}
+#header-image.el-visible{display:block!important;}
+
+/* Logo: object-contain, hidden until loaded */
+#custom-logo{object-fit:contain!important;display:none!important;}
+#custom-logo.el-loaded{display:block!important;}
+
+/* Logo circle: don't clip logo */
+#form-header .inline-flex{ background:rgba(255,255,255,0.05); }
+
+@supports not (-webkit-background-clip: text) {
+  .brand-text { color: var(--c1); background-image: none; }
+}
+</style>
+<script>
+// ═══════════════ UNIVERSAL BRANDING v4 ═══════════════
+function _elIsPresignedUrl(u){
+  try{
+    const s = String(u||"");
+    return /X-Amz-Algorithm=|X-Amz-Signature=|X-Amz-Credential=|X-Amz-Date=|X-Amz-SignedHeaders=/.test(s);
+  }catch(e){ return false; }
+}
+function _elCacheBust(u){
+  const url = String(u||"").trim();
+  if(!url) return "";
+  // Do NOT append query params to presigned URLs (signature will break)
+  if(_elIsPresignedUrl(url)) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return url + sep + "t=" + Date.now();
+}
+function _elApplyBranding(cfg, formType){
+  try{
+    var forms=cfg.forms||{}, ft=forms[formType]||{}, def=cfg.defaults||cfg.branding||{}, gl=cfg.global||{};
+    var db=def.branding||{}, fb=ft.branding||{};
+    var title=ft.title||db.title||def.title||gl.title||'';
+    var sub=ft.subtitle||db.subtitle||def.subtitle||'';
+    var tag=ft.tagline||db.tagline||def.tagline||gl.tagline||'';
+    var foot=ft.footer_text||db.footer_text||def.footer_text||gl.tagline||'';
+    // Lambda stores presigned URLs at ft.logo_url, ft.header_url, ft.background_url level
+    var logoUrl=ft.logo_url||fb.logo_url||(fb.logo&&fb.logo.url)||(db.logo&&db.logo.url)||def.logo_url||'';
+    var hdrUrl=ft.header_url||fb.header_url||(fb.header&&fb.header.url)||(db.header&&db.header.url)||def.header_url||'';
+    var bgUrl=ft.background_url||fb.background_url||(fb.background&&fb.background.url)||(db.background&&db.background.url)||def.background_url||'';
+    var bgOpa=((fb.bg_opacity!=null?fb.bg_opacity:db.bg_opacity!=null?db.bg_opacity:def.bg_opacity!=null?def.bg_opacity:35))/100;
+    var c1=fb.color1||db.color1||def.color1||'';
+    var c2=fb.color2||db.color2||def.color2||'';
+    function s(id){ return document.getElementById(id); }
+    // Text
+    if(title){['org-name','org-title','brand-title'].forEach(function(id){var e=s(id);if(e)e.textContent=title;});}
+    if(sub){['org-sub','org-subtitle','brand-subtitle'].forEach(function(id){var e=s(id);if(e)e.textContent=sub;});}
+    if(tag){['org-tagline','brand-tagline'].forEach(function(id){var e=s(id);if(e){e.textContent=tag;e.style.display='';}});}
+    if(foot){['footer-cam','footer-form','brand-footer'].forEach(function(id){var e=s(id);if(e)e.textContent=foot;});}
+    // Colors
+    if(c1){ document.documentElement.style.setProperty('--o1',c1); document.documentElement.style.setProperty('--c1',c1); }
+    if(c2){ document.documentElement.style.setProperty('--o2',c2); document.documentElement.style.setProperty('--c2',c2); }
+    // Logo - safe load
+    if(logoUrl){
+      var lu=_elCacheBust(logoUrl);
+      ['logo-img','brand-logo','custom-logo'].forEach(function(id){
+        var e=s(id); if(!e) return;
+        e.onerror=function(){
+          this.style.cssText='display:none!important';
+          var di=s('default-icon'); if(di){di.style.cssText='display:flex!important';}
+        };
+        e.onload=function(){
+          if(this.src&&this.src!==window.location.href&&!this.src.endsWith('/')){
+            this.style.cssText='display:block!important;width:100%;height:100%;object-fit:contain;';
+            this.classList.add('el-loaded'); this.classList.remove('hidden');
+            var di=s('default-icon'); if(di) di.style.cssText='display:none!important';
+          }
+        };
+        e.src=lu;
+      });
+      ['default-icon','logo-icon'].forEach(function(id){var e=s(id);if(e)e.style.display='none';});
+    }
+    // Header
+    if(hdrUrl){
+      ['hdr-cam-img','form-hdr-img','brand-header-img'].forEach(function(id){var e=s(id);if(e){
+        e.onerror=function(){this.style.display='none';};
+        e.onload=function(){if(this.src&&this.src!==window.location.href){this.style.display='block';}};
+        e.src=_elCacheBust(hdrUrl);
+      }});
+      ['hdr-cam-img-wrap','form-hdr-img-wrap','brand-header-wrap'].forEach(function(id){var e=s(id);if(e)e.style.display='block';});
+    
+    // Also support DIV banner id="header-image"
+    if(hdrUrl){
+      var hd=s('header-image');
+      if(hd){
+        if(hd.tagName && hd.tagName.toLowerCase()==='img'){
+          hd.onerror=function(){this.style.display='none';};
+          hd.src=_elCacheBust(hdrUrl);
+          hd.style.display='block';
+        }else{
+          hd.style.cssText='display:block!important;background-image:url("'+_elCacheBust(hdrUrl)+'");background-size:cover;background-position:center;width:100%;height:96px;border-radius:12px;margin-bottom:16px;';
+          hd.classList.remove('hidden');
+          hd.classList.add('el-visible');
+        }
+      }
+    }
+}
+    // Background
+    if(bgUrl){
+      var img=new Image();
+      img.onload=function(){
+        document.body.style.backgroundImage='url("'+_elCacheBust(bgUrl)+'")';
+        document.body.style.backgroundSize='cover';
+        document.body.style.backgroundPosition='center';
+        document.body.style.backgroundAttachment='fixed';
+        var ov=s('_el_bg_ov');
+        if(!ov){ov=document.createElement('div');ov.id='_el_bg_ov';ov.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;';document.body.prepend(ov);}
+        ov.style.background='rgba(15,23,42,'+(1-bgOpa)+')';
+      };
+      img.src=bgUrl;
+    }
+    // Programs
+    var progs=ft.program_options||ft.programs||def.programs||[];
+    if(progs.length){
+      ['program_name','program_type','karyakram_name'].forEach(function(selId){
+        var sel=s(selId);
+        if(sel&&sel.querySelectorAll('option:not([value=""])').length<=1){
+          progs.forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p;sel.appendChild(o);});
+        }
+      });
+    }
+    // Level lock
+    var fixedLevel=ft.fixed_level||'';
+    if(fixedLevel){
+      ['level','form_level'].forEach(function(selId){var sel=s(selId);if(sel){sel.value=fixedLevel;sel.disabled=true;}});
+    }
+  }catch(e){ console.warn('[EL Branding]',e); }
+}
+</script>
+</head>
+    <body class="font-sans mode-dark">
+
+    <div class="w-full max-w-lg glass rounded-2xl p-4 sm:p-6 relative overflow-hidden transition-all duration-500" id="main-container" style="margin:0 auto;">
+    <div class="absolute top-0 left-0 w-full h-1 brand-bg"></div>
+
+    <div id="header-image" class="hidden w-full h-24 rounded-xl mb-4 bg-slate-800/40 border border-white/5 overflow-hidden bg-cover bg-center"></div>
+
+    <div class="text-center mb-6" id="form-header">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 text-orange-500 mb-3 overflow-hidden border border-white/10">
+            <i id="default-icon" class="fa-solid fa-circle-info text-2xl"></i>
+            <img id="custom-logo" src="" class="w-full h-full object-contain hidden" alt="logo"
+              onerror="this.style.display='none';this.classList.remove('el-loaded');document.getElementById('default-icon')&&(document.getElementById('default-icon').style.display='');"
+              onload="if(this.src&&this.src!==window.location.href){this.classList.add('el-loaded');this.classList.remove('hidden');this.style.display='block';}">
+        </div>
+        <h1 id="org-name" class="text-2xl font-extrabold brand-text">प्रोग्राम इन्फो</h1>
+        <p id="org-subtitle" class="text-slate-300/80 text-xs mt-1">Program Information</p>
+        <p id="org-tagline" class="text-slate-400 text-[11px] mt-2 hidden"></p>
+    </div>
+
+      <form id="f" class="space-y-4">
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300/80 mb-1">Level</label>
+          <div class="relative">
+            <select id="level" class="w-full rounded-lg px-3 py-2.5 text-sm input-field appearance-none">
+              <option value="district">District</option>
+              <option value="vidhansabha">Vidhan Sabha</option>
+              <option value="mandal" selected>Mandal</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-slate-500 text-xs pointer-events-none"></i>
+          </div>
+          <p id="level-note" class="text-[10px] text-slate-400 mt-1"></p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300/80 mb-1">कार्यक्रम का नाम</label>
+          <div class="relative">
+            <select id="program_name" class="w-full rounded-lg px-3 py-2.5 text-sm input-field appearance-none" required>
+              <option value="">— कार्यक्रम चुनें —</option>
+              <option value="कार्यक्रम-1">कार्यक्रम-1</option>
+            </select>
+            <i class="fa-solid fa-chevron-down absolute right-3 top-3.5 text-slate-500 text-xs pointer-events-none"></i>
+          </div>
+        </div>
+
+        <div id="wrap-district">
+          <label class="block text-xs font-medium text-slate-300/80 mb-1">जिला</label>
+          <select id="district" class="w-full rounded-lg px-3 py-2.5 text-sm input-field">
+            <option value="">— जिला चुनें —</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div id="wrap-vidhansabha">
+            <label class="block text-xs font-medium text-slate-300/80 mb-1">विधानसभा</label>
+            <select id="vidhansabha" class="w-full rounded-lg px-3 py-2.5 text-sm input-field" disabled>
+              <option value="">— पहले जिला चुनें —</option>
+            </select>
+          </div>
+          <div id="wrap-mandal">
+            <label class="block text-xs font-medium text-slate-300/80 mb-1">मंडल</label>
+            <select id="mandal" class="w-full rounded-lg px-3 py-2.5 text-sm input-field" disabled>
+              <option value="">— पहले विधानसभा चुनें —</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-300/80 mb-1">तारीख</label>
+            <input type="date" id="program_date" class="w-full rounded-lg px-3 py-2.5 text-sm input-field" required>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300/80 mb-1">समय</label>
+            <input type="time" id="program_time" class="w-full rounded-lg px-3 py-2.5 text-sm input-field">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300/80 mb-1">स्थान / Venue</label>
+          <input type="text" id="venue" class="w-full rounded-lg px-3 py-2.5 text-sm input-field" placeholder="Venue" required>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-300/80 mb-1">विवरण</label>
+          <textarea id="details" rows="4" class="w-full rounded-lg px-3 py-2.5 text-sm input-field" placeholder="Program details" required></textarea>
+        </div>
+
+        <!-- Photo upload removed as per requirements -->
+
+        <button type="submit" id="submitBtn" class="w-full brand-bg text-white font-extrabold py-3 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 hover:opacity-95">
+          <span>सुरक्षित करें (Save)</span><i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+
+    <div id="status" class="mt-4 text-center text-xs font-medium hidden"></div>
+    <div class="mt-4 text-center text-[11px] text-slate-400/80">
+      <span id="footer-text"></span>
+    </div>
+</div>
+
+    <!-- SUCCESS SCREEN -->
+<div id="success-screen" class="hidden w-full max-w-lg" style="margin:0 auto;" class2=" glass rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[420px]">
+    <div class="w-20 h-20 bg-emerald-500/15 text-emerald-400 rounded-full flex items-center justify-center mb-6 text-4xl shadow-lg shadow-emerald-500/10 border border-emerald-500/20">
+        <i class="fa-solid fa-check"></i>
+    </div>
+    <h2 class="text-2xl font-extrabold text-white mb-2">धन्यवाद!</h2>
+    <p id="success-msg" class="text-slate-200/90 mb-8 leading-relaxed">प्रोग्राम इन्फो सेव हो गई है।</p>
+    <button onclick="window.location.reload()" class="px-6 py-2.5 bg-white/10 hover:bg-white/15 border border-white/10 rounded-lg text-sm text-white transition">
+        <i class="fa-solid fa-rotate-right mr-2"></i> नया फॉर्म
+    </button>
+</div>
+
+    <script>
+    // ===============================
+// COMMON CONFIG & UTILS
+// ===============================
+const API_ID = "vxid0yoovj";
+const AWS_REGION = "ap-south-1";
+const BASE_URL = "https://" + API_ID + ".execute-api." + AWS_REGION + ".amazonaws.com/prod";
+
+const $ = (id) => document.getElementById(id);
+const qs = (n) => { try { return (new URL(window.location.href)).searchParams.get(n) || ""; } catch (e) { return ""; } };
+
+  // === Embed / Preview flags (2026-02-17) ===
+  const __EL_PREVIEW_MODE = (qs("preview") === "1");
+  const __EL_EMBED_MODE = (qs("embed") === "1") || (window.self !== window.top);
+  const __EL_THEME_MODE = (qs("theme") || "").toLowerCase();
+  try {
+    if (__EL_EMBED_MODE) document.body.classList.add("el-embed");
+    if (__EL_PREVIEW_MODE) document.body.classList.add("el-preview");
+    if (__EL_THEME_MODE === "light") document.body.classList.add("el-light");
+  } catch(e) {}
+
+
+const token = (qs("token") || "").trim();
+const cidParam = (qs("cid") || qs("collection_id") || qs("id") || "").trim();
+const levelParam = (qs("level") || "").trim().toLowerCase(); // district | vidhansabha | mandal
+const debug = (qs("debug") || "").trim() === "1";
+
+function isPublicMode() { return !!token; }
+
+function setThemeVars(c1, c2) {
+  if (c1) document.documentElement.style.setProperty("--c1", c1);
+  if (c2) document.documentElement.style.setProperty("--c2", c2);
+}
+function setBackgroundImage(url) {
+  if (!url) return;
+  const safe = url.replace(/'/g, "%27");
+  document.documentElement.style.setProperty("--bgimg", "url('" + safe + "')");
+  document.body.classList.add("has-brand-bg");
+}
+
+function showStatus(msg, isError) {
+  const el = $("status");
+  if (!el) return;
+  el.classList.remove("hidden","text-green-400","text-red-400");
+  el.classList.add(isError ? "text-red-400" : "text-green-400");
+  el.textContent = msg || "";
+  if (!msg) el.classList.add("hidden");
+}
+
+async function apiCall(action, payload) {
+  const path = isPublicMode() ? "/political/public/forms" : "/political/forms";
+  const url = BASE_URL + path;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action, payload: payload || {} })
+  });
+  const text = await res.text();
+  let data = {};
+  try { data = JSON.parse(text); } catch(e) { data = { message: text || "Invalid JSON" }; }
+  if (!res.ok) throw new Error(data.message || data.error || ("HTTP " + res.status));
+  return data;
+}
+
+function safeStr(v) { return (v === null || v === undefined) ? "" : String(v); }
+
+async function sha256Hex(file) {
+  const buffer = await file.arrayBuffer();
+  const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function uploadToS3(url, file) {
+  await fetch(url, { method: "PUT", body: file, headers: { "Content-Type": file.type || "application/octet-stream" } });
+}
+
+function mergeObj(a, b) {
+  const out = Object.assign({}, a || {});
+  Object.keys(b || {}).forEach(k => {
+    if (b[k] && typeof b[k] === "object" && !Array.isArray(b[k])) out[k] = mergeObj(out[k], b[k]);
+    else out[k] = b[k];
+  });
+  return out;
+}
+
+// ===============================
+// BRANDING + PROGRAMS + FIXED LEVEL
+// ===============================
+async function loadRemoteConfig(formType) {
+  // Returns { branding, programs, fixed_level } or null
+  try {
+    const payload = isPublicMode()
+      ? { token, form_type: formType }
+      : { collection_id: cidParam, form_type: formType };
+
+    const action = isPublicMode() ? "public_get_config" : "admin_get_config";
+    const res = await apiCall(action, payload);
+    return res || null; // keep full response (settings/config/form)
+  } catch (e) {
+    if (debug) console.log("config load failed", e);
+    return null;
+  }
+}
+
+function applyBrandingFromConfig(cfg, formType, fallbackTitle, fallbackSubtitle, fallbackTagline, defaultIconId) {
+  // Robust: supports legacy cfg.branding.* as well as new cfg.settings/defaults/forms shape
+  const root = (cfg && (cfg.settings || cfg.config || cfg)) || {};
+  const defaultsNode = (root.defaults || (root.settings && root.settings.defaults) || {}) || {};
+  const formsNode = (root.forms || (root.settings && root.settings.forms) || {}) || {};
+
+  const ftKey = formType || "";
+  const ftAliasA = ftKey.replace(/_form$/, "");
+  const ftAliasB = (typeof FORM_TYPE_ALIAS !== "undefined" && FORM_TYPE_ALIAS) ? FORM_TYPE_ALIAS : "";
+  const perForm = (formsNode[ftKey] || formsNode[ftAliasB] || formsNode[ftAliasA] || {}) || {};
+
+  // Legacy branding locations
+  const legacyGlobal = (root.branding && root.branding.global) ? root.branding.global : {};
+  const legacyPerForm = (root.branding && root.branding.forms && root.branding.forms[ftKey]) ? root.branding.forms[ftKey] : {};
+
+  // Merge priority: defaults -> perForm -> legacyGlobal -> legacyPerForm (per-form wins)
+  // Merge priority: defaults branding -> perForm branding -> legacyGlobal -> legacyPerForm
+  // Supports new admin-console shape: defaults.branding.*, forms[ft].branding.*
+  const defaultsBranding = (defaultsNode && defaultsNode.branding) ? defaultsNode.branding : defaultsNode;
+  const perFormBranding = (perForm && perForm.branding) ? perForm.branding : perForm;
+  const brand = mergeObj(mergeObj(mergeObj(defaultsBranding, perFormBranding), legacyGlobal), legacyPerForm);
+
+  const title = perForm.title || brand.title || fallbackTitle || "EventLens Form";
+  const subtitle = perForm.subtitle || brand.subtitle || fallbackSubtitle || "";
+  const tagline = perForm.tagline || brand.tagline || fallbackTagline || "";
+
+  const footerText = perForm.footer_text || brand.footer_text || "";
+
+  // URLs: try common keys (lambda uses *_url; older uses *_image_url)
+  const logoUrl = formNode.logo_url || brand.logo_url || (brand.logo && brand.logo.url) || "";
+  const headerUrl = formNode.header_url || brand.header_url || brand.header_image_url || (brand.header && brand.header.url) || "";
+  const bgUrl = formNode.background_url || brand.background_url || brand.background_image_url || (brand.background && brand.background.url) || "";
+  // Also use headerUrl as headerImg alias for compatibility
+  const headerImg = headerUrl;
+
+  if ($("org-name")) $("org-name").textContent = title;
+  if ($("org-subtitle")) $("org-subtitle").textContent = subtitle;
+  if ($("org-tagline")) $("org-tagline").textContent = tagline;
+  if ($("footer-text")) $("footer-text").textContent = footerText;
+
+  // Theme
+  setThemeVars(brand.color1 || brand.theme_primary, brand.color2 || brand.theme_secondary);
+  setBackgroundImage(bgUrl);
+
+  // Logo (preload to avoid ORB showing broken images)
+  if (logoUrl && $("custom-logo")) {
+    const img = new Image();
+    img.onload = function() {
+      $("custom-logo").src = logoUrl;
+      $("custom-logo").classList.remove("hidden");
+      if (defaultIconId && $(defaultIconId)) $(defaultIconId).classList.add("hidden");
+    };
+    img.onerror = function() {
+      // keep default icon
+    };
+    img.src = logoUrl;
+  }
+
+  // Header image: support both <img> and div background
+  const _applyHeaderImg = (url) => {
+    if (!url) return;
+    // Try header-image (div)
+    const h = $("header-image");
+    if (h) {
+      const img = new Image();
+      img.onload = function() {
+        if (h.tagName && h.tagName.toLowerCase() === "img") {
+          h.src = url;
+        } else {
+          h.style.backgroundImage = "url('" + url + "')";
+          h.style.backgroundSize = "cover";
+          h.style.backgroundPosition = "center";
+        }
+        h.classList.remove("hidden");
+        h.style.display = "block";
+      };
+      img.onerror = function() { h.style.display = "none"; };
+      img.src = url;
+    }
+    // Also try brand-header-img (img tag, like visitor form)
+    const bhi = $("brand-header-img");
+    if (bhi) {
+      bhi.onerror = function() { this.style.display = "none"; };
+      bhi.onload = function() {
+        if (this.src && this.src !== window.location.href) {
+          this.style.cssText = "display:block!important;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;";
+        }
+      };
+      bhi.src = url;
+    }
+  };
+  if (headerUrl) _applyHeaderImg(headerUrl);
+}
+
+function fillProgramNames(cfg, selectId) {
+  const sel = $(selectId);
+  if (!sel) return;
+
+  // Collect programs from multiple possible shapes (new + legacy)
+  const formsNode = (cfg && (cfg.forms || (cfg.settings && cfg.settings.forms) || (cfg.config && cfg.config.forms))) || {};
+  const defaultsNode = (cfg && (cfg.defaults || (cfg.settings && cfg.settings.defaults) || (cfg.config && cfg.config.defaults))) || {};
+  const ftNode = (formsNode && (formsNode[FORM_TYPE] || formsNode[FORM_TYPE_ALIAS] || formsNode[FORM_TYPE.replace(/_form$/,'')] )) || {};
+
+  const arrs = [];
+  if (Array.isArray(ftNode.program_options)) arrs.push(ftNode.program_options);
+  if (Array.isArray(ftNode.programs)) arrs.push(ftNode.programs);
+  if (Array.isArray(defaultsNode.programs_common) && defaultsNode.programs_common.length) arrs.push(defaultsNode.programs_common);
+  else if (Array.isArray(defaultsNode.programs)) arrs.push(defaultsNode.programs);
+  if (Array.isArray(cfg.programs)) arrs.push(cfg.programs);
+
+  const programs = Array.from(new Set(arrs.flat().map(s => safeStr(s).trim()).filter(Boolean)));
+
+  sel.innerHTML = '<option value="">— कार्यक्रम चुनें —</option>';
+
+  if (!programs.length) {
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = "Admin में Program add करें (या typing allowed)";
+    sel.appendChild(opt);
+    // allow manual typing fallback if present
+    const manual = $("program_name_manual");
+    if (manual) manual.classList.remove("hidden");
+    return;
+  }
+
+  programs.forEach((v) => {
+    const opt = document.createElement("option");
+    opt.value = v;
+    opt.textContent = v;
+    sel.appendChild(opt);
+  });
+
+  const manual = $("program_name_manual");
+  if (manual) manual.classList.add("hidden");
+}
+
+
+function applyFixedProgram(cfg, selectId) {
+  const sel = $(selectId);
+  if (!sel) return;
+
+  const formsNode = (cfg && (cfg.forms || (cfg.settings && cfg.settings.forms) || (cfg.config && cfg.config.forms))) || {};
+  const ftNode = (formsNode && (formsNode[FORM_TYPE] || formsNode[FORM_TYPE_ALIAS] || formsNode[FORM_TYPE.replace(/_form$/,'')] )) || {};
+
+  const fixedProgram = safeStr(ftNode.fixed_program || "").trim();
+  const lock = (ftNode.fixed_program_lock === undefined) ? true : !!ftNode.fixed_program_lock;
+
+  if (fixedProgram) {
+    if (!Array.from(sel.options).some(o => (o.value||'') === fixedProgram)) {
+      const opt = document.createElement("option");
+      opt.value = fixedProgram;
+      opt.textContent = fixedProgram;
+      sel.appendChild(opt);
+    }
+    sel.value = fixedProgram;
+    if (lock) sel.disabled = true;
+  } else {
+    sel.disabled = false;
+  }
+}
+
+function getFixedLevel(cfg, formType) {
+  const fixed = (cfg && cfg.fixed_levels) ? cfg.fixed_levels : (cfg && cfg.data && cfg.data.fixed_levels) ? cfg.data.fixed_levels : {};
+  if (fixed && fixed[formType]) return String(fixed[formType]).toLowerCase();
+  return "";
+}
+    const FORM_TYPE = "program_info";
+    const FIELD_IDS = ["level","program_name","district","vidhansabha","mandal","program_date","program_time","venue","details"];
+
+    const DISTRICT_DATA = {
+"मंदसौर": {
+    "मंदसौर": ["मंदसौर नगर उत्तर", "मंदसौर नगर दक्षिण", "मंदसौर ग्रामीण"],
+    "सुवासरा": ["सीतामऊ", "सुवासरा", "शामगढ़"],
+    "गरोठ": ["गरोठ", "भानपुरा", "मेलखेड़ा"],
+    "मल्हारगढ़": ["मल्हारगढ़", "नारायणगढ़", "पिपलियामंडी"]
+},
+"रतलाम": {
+    "रतलाम सिटी": ["दीनदयाल नगर", "अम्बेडकर नगर", "श्यामा प्रसाद मुखर्जी नगर"],
+    "रतलाम ग्रामीण": ["धराड़", "बांगरोद", "नामली"],
+    "सैलाना": ["सैलाना", "बाजना", "रावटी"],
+    "जावरा": ["जावरा नगर", "जावरा ग्रामीण", "पिप्लौदा"],
+    "आलोट": ["आलोट", "बड़ावदा", "ताल"]
+},
+"नीमच": {
+    "नीमच": ["नीमच उत्तर", "नीमच दक्षिण", "नीमच पश्चिम", "जीरन"],
+    "मनासा": ["मनासा", "रामपुरा", "कुकाड़ेश्वर"],
+    "जावद": ["जावद", "सिंगोली", "रतनगढ़"]
+},
+"उज्जैन": {
+    "उज्जैन उत्तर": ["दौलतगंज", "नई सड़क", "फ्रीगंज"],
+    "उज्जैन दक्षिण": ["महानंदा", "नानाखेड़ा", "कोठी रोड"],
+    "घट्टिया": ["घट्टिया", "उन्हेल", "पानबिहार"],
+    "तराना": ["तराना", "माकड़ोन", "कायथा"],
+    "महिदपुर": ["महिदपुर नगर", "महिदपुर ग्रामीण", "झारड़ा"],
+    "नागदा-खाचरौद": ["नागदा", "खाचरौद", "बिरलाग्राम"],
+    "बड़नगर": ["बड़नगर", "इंगोरिया", "खरसौद"]
+},
+"आगर-मालवा": {
+    "आगर": ["आगर नगर", "आगर ग्रामीण", "बड़ौद"],
+    "सुसनेर": ["सुसनेर", "नलखेड़ा", "सोयत"]
+},
+"शाजापुर": {
+    "शाजापुर": ["शाजापुर नगर", "शाजापुर ग्रामीण", "मो. बड़ोदिया"],
+    "शुजालपुर": ["शुजालपुर मंडी", "शुजालपुर सिटी", "अकोदिया"],
+    "कालापीपल": ["कालापीपल", "पोलायकलां", "खोकराकलां"]
+},
+"देवास": {
+    "देवास": ["देवास उत्तर", "देवास दक्षिण", "देवास पश्चिम"],
+    "सोनकच्छ": ["सोनकच्छ", "टोंकखुर्द", "पीपलरावां"],
+    "हाटपिपल्या": ["हाटपिपल्या", "नेवरी", "करनावाद"],
+    "खातेगांव": ["खातेगांव", "कन्नौद", "हरणगांव"],
+    "बागली": ["बागली", "उदयनगर", "सतवास"]
+},
+"इंदौर": {
+    "इंदौर-1": ["वार्ड 1-5", "वार्ड 6-10", "वार्ड 11-15"],
+    "इंदौर-2": ["वार्ड 16-20", "वार्ड 21-25", "वार्ड 26-30"],
+    "इंदौर-3": ["वार्ड 31-35", "वार्ड 36-40", "वार्ड 41-45"],
+    "इंदौर-4": ["वार्ड 46-50", "वार्ड 51-55", "वार्ड 56-60"],
+    "इंदौर-5": ["वार्ड 61-65", "वार्ड 66-70", "वार्ड 71-75"],
+    "राऊ": ["राऊ नगर", "तेजाजी नगर", "दत्तौदा"],
+    "महू": ["महू नगर", "महू ग्रामीण", "मानपुर"],
+    "देपालपुर": ["देपालपुर", "गौतमपुरा", "बेटमा"],
+    "सांवेर": ["सांवेर", "चंद्रावतीगंज", "क्षिप्रा"]
+},
+"धार": {
+    "धार": ["धार नगर", "धार ग्रामीण", "तिरला"],
+    "पीथमपुर": ["पीथमपुर", "सागौर", "नालछा"],
+    "बदनावर": ["बदनावर", "कानवन", "मुलथान"],
+    "सरदारपुर": ["सरदारपुर", "राजगढ़", "अमझेरा"],
+    "गंधवानी": ["गंधवानी", "बाग", "टांडा"],
+    "कुक्षी": ["कुक्षी", "डही", "निसरपुर"],
+    "मनावर": ["मनावर", "उमरबन", "सिंघाना"],
+    "धरमपुरी": ["धरमपुरी", "धामनोद", "मांडू"]
+},
+"झाबुआ": {
+    "झाबुआ": ["झाबुआ नगर", "झाबुआ ग्रामीण", "रामा"],
+    "थांदला": ["थांदला", "खवासा", "मेघनगर"],
+    "पेटलावद": ["पेटलावद", "रायपुरिया", "सारंगी"]
+},
+"अलीराजपुर": {
+    "अलीराजपुर": ["अलीराजपुर नगर", "अलीराजपुर ग्रामीण", "सोंडवा"],
+    "जोबट": ["जोबट", "उदयगढ़", "भाबरा"]
+},
+"खरगोन": {
+    "खरगोन": ["खरगोन नगर", "खरगोन ग्रामीण", "सनावद"],
+    "भीकनगांव": ["भीकनगांव", "झिरन्या", "गोगावां"],
+    "बड़वाह": ["बड़वाह", "महेश्वर", "करही"],
+    "महेश्वर": ["महेश्वर", "मंडलेश्वर", "धामनोद"],
+    "कसरावद": ["कसरावद", "पिपलगोन", "बालकवाड़ा"],
+    "भगवानपुरा": ["भगवानपुरा", "सेगांव", "बिस्टान"]
+},
+"बड़वानी": {
+    "बड़वानी": ["बड़वानी नगर", "बड़वानी ग्रामीण", "पाटी"],
+    "सेंधवा": ["सेंधवा नगर", "सेंधवा ग्रामीण", "चाचरीया"],
+    "राजपुर": ["राजपुर", "ठीकरी", "अंजड़"],
+    "पानसेमल": ["पानसेमल", "खेतिया", "निवाली"]
+},
+"खंडवा": {
+    "खंडवा": ["खंडवा नगर", "खंडवा ग्रामीण", "छैगांवमाखन"],
+    "पंधाना": ["पंधाना", "सिंघोट", "आरुद"],
+    "मांधाता": ["मांधाता", "पुनासा", "मूंदी"],
+    "हरसूद": ["हरसूद", "खालवा", "किल्लोद"]
+},
+"बुरहानपुर": {
+    "बुरहानपुर": ["बुरहानपुर नगर", "बुरहानपुर ग्रामीण", "शाहपुर"],
+    "नेपानगर": ["नेपानगर", "धुलकोट", "खकनार"]
+}
+};
+    // ===============================
+// LOCATION HELPERS (district -> vidhansabha -> mandal)
+// ===============================
+function initDistrictCascade() {
+  const dEl = $("district");
+  const vEl = $("vidhansabha");
+  const mEl = $("mandal");
+  if (!dEl || !vEl || !mEl) return;
+
+  // Populate Districts
+  dEl.innerHTML = '<option value="">— जिला चुनें —</option>';
+  Object.keys(DISTRICT_DATA).sort((a,b)=>a.localeCompare(b,"hi")).forEach((d) => {
+    const opt = document.createElement("option");
+    opt.value = d;
+    opt.textContent = d;
+    dEl.appendChild(opt);
+  });
+
+  dEl.addEventListener("change", () => {
+    const dVal = dEl.value;
+    vEl.innerHTML = '<option value="">— विधानसभा चुनें —</option>';
+    mEl.innerHTML = '<option value="">— पहले विधानसभा चुनें —</option>';
+    vEl.disabled = !dVal;
+    mEl.disabled = true;
+
+    if (dVal && DISTRICT_DATA[dVal]) {
+      Object.keys(DISTRICT_DATA[dVal]).sort((a,b)=>a.localeCompare(b,"hi")).forEach((v) => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        vEl.appendChild(opt);
+      });
+    }
+  });
+
+  vEl.addEventListener("change", () => {
+    const dVal = dEl.value;
+    const vVal = vEl.value;
+    mEl.innerHTML = '<option value="">— मंडल चुनें —</option>';
+    mEl.disabled = !vVal;
+
+    if (dVal && vVal && DISTRICT_DATA[dVal] && DISTRICT_DATA[dVal][vVal]) {
+      DISTRICT_DATA[dVal][vVal].slice().sort((a,b)=>a.localeCompare(b,"hi")).forEach((m) => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        mEl.appendChild(opt);
+      });
+    }
+  });
+}
+
+function applyLocationAutofill(info) {
+  // info: {district, vidhansabha, mandal}
+  if (!info) return;
+  const d = safeStr(info.district).trim();
+  const v = safeStr(info.vidhansabha).trim();
+  const m = safeStr(info.mandal).trim();
+
+  if (d && $("district")) {
+    $("district").value = d;
+    $("district").dispatchEvent(new Event("change"));
+    setTimeout(() => {
+      if (v && $("vidhansabha")) {
+        $("vidhansabha").value = v;
+        $("vidhansabha").dispatchEvent(new Event("change"));
+        setTimeout(() => {
+          if (m && $("mandal")) $("mandal").value = m;
+        }, 120);
+      }
+    }, 120);
+  }
+}
+    // ===============================
+// LEVEL (optional fixed)
+// ===============================
+const LEVELS = ["district","vidhansabha","mandal"];
+
+function setLocationVisibility(level) {
+  const dWrap = $("wrap-district");
+  const vWrap = $("wrap-vidhansabha");
+  const mWrap = $("wrap-mandal");
+  if (!dWrap || !vWrap || !mWrap) return;
+  // Always show all three dropdowns; we only disable based on selection.
+  dWrap.classList.remove("hidden");
+  vWrap.classList.remove("hidden");
+  mWrap.classList.remove("hidden");
+}
+
+function initLevelControl(cfg, formType) {
+  const levelEl = $("level");
+  if (!levelEl) return;
+
+  // decide fixed: url param > config fixed > none
+  const fixedFromCfg = getFixedLevel(cfg, formType);
+  const fixed = (LEVELS.includes(levelParam) ? levelParam : "") || (LEVELS.includes(fixedFromCfg) ? fixedFromCfg : "");
+
+  if (fixed) {
+    levelEl.value = fixed;
+    levelEl.disabled = true;
+    if ($("level-note")) $("level-note").textContent = "Level locked: " + fixed;
+  } else {
+    levelEl.disabled = false;
+    if ($("level-note")) $("level-note").textContent = "Level: आप बदल सकते हैं";
+  }
+
+  setLocationVisibility(levelEl.value);
+
+  levelEl.addEventListener("change", () => {
+    setLocationVisibility(levelEl.value);
+  });
+}
+    // ===============================
+// MULTI-PHOTO (optional)
+// ===============================
+let selectedFiles = [];
+
+function refreshPhotoUI() {
+  const grid = $("photo-grid");
+  const hint = $("photo-hint");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  if (!selectedFiles.length) {
+    if (hint) hint.classList.remove("hidden");
+    return;
+  }
+  if (hint) hint.classList.add("hidden");
+
+  selectedFiles.forEach((f, idx) => {
+    const url = URL.createObjectURL(f);
+    const card = document.createElement("div");
+    card.className = "relative overflow-hidden rounded-xl border border-white/10 bg-white/5";
+    const img = document.createElement("img");
+    img.src = url; img.className = "w-full h-24 object-cover"; img.alt = "photo-" + idx;
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "absolute top-2 right-2 bg-black/60 hover:bg-black/70 text-white rounded-full w-7 h-7 flex items-center justify-center border border-white/10";
+    btn.innerHTML = '<i class="fa-solid fa-xmark text-xs"></i>';
+    card.appendChild(img); card.appendChild(btn);
+    btn.addEventListener("click", () => {
+      selectedFiles.splice(idx, 1);
+      refreshPhotoUI();
+    });
+    grid.appendChild(card);
+  });
+}
+
+function onPhotosSelected(ev, maxFiles=10) {
+  const files = Array.from((ev.target.files || []));
+  if (!files.length) return;
+
+  const next = selectedFiles.concat(files);
+  selectedFiles = next.slice(0, maxFiles);
+  $("photos").value = "";
+  refreshPhotoUI();
+}
+
+    let remoteCfg = null;
+
+    async function initAll() {
+      initDistrictCascade();
+
+      remoteCfg = await loadRemoteConfig(FORM_TYPE);
+      applyBrandingFromConfig(remoteCfg, FORM_TYPE, "प्रोग्राम इन्फो", "Program Information", "", "default-icon");
+      // === Admin Console iframe live preview fallback snapshot (2026-02-17)
+      try {
+        window.__EL_PREVIEW_FALLBACKS = {
+          title: (document.getElementById("org-name")?.textContent || "").trim(),
+          subtitle: (document.getElementById("org-subtitle")?.textContent || "").trim(),
+          tagline: (document.getElementById("org-tagline")?.textContent || "").trim(),
+          iconId: "default-icon"
+        };
+      } catch(e) {}
+
+
+
+      if ($("org-tagline") && $("org-tagline").textContent.trim()) $("org-tagline").classList.remove("hidden");
+      if ($("footer-text") && $("footer-text").textContent.trim() === "") $("footer-text").textContent = "Powered by EventLens";
+
+      fillProgramNames(remoteCfg, "program_name");
+      applyFixedProgram(remoteCfg, "program_name");
+      initLevelControl(remoteCfg, FORM_TYPE);
+
+      // Photo upload removed - no file event listeners needed
+      refreshPhotoUI();
+    }
+
+    document.addEventListener("DOMContentLoaded", initAll);
+
+    function validateLocation(level, data) {
+      if (level === "district") {
+        if (!data.district) throw new Error("कृपया जिला चुनें");
+      } else if (level === "vidhansabha") {
+        if (!data.district) throw new Error("कृपया जिला चुनें");
+        if (!data.vidhansabha) throw new Error("कृपया विधानसभा चुनें");
+      } else {
+        if (!data.district) throw new Error("कृपया जिला चुनें");
+        if (!data.vidhansabha) throw new Error("कृपया विधानसभा चुनें");
+        if (!data.mandal) throw new Error("कृपया मंडल चुनें");
+      }
+    }
+
+    async function submitWithFiles(data) {
+      // Photo upload removed - always submit without files
+      const res = isPublicMode()
+        ? await apiCall("public_create_entry", { token, form_type: FORM_TYPE, no_photo: true, payload: data })
+        : await apiCall("create_entry", { collection_id: cidParam, form_type: FORM_TYPE, no_photo: true, payload: data });
+
+      const finalizeAction = isPublicMode() ? "public_finalize_entry" : "finalize_entry";
+      await apiCall(finalizeAction, { finalize_token: res.finalize_token, entry_id: res.entry_id });
+      return;
+    }
+
+    $("f").addEventListener("submit", async (e) => {
+      e.preventDefault();
+        if (typeof __EL_PREVIEW_MODE !== "undefined" && __EL_PREVIEW_MODE) {
+          try { showStatus("🔎 Preview Mode: submit disabled", false); } catch(e) {}
+          return;
+        }
+
+      const btn = $("submitBtn");
+      const old = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+      showStatus("", false);
+
+      try {
+        const data = {};
+        FIELD_IDS.forEach((id) => {
+          const el = $(id);
+          if (el) data[id] = (el.value || "").trim();
+        });
+
+        if (!data.program_name) throw new Error("कृपया कार्यक्रम चुनें");
+        if (!data.program_date) throw new Error("कृपया तारीख चुनें");
+        if (!data.venue) throw new Error("कृपया स्थान भरें");
+        if (!data.details) throw new Error("कृपया विवरण लिखें");
+
+        const level = (data.level || "mandal").toLowerCase();
+        validateLocation(level, data);
+
+        if (!isPublicMode() && !cidParam) throw new Error("Missing Collection ID (cid)");
+
+        await submitWithFiles(data);
+
+        $("main-container").classList.add("hidden");
+        $("success-screen").classList.remove("hidden");
+      } catch (err) {
+        showStatus("❌ " + (err.message || "Error"), true);
+        btn.disabled = false;
+        btn.innerHTML = old;
+      }
+    });
+    </script>
+
+    </body>
+    </html>
