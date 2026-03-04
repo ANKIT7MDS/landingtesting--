@@ -1387,6 +1387,103 @@ const COGNITO_DOMAIN = "https://ap-south-1mva8s6f3w.auth.ap-south-1.amazoncognit
   }
 
 function showView(id){
+
+  // ================= UPLOAD OPTIMIZER (Client-side) =================
+  // Goal: Reduce AWS cost by uploading optimized JPG + thumbnail, while keeping duplicate-hash based on original file.
+  function _getPlanCode(){
+    // Try common places where account status is stored
+    try {
+      const s = window.__accountStatus || window.accountStatus || {};
+      return (s.plan_code || s.plan || s.planName || '').toString().toLowerCase();
+    } catch(e){ return ''; }
+  }
+
+  function _getUploadProfile(){
+    const plan = _getPlanCode();
+    // Defaults (safe)
+    let maxDim = 2048, quality = 0.82, thumbDim = 420, thumbQuality = 0.70;
+    if (plan.includes('trial') || plan.includes('free')) { maxDim = 1600; quality = 0.75; }
+    if (plan.includes('launch')) { maxDim = 2048; quality = 0.82; }
+    if (plan.includes('growth')) { maxDim = 2560; quality = 0.84; }
+    if (plan.includes('pro'))    { maxDim = 3200; quality = 0.86; }
+    if (plan.includes('studio')) { maxDim = 3200; quality = 0.86; }
+    if (plan.includes('premium')){ maxDim = 3840; quality = 0.88; }
+    return { maxDim, quality, thumbDim, thumbQuality };
+  }
+
+  function _loadImageFromFile(file){
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = (e) => { URL.revokeObjectURL(url); reject(e); };
+      img.src = url;
+    });
+  }
+
+  function _canvasToBlob(canvas, quality){
+    return new Promise((resolve) => {
+      canvas.toBlob((b) => resolve(b), 'image/jpeg', quality);
+    });
+  }
+
+  async function optimizeForUpload(file){
+    // Returns a JPG File (may be same file if already small enough)
+    const { maxDim, quality } = _getUploadProfile();
+
+    try {
+      const img = await _loadImageFromFile(file);
+      const w = img.naturalWidth || img.width;
+      const h = img.naturalHeight || img.height;
+
+      // If already <= maxDim and already jpg, keep as-is (but still ensure mime)
+      if (Math.max(w, h) <= maxDim && (file.type === 'image/jpeg' || String(file.name||'').toLowerCase().endsWith('.jpg') || String(file.name||'').toLowerCase().endsWith('.jpeg'))){
+        return file;
+      }
+
+      const scale = maxDim / Math.max(w, h);
+      const nw = Math.max(1, Math.round(w * Math.min(1, scale)));
+      const nh = Math.max(1, Math.round(h * Math.min(1, scale)));
+
+      const canvas = document.createElement('canvas');
+      canvas.width = nw; canvas.height = nh;
+      const ctx = canvas.getContext('2d', { alpha:false });
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, nw, nh);
+
+      const blob = await _canvasToBlob(canvas, quality);
+      const cleanName = String(file.name||'photo').replace(/\.(heic|heif|png|webp|bmp|tiff|tif|gif)$/i, '.jpg').replace(/[^a-zA-Z0-9.]/g, '_');
+      return new File([blob], cleanName.toLowerCase().endsWith('.jpg') ? cleanName : (cleanName + '.jpg'), { type:'image/jpeg' });
+    } catch(e){
+      // Fallback: return original file
+      return file;
+    }
+  }
+
+  async function createThumbnailFromFile(file, size){
+    const { thumbDim, thumbQuality } = _getUploadProfile();
+    const target = size || thumbDim || 420;
+
+    const img = await _loadImageFromFile(file);
+    const w = img.naturalWidth || img.width;
+    const h = img.naturalHeight || img.height;
+
+    const scale = target / Math.max(w, h);
+    const nw = Math.max(1, Math.round(w * Math.min(1, scale)));
+    const nh = Math.max(1, Math.round(h * Math.min(1, scale)));
+
+    const canvas = document.createElement('canvas');
+    canvas.width = nw; canvas.height = nh;
+    const ctx = canvas.getContext('2d', { alpha:false });
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, nw, nh);
+
+    return await _canvasToBlob(canvas, thumbQuality);
+  }
+
+
     document.querySelectorAll('.view').forEach(e => e.classList.remove('show'));
     const target = $(`#${id}`);
     if(target) target.classList.add('show');
@@ -2528,15 +2625,23 @@ if(id === 'tClient') loadClientSelections();
   async function processBatch(files, eventId){
     const metaList = await Promise.all(files.map(async f => {
       let procFile = f;
+
+      // HEIC -> JPG
       if(String(f.name||'').toLowerCase().endsWith('.heic')){
         try {
           const blob = await heic2any({ blob: f, toType: "image/jpeg", quality: 0.8 });
           procFile = new File([blob], f.name.replace(/\.heic$/i, ".jpg"), { type: "image/jpeg" });
         } catch(e) {}
       }
+
+      // Hash based on ORIGINAL bytes (duplicate detection)
       const hash = await computeHash(procFile);
-      const cleanName = String(procFile.name||'').replace(/[^a-zA-Z0-9.]/g, '_');
-      return { name: cleanName, type: 'image/jpeg', size: procFile.size, hash: hash, fileObj: procFile };
+
+      // Optimize upload bytes (cost control)
+      const optimized = await optimizeForUpload(procFile);
+
+      const cleanName = String(optimized.name||procFile.name||'photo.jpg').replace(/[^a-zA-Z0-9.]/g, '_');
+      return { name: cleanName, type: 'image/jpeg', size: optimized.size, hash: hash, fileObj: optimized, originalSize: procFile.size };
     }));
 
     const payload = { collection_id: curCol.collection_id, event_id: eventId, files: metaList.map(m => ({ name: m.name, type: m.type, size: m.size, hash: m.hash })) };
@@ -2551,10 +2656,19 @@ if(id === 'tClient') loadClientSelections();
         const original = metaList.find(m => m.hash === u.hash);
         if(!original) return null;
 
-        return fetch(u.uploadURL, {
+        const upMain = fetch(u.uploadURL, {
           method: 'PUT', body: original.fileObj,
           headers: { 'Content-Type': 'image/jpeg', 'x-amz-meta-original-hash': u.hash }
-        }).then(resp => {
+        });
+
+        let upThumb = Promise.resolve({ ok:true });
+        if (u.thumbnailUploadURL) {
+          upThumb = createThumbnailFromFile(original.fileObj, 420).then(tb => fetch(u.thumbnailUploadURL, {
+            method: 'PUT', body: tb, headers: { 'Content-Type': 'image/jpeg' }
+          })).catch(()=>({ ok:false }));
+        }
+
+        return Promise.all([upMain, upThumb]).then(([resp, respThumb]) => {
           if(!resp || !resp.ok) throw new Error('Upload failed');
           // Count success
           window.__upUploaded = Number(window.__upUploaded || 0) + 1;
