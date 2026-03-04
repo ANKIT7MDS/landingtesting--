@@ -1386,9 +1386,7 @@ const COGNITO_DOMAIN = "https://ap-south-1mva8s6f3w.auth.ap-south-1.amazoncognit
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
-function showView(id){
-
-  // ================= UPLOAD OPTIMIZER (Client-side) =================
+// ================= UPLOAD OPTIMIZER (Client-side) =================
   // Goal: Reduce AWS cost by uploading optimized JPG + thumbnail, while keeping duplicate-hash based on original file.
   function _getPlanCode(){
     // Try common places where account status is stored
@@ -1483,6 +1481,10 @@ function showView(id){
     return await _canvasToBlob(canvas, thumbQuality);
   }
 
+
+function showView(id){
+
+  
 
     document.querySelectorAll('.view').forEach(e => e.classList.remove('show'));
     const target = $(`#${id}`);
