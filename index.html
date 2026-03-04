@@ -5,7 +5,7 @@
   <!-- FIX ADDED: Prevents 403 Forbidden on S3 Images -->
   <meta name="referrer" content="no-referrer" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>EventLens Pro – Admin Console</title>
+  <title>EventLens — AI Powered Event Delivery Platform</title>
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +19,84 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
   <style>
-    :root { --bg-dark: #050505; --bg-panel: #111111; --primary: #00e676; --primary-dim: rgba(0, 230, 118, 0.15); --text-main: #ffffff; --text-muted: #a1a1aa; --border-color: #27272a; --radius-md: 12px; }
+    
+    /* ================= LANDING (Merged) ================= */
+    .landing{position:relative; overflow:hidden;}
+    .landing .hero{
+      border-radius: 18px;
+      background: radial-gradient(1200px 500px at 20% -10%, rgba(0,230,118,0.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(255,106,0,0.16), transparent 55%),
+                  rgba(255,255,255,0.02);
+      border:1px solid var(--border-color);
+      padding: 28px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+    }
+    .landing .hero-grid{display:grid; grid-template-columns: 1.1fr 0.9fr; gap:18px; align-items:center;}
+    @media(max-width: 900px){ .landing .hero-grid{grid-template-columns:1fr;} }
+    .landing h1{font-family:'Outfit', sans-serif; font-size: 44px; line-height: 1.05; margin:0 0 12px 0; letter-spacing:-0.6px;}
+    @media(max-width:520px){ .landing h1{font-size:34px;} }
+    .landing .sub{color: rgba(255,255,255,0.74); font-size: 15px; margin: 0 0 18px 0; max-width: 56ch;}
+    .landing .cta{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .landing .hero-badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+    .landing .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.22);
+      color: rgba(255,255,255,0.80);
+      font-weight: 700; font-size: 12.5px;
+    }
+    .landing .mock{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.22));
+      padding: 16px;
+    }
+    .landing .mock .screen{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: #0a0a0f;
+      padding: 14px;
+      min-height: 280px;
+      position:relative;
+      overflow:hidden;
+    }
+    .landing .scan{
+      position:absolute; inset:-30%;
+      background: radial-gradient(circle at 40% 40%, rgba(0,230,118,0.18), transparent 55%),
+                  radial-gradient(circle at 70% 60%, rgba(255,106,0,0.18), transparent 60%);
+      filter: blur(18px);
+      animation: floatGlow 6s ease-in-out infinite;
+      opacity: .95;
+    }
+    @keyframes floatGlow{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(20px, -10px,0)}}
+    .landing .how{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top: 18px;}
+    @media(max-width: 900px){ .landing .how{grid-template-columns:1fr;} }
+    .landing .step{
+      border-radius: 16px; border:1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      padding: 14px;
+    }
+    .landing .step b{display:block; font-size: 14px; margin-bottom:6px;}
+    .landing .step p{margin:0; color: rgba(255,255,255,0.70); font-size: 13px;}
+    .landing .section-title{margin: 28px 0 12px 0; font-family:'Outfit', sans-serif; font-size: 20px;}
+    .landing .pricing{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;}
+    @media(max-width: 1100px){ .landing .pricing{grid-template-columns: repeat(2, 1fr);} }
+    @media(max-width: 700px){ .landing .pricing{grid-template-columns: 1fr;} }
+    .landing .plan{
+      border-radius: 16px; border:1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+      padding: 16px;
+      position:relative;
+    }
+    .landing .plan.featured{border-color: rgba(0,230,118,0.35); box-shadow: 0 22px 70px rgba(0,230,118,0.10);}
+    .landing .plan h3{margin:0 0 6px 0; font-size: 16px;}
+    .landing .price{font-size: 22px; font-weight: 800; margin: 0 0 12px 0;}
+    .landing ul{margin:0; padding-left: 18px; color: rgba(255,255,255,0.72); font-size: 13px;}
+    .landing li{margin:6px 0;}
+    .landing .mini{color: rgba(255,255,255,0.58); font-size: 12px; margin-top:10px;}
+
+:root { --bg-dark: #050505; --bg-panel: #111111; --primary: #00e676; --primary-dim: rgba(0, 230, 118, 0.15); --text-main: #ffffff; --text-muted: #a1a1aa; --border-color: #27272a; --radius-md: 12px; }
     /* Political Theme Variables (Saffron) */
     .theme-political { --primary: #ff6a00 !important; --primary-dim: rgba(255, 106, 0, 0.15) !important; }
 
@@ -287,6 +364,149 @@ body{overflow-x:hidden;}
         </button>
         <button class="btn primary" id="btnLogin" onclick="doLogin()">Login</button>
         <button class="btn danger hidden" id="btnLogout" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+
+    
+    <div class="view" id="vLanding">
+      <div class="landing">
+        <div class="hero">
+          <div class="hero-grid">
+            <div>
+              <h1>Find Your Photos in Seconds.</h1>
+              <p class="sub">EventLens is an <b>AI Powered Event Delivery Platform</b> for photographers & events — fast face search, premium guest experience, and cost-optimized delivery.</p>
+              <div class="cta">
+                <button class="btn primary" onclick="goLanding('pricing')"><i class="fa-solid fa-bolt"></i> See Plans</button>
+                <button class="btn secondary" onclick="openLogin()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+                <a class="btn secondary" href="clientserch.html"><i class="fa-solid fa-magnifying-glass"></i> Guest Selfie Search</a>
+              </div>
+              <div class="hero-badges">
+                <span class="badge"><i class="fa-solid fa-face-smile"></i> Face Search</span>
+                <span class="badge"><i class="fa-solid fa-gauge-high"></i> Fast Delivery</span>
+                <span class="badge"><i class="fa-solid fa-shield-halved"></i> Secure Links</span>
+                <span class="badge"><i class="fa-solid fa-mobile-screen"></i> Mobile First</span>
+              </div>
+
+              <div class="how">
+                <div class="step">
+                  <b>1) Upload</b>
+                  <p>Photographer uploads photos. Smart optimization keeps your AWS cost low.</p>
+                </div>
+                <div class="step">
+                  <b>2) Share Link / QR</b>
+                  <p>Share a branded link or QR with guests — WhatsApp friendly.</p>
+                </div>
+                <div class="step">
+                  <b>3) Guests Search by Selfie</b>
+                  <p>Guests upload selfie and instantly get their photos in a clean grid.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock">
+              <div class="screen">
+                <div class="scan"></div>
+                <div style="position:relative; z-index:2;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                    <div style="font-weight:800;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Search Demo</div>
+                    <span class="badge" style="border-color:rgba(0,230,118,0.22)"><i class="fa-solid fa-circle"></i> Live</span>
+                  </div>
+                  <div style="margin-top:14px; border:1px dashed rgba(255,255,255,0.14); border-radius:14px; padding:14px; background:rgba(0,0,0,0.18);">
+                    <div style="font-size:12px; color:rgba(255,255,255,0.70); margin-bottom:8px;">Upload selfie</div>
+                    <button class="btn primary" style="width:100%; justify-content:center;"><i class="fa-solid fa-camera"></i> Choose Selfie</button>
+                    <div class="mini">Tip: In real event link, guests directly see this screen.</div>
+                  </div>
+
+                  <div style="margin-top:12px; display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
+                    <div style="height:70px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)"></div>
+                    <div style="height:70px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)"></div>
+                    <div style="height:70px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mini">Premium UI + Smart compression = better experience, lower bill.</div>
+            </div>
+          </div>
+
+          <div id="pricing"></div>
+          <div class="section-title">Pricing (GST extra)</div>
+          <div class="pricing">
+            <div class="plan featured">
+              <h3>Launch (Market Killer)</h3>
+              <div class="price">₹2,999</div>
+              <ul>
+                <li>25,000 photos</li>
+                <li>Standard Quality (2048px)</li>
+                <li>Face search</li>
+                <li>Business branding</li>
+                <li>5 events • 365 days</li>
+              </ul>
+              <div class="mini">Best for tier-2 photographers. Entry hook.</div>
+            </div>
+            <div class="plan">
+              <h3>Growth</h3>
+              <div class="price">₹4,999</div>
+              <ul>
+                <li>60,000 photos</li>
+                <li>Limited High-Res credits</li>
+                <li>Album selection</li>
+                <li>Download on/off</li>
+                <li>20 events</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>Pro</h3>
+              <div class="price">₹7,999</div>
+              <ul>
+                <li>1.25L photos</li>
+                <li>Unlimited events</li>
+                <li>Watermark</li>
+                <li>Favorites</li>
+                <li>20k High-Res credits</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>Studio</h3>
+              <div class="price">₹13,999</div>
+              <ul>
+                <li>2L photos</li>
+                <li>Custom subdomain</li>
+                <li>Analytics (basic)</li>
+                <li>Team login (2)</li>
+                <li>50k High-Res credits</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>Studio Plus</h3>
+              <div class="price">₹19,999</div>
+              <ul>
+                <li>3L photos</li>
+                <li>White label</li>
+                <li>Advanced analytics</li>
+                <li>Team (3)</li>
+                <li>1TB optimized storage</li>
+              </ul>
+            </div>
+            <div class="plan">
+              <h3>Premium</h3>
+              <div class="price">₹27,999</div>
+              <ul>
+                <li>5L photos</li>
+                <li>Full white label</li>
+                <li>API access</li>
+                <li>Priority support</li>
+                <li>Team (5)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section-title">Ready to test?</div>
+          <div class="row" style="gap:10px;">
+            <button class="btn primary" onclick="openLogin()"><i class="fa-solid fa-rocket"></i> Start (Login)</button>
+            <a class="btn secondary" href="clientserch.html"><i class="fa-solid fa-magnifying-glass"></i> Open Guest Search</a>
+            <button class="btn secondary" onclick="openLogin(); setTimeout(()=>showToast('Login to access Photographer & Political dashboards','info'),250)"><i class="fa-solid fa-layer-group"></i> Photographer / Political</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -937,7 +1157,10 @@ const COGNITO_DOMAIN = "https://ap-south-1mva8s6f3w.auth.ap-south-1.amazoncognit
     }
 
     if(!idToken && !accessToken) {
-      showView('vLogin');
+      // Default: show merged landing page. Force login with ?view=login or #login
+      const forceLogin = (params.get('view') === 'login') || (location.hash === '#login') || (location.hash === '#app');
+      if(forceLogin) showView('vLogin');
+      else showView('vLanding');
     } else {
       $('#btnLogout').classList.remove('hidden');
 
@@ -1152,7 +1375,18 @@ const COGNITO_DOMAIN = "https://ap-south-1mva8s6f3w.auth.ap-south-1.amazoncognit
     }
   }
 
-  function showView(id){
+  
+  // ================= LANDING HELPERS =================
+  function openLogin(){
+    location.hash = '#login';
+    showView('vLogin');
+  }
+  function goLanding(anchor){
+    const el = document.getElementById(anchor);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+function showView(id){
     document.querySelectorAll('.view').forEach(e => e.classList.remove('show'));
     const target = $(`#${id}`);
     if(target) target.classList.add('show');
