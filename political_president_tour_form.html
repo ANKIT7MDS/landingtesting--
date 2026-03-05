@@ -211,6 +211,85 @@ function cacheBustSafe(u){
   }catch(e){ console.warn('[EL Branding]',e); }
 }
 </script>
+
+  <style id="eventlens-mobile-patch">
+/* === EventLens Mobile + UX Patch (2026-03-05) ===
+   Goal: improve mobile responsiveness + tap UX without changing JS logic.
+   Safe to remove later. */
+
+/* Prevent iOS auto text scaling quirks */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Media elements never overflow */
+img, video, canvas, svg { max-width: 100%; height: auto; }
+
+/* Better scrolling behavior on mobile */
+* { scroll-margin-top: 88px; }
+
+/* Avoid jank from fixed backgrounds on mobile */
+@media (max-width: 768px) {
+  body { background-attachment: scroll !important; }
+}
+
+/* Safe-area padding for notches */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Universal: stop random horizontal scroll */
+body { overflow-x: hidden; }
+
+/* Buttons: nicer hit area */
+.btn, button, [role="button"], a.btn {
+  min-height: 40px;
+}
+
+/* Tables: allow horizontal scroll on small screens */
+@media (max-width: 768px) {
+  table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table thead, table tbody, table tr { width: max-content; }
+}
+
+/* Common layout helpers (works for most EventLens pages) */
+@media (max-width: 768px) {
+  .wrap { padding: 12px !important; }
+  .topbar, header, .header, nav { flex-direction: column; align-items: flex-start !important; gap: 12px; }
+  .row { flex-direction: column; align-items: stretch !important; }
+  .grid, .col-list { grid-template-columns: 1fr !important; }
+  .col-actions { flex-direction: column; }
+  .card { padding: 16px !important; }
+  .tabs { gap: 6px; padding-bottom: 6px; }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  /* Prevent iOS zoom on form fields */
+  input, select, textarea { font-size: 16px !important; }
+  .login-card { padding: 24px !important; border-radius: 18px !important; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important; }
+}
+
+/* Touch devices: disable hover-only effects that feel glitchy */
+@media (hover: none) {
+  .ph-card:hover .ph-overlay { opacity: 0 !important; }
+  .col-card:hover { transform: none !important; }
+}
+
+/* Modals/dialogs: fit inside mobile viewport */
+@media (max-width: 600px) {
+  .modal, .overlay, .dialog { padding: 12px !important; }
+  .modal-content, .dialog-content, .sheet, .sheet-content {
+    width: calc(100% - 24px) !important;
+    max-width: none !important;
+    max-height: calc(100vh - 24px) !important;
+    overflow: auto !important;
+  }
+}
+  </style>
 </head>
 
 <body class="py-3 px-3 sm:py-6">
