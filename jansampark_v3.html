@@ -3,198 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#fff8f0">
+<meta name="theme-color" content="#fffaf5">
 <title>जनसम्पर्क – सुधीर जी गुप्ता</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{
-  --sf:#E8500A;--sfl:#fff0e8;--sfm:rgba(232,80,10,.15);--sfb:rgba(232,80,10,.25);
-  --gn:#1a7a10;--gnl:#f0f8ee;
-  --gd:#c88000;--gdl:#fff8e6;
-  --bg:#faf6f0;--bg2:#ffffff;--bg3:#fff8f2;
-  --sur:#f5ede3;--sur2:#ede0d0;
-  --bd:#e8d5c0;--bd2:#d4b896;
-  --tx:#1a0e00;--tx2:#5a3d1e;--tx3:#9a7555;
-  --shadow:0 2px 12px rgba(180,100,20,.1);
-  --shadow2:0 4px 24px rgba(180,100,20,.15);
-  --r:14px;--rs:9px;
+  --sf:#D94F00;--sfl:#fff2ea;--sfm:rgba(217,79,0,.13);--sfb:rgba(217,79,0,.28);
+  --gn:#1b7a0f;--gnl:#eef7ec;
+  --gd:#b87200;--gdl:#fff8e6;--gdb:rgba(184,114,0,.22);
+  --bg:#fffaf5;--bg2:#ffffff;--bg3:#fff5ec;
+  --sur:#f5ede2;--sur2:#ede0cc;
+  --bd:#e6d3bc;--bd2:#cdb898;
+  --tx:#190d00;--tx2:#5c3c18;--tx3:#9a7248;
+  --sh:0 2px 14px rgba(160,90,10,.09);
+  --sh2:0 6px 28px rgba(160,90,10,.16);
+  --r:16px;--rs:10px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{height:100%;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font-family:'Baloo 2',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px;height:4px}
+html{height:100%;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font-family:'Baloo 2',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
 
-/* ── HEADER ── */
-.hdr{position:sticky;top:0;z-index:300;background:rgba(250,246,240,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);box-shadow:0 1px 8px rgba(180,100,20,.06)}
-.hdr-in{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:10px;height:52px;padding:0 14px}
-.flag{display:flex;flex-direction:column;gap:2px;width:20px;flex-shrink:0}
+/* ══ HEADER ══════════════════════════════════ */
+.hdr{position:sticky;top:0;z-index:300;background:rgba(255,250,245,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--bd);box-shadow:0 1px 10px rgba(160,90,10,.07)}
+.hdr-in{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:11px;height:54px;padding:0 16px}
+.flag{display:flex;flex-direction:column;gap:2.5px;width:22px;flex-shrink:0}
 .fs{height:4px;border-radius:2px}
 .fs.s{background:#FF9933}.fs.w{background:#fff;border:1px solid #ddd;position:relative}
 .fs.w::after{content:'●';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:4px;color:#000080}
 .fs.g{background:#138808}
 .hdr-t{flex:1;min-width:0}
-.hdr-t h1{font-size:13px;font-weight:800;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-t h1{font-size:13.5px;font-weight:800;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.1px}
 .hdr-t p{font-size:10px;color:var(--tx3);margin-top:1px}
-.hdr-pill{background:var(--sfl);border:1px solid var(--sfb);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:800;color:var(--sf);white-space:nowrap;flex-shrink:0}
+.hdr-pill{background:var(--sfl);border:1.5px solid var(--sfb);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:800;color:var(--sf);white-space:nowrap;flex-shrink:0}
 
-/* ── LAYOUT ── */
-.wrap{max-width:1280px;margin:0 auto;padding:14px 14px 80px}
+/* ══ PAGE ══════════════════════════════════ */
+.wrap{max-width:1300px;margin:0 auto;padding:14px 14px 90px}
 
-/* ── KPI ── */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.kpi{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px 14px 12px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+/* ══ KPI ══════════════════════════════════ */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px}
+.kpi{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r);padding:15px 14px 13px;box-shadow:var(--sh);position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sf),var(--gd))}
 .kpi-v{font-size:28px;font-weight:800;color:var(--sf);line-height:1}
 .kpi-l{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
 
-/* ── CHARTS ── */
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.chart-box{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)}
+/* ══ CHARTS ══════════════════════════════════ */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+.ch-box{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
 .ch-ttl{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
-.br{display:flex;align-items:center;gap:7px;margin-bottom:4px}
-.bl{font-size:11px;color:var(--tx2);min-width:56px;text-align:right;font-family:'Tiro Devanagari Hindi',serif;flex-shrink:0}
-.bt{flex:1;background:var(--sur);border-radius:3px;height:14px;overflow:hidden}
-.bf{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sf),var(--gd));display:flex;align-items:center;justify-content:flex-end;padding-right:5px;min-width:24px;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
-.bn{font-size:9px;font-weight:800;color:#fff}
+.brow{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.blbl{font-size:11px;color:var(--tx2);min-width:55px;text-align:right;font-family:'Tiro Devanagari Hindi',serif;flex-shrink:0}
+.btrk{flex:1;background:var(--sur);border-radius:3px;height:15px;overflow:hidden}
+.bfil{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sf),var(--gd));display:flex;align-items:center;justify-content:flex-end;padding-right:5px;min-width:28px;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.bnum{font-size:9px;font-weight:800;color:#fff}
 
-/* ── FILTER ── */
-.flt{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-bottom:12px;box-shadow:var(--shadow)}
+/* ══ FILTER ══════════════════════════════════ */
+.flt{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r);padding:13px;margin-bottom:13px;box-shadow:var(--sh)}
 .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .chips::-webkit-scrollbar{display:none}
-.chip{border:1px solid var(--bd);background:var(--bg3);color:var(--tx2);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .15s;font-family:'Baloo 2',sans-serif;flex-shrink:0}
-.chip:active{transform:scale(.95)}.chip.on{background:var(--sf);border-color:var(--sf);color:#fff}
+.chip{border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx2);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .15s;font-family:'Baloo 2',sans-serif;flex-shrink:0}
+.chip:active{transform:scale(.95)}.chip.on{background:var(--sf);border-color:var(--sf);color:#fff;box-shadow:0 2px 8px rgba(217,79,0,.25)}
 .srch{position:relative;margin-top:9px}
-.srch input{width:100%;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rs);color:var(--tx);padding:9px 12px 9px 34px;font-size:14px;font-family:'Baloo 2',sans-serif;outline:none;transition:border-color .15s;-webkit-appearance:none}
-.srch input:focus{border-color:var(--sf);background:#fff}
+.srch input{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rs);color:var(--tx);padding:9px 12px 9px 35px;font-size:14px;font-family:'Baloo 2',sans-serif;outline:none;transition:all .15s;-webkit-appearance:none}
+.srch input:focus{border-color:var(--sf);background:#fff;box-shadow:0 0 0 3px rgba(217,79,0,.08)}
 .srch input::placeholder{color:var(--tx3)}
-.si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:13px;pointer-events:none}
-.res-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:14px;pointer-events:none}
+.res-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
 .res-txt{font-size:11px;color:var(--tx3);font-weight:600}
-.sl-btn{background:var(--sf);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;display:flex;align-items:center;gap:5px;transition:all .15s;box-shadow:0 2px 8px rgba(232,80,10,.3)}
+.sl-btn{background:linear-gradient(135deg,var(--sf),#ff7a20);color:#fff;border:none;border-radius:20px;padding:8px 18px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Baloo 2',sans-serif;box-shadow:0 3px 10px rgba(217,79,0,.28);transition:all .15s;display:flex;align-items:center;gap:5px}
 .sl-btn:active{transform:scale(.95)}
 
-/* ── CARD GRID ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-
-/* ── EVENT CARD ── */
-.card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s,border-color .2s;box-shadow:var(--shadow)}
-.card:hover{box-shadow:var(--shadow2);border-color:var(--bd2);transform:translateY(-2px)}
+/* ══ CARDS ══════════════════════════════════ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:11px}
+.card{background:var(--bg2);border:1.5px solid var(--bd);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s,border-color .2s;box-shadow:var(--sh)}
+.card:hover{box-shadow:var(--sh2);border-color:var(--bd2);transform:translateY(-2px)}
 .card:active{transform:scale(.98)}
 .c-stripe{height:3px;background:linear-gradient(90deg,var(--sf),var(--gd))}
-.c-top{padding:11px 12px 8px;display:flex;gap:8px;align-items:flex-start}
-.c-num{width:28px;height:28px;border-radius:50%;background:var(--sfl);border:1px solid var(--sfb);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--sf);flex-shrink:0}
+.c-top{padding:12px 13px 8px;display:flex;gap:9px;align-items:flex-start}
+.c-num{width:30px;height:30px;border-radius:50%;background:var(--sfl);border:1.5px solid var(--sfb);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--sf);flex-shrink:0}
 .c-inf{flex:1;min-width:0}
 .c-sthan{font-size:14px;font-weight:800;color:var(--tx);line-height:1.25;font-family:'Tiro Devanagari Hindi',serif}
-.c-meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
-.bdg{border-radius:20px;padding:2px 7px;font-size:10px;font-weight:700}
+.c-meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+.bdg{border-radius:20px;padding:2px 8px;font-size:10px;font-weight:700}
 .bj{background:var(--sfl);color:var(--sf);border:1px solid var(--sfb)}
-.bm{background:var(--gnl);color:var(--gn);border:1px solid rgba(26,122,16,.2)}
-.bt{background:var(--gdl);color:var(--gd);border:1px solid rgba(200,128,0,.2)}
-.c-viv{padding:0 12px 8px;font-size:12px;color:var(--tx2);line-height:1.5;font-family:'Tiro Devanagari Hindi',serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-
-/* THUMBNAIL GRID */
-.thumbgrid{padding:6px 8px 10px;display:grid;gap:3px}
+.bm{background:var(--gnl);color:var(--gn);border:1px solid rgba(27,122,15,.2)}
+.bt{background:var(--gdl);color:var(--gd);border:1px solid var(--gdb)}
+.c-viv{padding:0 13px 8px;font-size:12px;color:var(--tx2);line-height:1.5;font-family:'Tiro Devanagari Hindi',serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.thumbgrid{padding:6px 8px 10px;display:grid;gap:4px}
 .thumbgrid.g1{grid-template-columns:1fr}
 .thumbgrid.g2{grid-template-columns:1fr 1fr}
 .thumbgrid.g3{grid-template-columns:1fr 1fr 1fr}
-.thumbgrid.g4plus{grid-template-columns:repeat(4,1fr)}
-.thumb{border-radius:6px;overflow:hidden;background:var(--sur);position:relative}
+.thumbgrid.g4p{grid-template-columns:repeat(4,1fr)}
+.thumb{border-radius:7px;overflow:hidden;background:var(--sur);position:relative}
 .thumbgrid.g1 .thumb{aspect-ratio:16/9}
 .thumbgrid.g2 .thumb,.thumbgrid.g3 .thumb{aspect-ratio:4/3}
-.thumbgrid.g4plus .thumb{aspect-ratio:1}
+.thumbgrid.g4p .thumb{aspect-ratio:1}
 .thumb img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;display:block}
 .thumb img.ok{opacity:1}
-.thumb-more{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;letter-spacing:.5px}
-
-@keyframes ci{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.t-more{position:absolute;inset:0;background:rgba(0,0,0,.52);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;border-radius:7px}
+@keyframes ci{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:ci .22s ease both}
-
-/* ── SLIDE OVERLAY — fullscreen photo-first ── */
-.sl-ov{position:fixed;inset:0;z-index:1000;background:#111;display:none;flex-direction:column}
-.sl-ov.open{display:flex}
-
-/* top bar */
-.sl-top{display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(0,0,0,.85);flex-shrink:0;position:absolute;top:0;left:0;right:0;z-index:10}
-.sl-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
-.sl-x:active{background:var(--sf);border-color:var(--sf)}
-.sl-prog{flex:1;text-align:center}
-.sl-ct{font-size:11px;font-weight:700;color:rgba(255,255,255,.7)}
-.sl-pb{height:2px;background:rgba(255,255,255,.2);border-radius:2px;margin-top:4px}
-.sl-pf{height:100%;background:linear-gradient(90deg,var(--sf),var(--gd));border-radius:2px;transition:width .3s}
-.sl-navbtns{display:flex;gap:6px}
-.sl-nb{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
-.sl-nb:active{background:var(--sf);transform:scale(.92)}
-.sl-nb:disabled{opacity:.2;pointer-events:none}
-
-/* photo area — takes full height */
-.sl-photos{flex:1;overflow:hidden;position:relative}
-
-/* main big photo */
-.sl-main-img{width:100%;height:100%;object-fit:contain;display:block}
-.sl-main-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0d0d0d;padding-top:54px;padding-bottom:100px}
-
-/* filmstrip */
-.sl-strip{position:absolute;bottom:0;left:0;right:0;height:96px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.5));display:flex;gap:4px;align-items:center;padding:6px 10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.sl-strip::-webkit-scrollbar{display:none}
-.sl-ft{width:76px;height:76px;border-radius:7px;overflow:hidden;background:#333;flex-shrink:0;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s}
-.sl-ft.active{border-color:var(--sf);transform:scale(1.05)}
-.sl-ft img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
-.sl-ft img.ok{opacity:1}
-
-/* ── DETAIL SHEET (bottom) ── */
-.detail-btn{position:absolute;bottom:100px;right:12px;z-index:20;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Baloo 2',sans-serif;display:flex;align-items:center;gap:5px;transition:all .15s}
-.detail-btn:active{background:var(--sf)}
-
-/* bottom sheet */
-.bsheet{position:fixed;inset:0;z-index:2000;pointer-events:none}
-.bsheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .3s;pointer-events:none}
-.bsheet-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:0;transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);max-height:80vh;overflow:hidden;display:flex;flex-direction:column}
-.bsheet.open .bsheet-bg{opacity:1;pointer-events:all}
-.bsheet.open .bsheet-panel{transform:translateY(0)}
-.bsheet.open{pointer-events:all}
-.bs-handle{width:36px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 0}
-.bs-scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 18px 30px;flex:1}
-.bs-sthan{font-family:'Tiro Devanagari Hindi',serif;font-size:20px;font-weight:700;color:var(--tx);margin:8px 0 6px;line-height:1.3}
-.bs-meta{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
-.bs-sec{margin-bottom:14px}
-.bs-lbl{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;display:flex;align-items:center;gap:5px}
-.bs-dot{width:5px;height:5px;border-radius:50%;background:var(--sf);flex-shrink:0}
-.bs-val{font-family:'Tiro Devanagari Hindi',serif;font-size:13.5px;color:var(--tx);line-height:1.65;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rs);padding:9px 12px}
-.neta-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--tx2);padding:3px 0;border-bottom:1px solid var(--bd);font-family:'Tiro Devanagari Hindi',serif}
-.neta-item:last-child{border-bottom:none}
-.nd{width:5px;height:5px;border-radius:50%;background:var(--sf);flex-shrink:0}
-
-/* ── LIGHTBOX ── */
-.lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.98);display:none;align-items:center;justify-content:center}
-.lb.open{display:flex}
-.lb img{max-width:96vw;max-height:92vh;object-fit:contain;border-radius:4px}
-.lb-x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-
-/* ── EMPTY ── */
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--tx3)}
-.empty-ico{font-size:44px;margin-bottom:12px;opacity:.5}
+.empty-ico{font-size:44px;margin-bottom:12px;opacity:.4}
 
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
+/* ════════════════════════════════════════════
+   SLIDE OVERLAY — PPT Split Layout
+   ════════════════════════════════════════════ */
+.sl-ov{position:fixed;inset:0;z-index:1000;background:rgba(15,8,0,.97);display:none;flex-direction:column;backdrop-filter:blur(4px)}
+.sl-ov.open{display:flex}
+@keyframes slIn{from{opacity:0}to{opacity:1}}
+.sl-ov.open{animation:slIn .22s ease}
+
+/* top progress bar */
+.sl-topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(0,0,0,.7);border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0;backdrop-filter:blur(10px)}
+.sl-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-family:'Baloo 2',sans-serif}
+.sl-close:active{background:var(--sf);border-color:var(--sf)}
+.sl-progwrap{flex:1;text-align:center}
+.sl-prog-ct{font-size:12px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.3px}
+.sl-prog-bar{height:3px;background:rgba(255,255,255,.12);border-radius:3px;margin-top:5px}
+.sl-prog-fill{height:100%;background:linear-gradient(90deg,var(--sf),var(--gd));border-radius:3px;transition:width .3s ease}
+.sl-topnav{display:flex;gap:8px}
+.sl-topbtn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.sl-topbtn:active{background:var(--sf);transform:scale(.92)}
+.sl-topbtn:disabled{opacity:.18;pointer-events:none}
+
+/* SPLIT BODY */
+.sl-body{flex:1;overflow:hidden;display:flex;flex-direction:row;min-height:0}
+
+/* ── LEFT PANEL — event details ── */
+.sl-left{width:380px;flex-shrink:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(160deg,#fffaf5 0%,#fff5e8 100%);border-right:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column}
+.sl-left-inner{padding:22px 22px 20px;flex:1}
+
+/* event number badge */
+.sl-evnum{display:inline-flex;align-items:center;gap:8px;background:var(--sfl);border:1.5px solid var(--sfb);border-radius:20px;padding:5px 14px 5px 5px;margin-bottom:14px}
+.sl-numcircle{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--sf),#ff7a20);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;box-shadow:0 2px 8px rgba(217,79,0,.3)}
+.sl-numtxt{font-size:12px;font-weight:700;color:var(--sf)}
+
+/* sthan title */
+.sl-sthan{font-family:'Tiro Devanagari Hindi',serif;font-size:22px;font-weight:700;color:var(--tx);line-height:1.35;margin-bottom:12px}
+
+/* meta chips row */
+.sl-metarow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+
+/* divider */
+.sl-divider{height:1.5px;background:linear-gradient(90deg,var(--sfb),transparent);margin-bottom:18px;border-radius:2px}
+
+/* detail rows */
+.det-row{display:flex;gap:11px;margin-bottom:16px;align-items:flex-start}
+.det-icon{font-size:18px;line-height:1;margin-top:2px;flex-shrink:0;width:26px;text-align:center}
+.det-body{flex:1;min-width:0}
+.det-label{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
+.det-val{font-family:'Tiro Devanagari Hindi',serif;font-size:13.5px;color:var(--tx);line-height:1.7}
+.det-val.vivaran{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 12px;font-size:13px;color:var(--tx2)}
+.neta-list{display:flex;flex-direction:column;gap:0}
+.neta-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed var(--bd);font-family:'Tiro Devanagari Hindi',serif;font-size:13px;color:var(--tx2)}
+.neta-item:last-child{border-bottom:none}
+.neta-dot{width:6px;height:6px;border-radius:50%;background:var(--sf);flex-shrink:0}
+
+/* bottom nav arrows */
+.sl-left-nav{display:flex;gap:10px;padding:14px 22px;border-top:1px solid var(--bd);background:#fffaf5;flex-shrink:0}
+.sl-arrowbtn{flex:1;height:44px;border-radius:var(--rs);border:1.5px solid var(--bd);background:#fff;color:var(--tx);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:13px;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.sl-arrowbtn:hover{border-color:var(--sf);color:var(--sf);background:var(--sfl)}
+.sl-arrowbtn:active{transform:scale(.97)}
+.sl-arrowbtn:disabled{opacity:.25;pointer-events:none}
+.sl-arrowbtn.prev::before{content:'←';font-size:16px;margin-right:2px}
+.sl-arrowbtn.next::after{content:'→';font-size:16px;margin-left:2px}
+
+/* ── RIGHT PANEL — photos ── */
+.sl-right{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#111008;padding:18px 16px 20px;min-width:0}
+.ph-header{font-size:11px;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ph-count{background:rgba(217,79,0,.25);border:1px solid rgba(217,79,0,.4);border-radius:10px;padding:1px 9px;font-size:10px;color:#ff9a60}
+
+/* top 4 large */
+.ph-top4{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.ph-big{border-radius:10px;overflow:hidden;background:#222;cursor:pointer;position:relative;aspect-ratio:4/3}
+.ph-big img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s,transform .25s;display:block}
+.ph-big img.ok{opacity:1}
+.ph-big:hover img{transform:scale(1.04)}
+.ph-big::after{content:'🔍';position:absolute;bottom:7px;right:8px;font-size:12px;opacity:0;transition:opacity .2s;pointer-events:none}
+.ph-big:hover::after{opacity:1}
+
+/* small strip below */
+.ph-strip{display:flex;gap:5px;flex-wrap:wrap}
+.ph-sm{width:68px;height:68px;border-radius:8px;overflow:hidden;background:#222;cursor:pointer;flex-shrink:0}
+.ph-sm img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s;display:block}
+.ph-sm img.ok{opacity:1}
+.ph-sm:hover img{opacity:.82}
+.ph-empty{text-align:center;padding:60px 20px;color:rgba(255,255,255,.3);font-family:'Tiro Devanagari Hindi',serif;font-size:14px}
+
+/* ══ LIGHTBOX ══════════════════════════════════ */
+.lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;flex-direction:column}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:88vh;object-fit:contain;border-radius:6px}
+.lb-x{position:absolute;top:12px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.lb-x:active{background:var(--sf)}
+
+/* ══ MOBILE ══════════════════════════════════ */
+@media(max-width:800px){
+  .sl-body{flex-direction:column}
+  .sl-left{width:100%;max-height:46vh;border-right:none;border-bottom:1px solid rgba(0,0,0,.1)}
+  .sl-left-inner{padding:16px}
+  .sl-sthan{font-size:18px}
+  .sl-right{flex:1;min-height:200px}
+  .ph-sm{width:58px;height:58px}
   .kpis{grid-template-columns:repeat(2,1fr);gap:7px}
   .kpi-v{font-size:22px}
   .charts{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
-  .sl-ft{width:64px;height:64px}
-  .sl-strip{height:82px}
-  .sl-main-wrap{padding-bottom:86px}
-  .detail-btn{bottom:86px}
 }
-@media(min-width:768px){
-  .sl-main-wrap{padding-bottom:110px}
-  .sl-strip{height:110px}
-  .sl-ft{width:90px;height:90px}
-  .detail-btn{bottom:116px}
-  .bsheet-panel{max-width:480px;left:50%;right:auto;transform:translateX(-50%) translateY(100%);border-radius:20px;bottom:20px}
-  .bsheet.open .bsheet-panel{transform:translateX(-50%) translateY(0)}
+@media(max-width:400px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .ph-big{aspect-ratio:1}
 }
 </style>
 </head>
@@ -207,81 +229,81 @@ body{background:var(--bg);color:var(--tx);font-family:'Baloo 2',sans-serif;min-h
       <h1>श्री सुधीर जी गुप्ता – जनसम्पर्क कार्यक्रम</h1>
       <p>लोकसभा प्रत्याशी | मंदसौर – नीमच – रतलाम</p>
     </div>
-    <div class="hdr-pill" id="hBadge">...</div>
+    <div class="hdr-pill" id="hBadge">…</div>
   </div>
 </header>
 
 <div class="wrap">
 
+  <!-- KPI -->
   <div class="kpis">
     <div class="kpi"><div class="kpi-v">552</div><div class="kpi-l">📸 कार्यक्रम</div></div>
-    <div class="kpi"><div class="kpi-v">6,611</div><div class="kpi-l">कुल Photos</div></div>
-    <div class="kpi"><div class="kpi-v">4</div><div class="kpi-l">जिले</div></div>
-    <div class="kpi"><div class="kpi-v">349</div><div class="kpi-l">मंदसौर</div></div>
+    <div class="kpi"><div class="kpi-v">6,611</div><div class="kpi-l">🖼 कुल Photos</div></div>
+    <div class="kpi"><div class="kpi-v">4</div><div class="kpi-l">🗺 जिले</div></div>
+    <div class="kpi"><div class="kpi-v">349</div><div class="kpi-l">📍 मंदसौर</div></div>
   </div>
 
+  <!-- CHARTS -->
   <div class="charts">
-    <div class="chart-box">
-      <div class="ch-ttl">जिलावार कार्यक्रम</div>
-      <div id="jilaChart"></div>
-    </div>
-    <div class="chart-box">
-      <div class="ch-ttl">माहवार कार्यक्रम</div>
-      <div id="monthChart"></div>
-    </div>
+    <div class="ch-box"><div class="ch-ttl">📊 जिलावार</div><div id="jilaChart"></div></div>
+    <div class="ch-box"><div class="ch-ttl">📅 माहवार</div><div id="monthChart"></div></div>
   </div>
 
+  <!-- FILTER -->
   <div class="flt">
     <div class="chips" id="chips">
-      <button class="chip on" data-v="">सभी जिले</button>
-      <button class="chip" data-v="मंदसौर">मंदसौर</button>
-      <button class="chip" data-v="नीमच">नीमच</button>
-      <button class="chip" data-v="रतलाम">रतलाम</button>
-      <button class="chip" data-v="भोपाल">भोपाल</button>
+      <button class="chip on" data-v="">सभी</button>
+      <button class="chip" data-v="मंदसौर">🟠 मंदसौर</button>
+      <button class="chip" data-v="नीमच">🟢 नीमच</button>
+      <button class="chip" data-v="रतलाम">🔵 रतलाम</button>
+      <button class="chip" data-v="भोपाल">🟡 भोपाल</button>
     </div>
-    <div class="srch"><span class="si">🔍</span><input type="search" id="sIn" placeholder="स्थान, मंडल, नेता खोजें..." autocomplete="off"></div>
+    <div class="srch"><span class="si">🔍</span><input type="search" id="sIn" placeholder="स्थान, मंडल, नेता खोजें…" autocomplete="off"></div>
     <div class="res-row">
-      <span class="res-txt" id="resTxt">लोड हो रहा है...</span>
+      <span class="res-txt" id="resTxt">लोड हो रहा है…</span>
       <button class="sl-btn" onclick="openSlide(0)">▶ स्लाइड शो</button>
     </div>
   </div>
 
+  <!-- CARDS -->
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- SLIDE OVERLAY -->
+<!-- ════ SLIDE OVERLAY ════ -->
 <div class="sl-ov" id="slOv">
   <!-- Top bar -->
-  <div class="sl-top">
-    <button class="sl-x" onclick="closeSlide()">✕</button>
-    <div class="sl-prog">
-      <div class="sl-ct" id="slCt">1/1</div>
-      <div class="sl-pb"><div class="sl-pf" id="slPf" style="width:0%"></div></div>
+  <div class="sl-topbar">
+    <button class="sl-close" onclick="closeSlide()">✕</button>
+    <div class="sl-progwrap">
+      <div class="sl-prog-ct" id="slCt">1 / 1</div>
+      <div class="sl-prog-bar"><div class="sl-prog-fill" id="slPf" style="width:0%"></div></div>
     </div>
-    <div class="sl-navbtns">
-      <button class="sl-nb" id="pBtn" onclick="nav(-1)">‹</button>
-      <button class="sl-nb" id="nBtn" onclick="nav(1)">›</button>
+    <div class="sl-topnav">
+      <button class="sl-topbtn" id="tPrev" onclick="nav(-1)">‹</button>
+      <button class="sl-topbtn" id="tNext" onclick="nav(1)">›</button>
     </div>
   </div>
 
-  <!-- Main photo -->
-  <div class="sl-photos">
-    <div class="sl-main-wrap">
-      <img class="sl-main-img" id="slMainImg" src="" alt="" onclick="openLB(currentBig())">
-    </div>
-    <!-- Detail button -->
-    <button class="detail-btn" onclick="openSheet()">ℹ️ विवरण देखें</button>
-    <!-- Filmstrip -->
-    <div class="sl-strip" id="slStrip"></div>
-  </div>
-</div>
+  <!-- Split body -->
+  <div class="sl-body">
 
-<!-- DETAIL BOTTOM SHEET -->
-<div class="bsheet" id="bsheet">
-  <div class="bsheet-bg" onclick="closeSheet()"></div>
-  <div class="bsheet-panel" id="bPanel">
-    <div class="bs-handle"></div>
-    <div class="bs-scroll" id="bScroll"></div>
+    <!-- LEFT: detail -->
+    <div class="sl-left">
+      <div class="sl-left-inner" id="slDetail">
+        <!-- rendered by JS -->
+      </div>
+      <!-- Arrow nav at bottom of left panel -->
+      <div class="sl-left-nav">
+        <button class="sl-arrowbtn prev" id="lPrev" onclick="nav(-1)">पिछला</button>
+        <button class="sl-arrowbtn next" id="lNext" onclick="nav(1)">अगला</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: photos -->
+    <div class="sl-right" id="slPhotos">
+      <!-- rendered by JS -->
+    </div>
+
   </div>
 </div>
 
@@ -297,9 +319,8 @@ function _load(){
   try{const b=atob(_D),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return JSON.parse(new TextDecoder().decode(u));}
   catch(e){return[];}
 }
-// [sr,date,jila,mandal,sthan,neta,vivaran,photos]
 const K={SR:0,DT:1,JI:2,MA:3,ST:4,NE:5,VI:6,PH:7};
-let ALL=[],FLT=[],sIdx=0,stripIdx=0,actJ='',srch='',tx=0;
+let ALL=[],FLT=[],sIdx=0,actJ='',srch='',tx=0;
 
 window.addEventListener('DOMContentLoaded',()=>{
   ALL=_load();
@@ -315,10 +336,10 @@ function buildCharts(){
   const mD={"जन": 17, "फर": 10, "मार्च": 79, "अप्रैल": 373, "मई": 12, "जून": 13, "जुल": 3, "अग": 5, "सित": 6, "अक्त": 2, "नव": 1};
   const jM=Math.max(...Object.values(jD));
   document.getElementById('jilaChart').innerHTML=Object.entries(jD).sort((a,b)=>b[1]-a[1]).map(([l,v])=>
-    `<div class="br"><div class="bl">${l}</div><div class="bt"><div class="bf" style="width:${Math.round(v/jM*100)}%"><span class="bn">${v}</span></div></div></div>`).join('');
+    `<div class="brow"><div class="blbl">${l}</div><div class="btrk"><div class="bfil" style="width:${Math.round(v/jM*100)}%"><span class="bnum">${v}</span></div></div></div>`).join('');
   const mM=Math.max(...Object.values(mD));
   document.getElementById('monthChart').innerHTML=Object.entries(mD).filter(([,v])=>v>0).map(([l,v])=>
-    `<div class="br"><div class="bl">${l}</div><div class="bt"><div class="bf" style="width:${Math.round(v/mM*100)}%"><span class="bn">${v}</span></div></div></div>`).join('');
+    `<div class="brow"><div class="blbl">${l}</div><div class="btrk"><div class="bfil" style="width:${Math.round(v/mM*100)}%"><span class="bnum">${v}</span></div></div></div>`).join('');
 }
 
 /* FILTERS */
@@ -341,20 +362,19 @@ function applyFilter(){
 }
 
 /* CARDS */
-function thumbUrl(u){return u.replace('=w800-h600','=w300-h300')}
+function thumbUrl(u){return u.replace('=w800-h600','=w400-h300')||u}
 function renderCards(){
   const g=document.getElementById('grid');
   if(!FLT.length){g.innerHTML='<div class="empty"><div class="empty-ico">🔍</div><p>कोई कार्यक्रम नहीं मिला</p></div>';return;}
   g.innerHTML=FLT.map((d,i)=>{
     const ph=d[K.PH]||[];
-    const n=ph.length;
-    const show=n<=4?n:4;
-    const cls=n===1?'g1':n===2?'g2':n===3?'g3':'g4plus';
+    const n=ph.length,show=Math.min(n,4);
+    const cls=n===1?'g1':n===2?'g2':n===3?'g3':'g4p';
     const thtml=ph.slice(0,show).map((p,ti)=>{
-      const isLast=ti===show-1&&n>4;
-      return `<div class="thumb">${isLast?`<div class="thumb-more">+${n-show+1}</div>`:''}<img data-src="${thumbUrl(p)}" alt="" onload="this.classList.add('ok')"></div>`;
+      const last=ti===show-1&&n>4;
+      return `<div class="thumb">${last?`<div class="t-more">+${n-show+1}</div>`:''}<img data-src="${thumbUrl(p)}" alt="" onload="this.classList.add('ok')"></div>`;
     }).join('');
-    return `<div class="card" onclick="openSlide(${i})" style="animation-delay:${Math.min(i,20)*.025}s">
+    return `<div class="card" onclick="openSlide(${i})" style="animation-delay:${Math.min(i,22)*.025}s">
       <div class="c-stripe"></div>
       <div class="c-top">
         <div class="c-num">${d[K.SR]||i+1}</div>
@@ -362,7 +382,7 @@ function renderCards(){
           <div class="c-sthan">${esc(d[K.ST])}</div>
           <div class="c-meta">
             <span class="bdg bj">📍${esc(d[K.JI])}</span>
-            ${d[K.MA]?`<span class="bdg bm">${esc(d[K.MA])}</span>`:''}
+            ${d[K.MA]?`<span class="bdg bm">🏛${esc(d[K.MA])}</span>`:''}
             <span class="bdg bt">📅${d[K.DT]}</span>
           </div>
         </div>
@@ -377,102 +397,108 @@ function renderCards(){
 function lazyLoad(){
   const imgs=document.querySelectorAll('img[data-src]');
   if(!('IntersectionObserver' in window)){imgs.forEach(i=>{i.src=i.dataset.src;delete i.dataset.src});return;}
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=e.target;i.src=i.dataset.src;delete i.dataset.src;io.unobserve(i);}});},{rootMargin:'300px'});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const img=e.target;img.src=img.dataset.src;delete img.dataset.src;io.unobserve(img);}});},{rootMargin:'300px'});
   imgs.forEach(i=>io.observe(i));
 }
 
 /* SLIDE */
 function openSlide(i){
   sIdx=Math.max(0,Math.min(i,FLT.length-1));
-  stripIdx=0;
   document.getElementById('slOv').classList.add('open');
   document.body.style.overflow='hidden';
   renderSlide();
 }
-function closeSlide(){
-  document.getElementById('slOv').classList.remove('open');
-  document.body.style.overflow='';
-  closeSheet();
-}
-function nav(d){sIdx=Math.max(0,Math.min(sIdx+d,FLT.length-1));stripIdx=0;closeSheet();renderSlide();}
-
-function currentBig(){
-  const ph=(FLT[sIdx]||{})[K.PH]||[];
-  return ph[stripIdx]||'';
-}
+function closeSlide(){document.getElementById('slOv').classList.remove('open');document.body.style.overflow='';}
+function nav(d){sIdx=Math.max(0,Math.min(sIdx+d,FLT.length-1));renderSlide();}
 
 function renderSlide(){
   const d=FLT[sIdx],tot=FLT.length,cur=sIdx+1;
-  document.getElementById('slCt').textContent=cur+'/'+tot;
+  document.getElementById('slCt').textContent=cur+' / '+tot;
   document.getElementById('slPf').style.width=(cur/tot*100)+'%';
-  document.getElementById('pBtn').disabled=sIdx===0;
-  document.getElementById('nBtn').disabled=sIdx===tot-1;
+  const aS=sIdx===0,aE=sIdx===tot-1;
+  ['tPrev','lPrev'].forEach(id=>document.getElementById(id).disabled=aS);
+  ['tNext','lNext'].forEach(id=>document.getElementById(id).disabled=aE);
 
-  const ph=d[K.PH]||[];
-  // Main image
-  const mainImg=document.getElementById('slMainImg');
-  mainImg.src=''; mainImg.classList.remove('ok');
-  mainImg.src=ph[stripIdx]||'';
-  mainImg.onload=()=>mainImg.classList.add('ok');
-
-  // Filmstrip
-  const strip=document.getElementById('slStrip');
-  strip.innerHTML=ph.map((p,i)=>`
-    <div class="sl-ft${i===stripIdx?' active':''}" onclick="selectStrip(${i})">
-      <img src="${thumbUrl(p)}" alt="" onload="this.classList.add('ok')">
-    </div>`).join('');
-}
-
-function selectStrip(i){
-  stripIdx=i;
-  const ph=(FLT[sIdx]||{})[K.PH]||[];
-  const mainImg=document.getElementById('slMainImg');
-  mainImg.src='';mainImg.classList.remove('ok');
-  mainImg.src=ph[i]||'';
-  mainImg.onload=()=>mainImg.classList.add('ok');
-  // Update active strip
-  document.querySelectorAll('.sl-ft').forEach((el,idx)=>el.classList.toggle('active',idx===i));
-  // Scroll strip to active
-  const el=document.querySelectorAll('.sl-ft')[i];
-  if(el)el.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
-}
-
-/* DETAIL SHEET */
-function openSheet(){
-  const d=FLT[sIdx];
   const netas=d[K.NE]?d[K.NE].split('\n').map(n=>n.trim()).filter(Boolean):[];
-  document.getElementById('bScroll').innerHTML=`
-    <div class="bs-sthan">${esc(d[K.ST])}</div>
-    <div class="bs-meta">
-      <span class="bdg bj">📍${esc(d[K.JI])}</span>
-      ${d[K.MA]?`<span class="bdg bm">${esc(d[K.MA])}</span>`:''}
-      <span class="bdg bt">📅${d[K.DT]}</span>
+
+  /* ── LEFT detail ── */
+  document.getElementById('slDetail').innerHTML=`
+    <div class="sl-evnum">
+      <div class="sl-numcircle">${d[K.SR]||cur}</div>
+      <span class="sl-numtxt">कार्यक्रम क्र. ${d[K.SR]||cur}</span>
     </div>
-    ${d[K.VI]?`<div class="bs-sec"><div class="bs-lbl"><div class="bs-dot"></div>कार्यक्रम विवरण</div><div class="bs-val">${esc(d[K.VI]).replace(/\n/g,'<br>')}</div></div>`:''}
-    ${netas.length?`<div class="bs-sec"><div class="bs-lbl"><div class="bs-dot"></div>उपस्थित वरिष्ठ नेता</div><div class="bs-val">${netas.map(n=>`<div class="neta-item"><div class="nd"></div>${esc(n)}</div>`).join('')}</div></div>`:''}
+    <div class="sl-sthan">${esc(d[K.ST])}</div>
+    <div class="sl-metarow">
+      <span class="bdg bj">📍 ${esc(d[K.JI])}</span>
+      ${d[K.MA]?`<span class="bdg bm">🏛 ${esc(d[K.MA])}</span>`:''}
+      <span class="bdg bt">📅 ${d[K.DT]}</span>
+    </div>
+    <div class="sl-divider"></div>
+    ${d[K.VI]?`
+    <div class="det-row">
+      <div class="det-icon">📋</div>
+      <div class="det-body">
+        <div class="det-label">कार्यक्रम विवरण</div>
+        <div class="det-val vivaran">${esc(d[K.VI]).replace(/\n/g,'<br>')}</div>
+      </div>
+    </div>`:''}
+    ${netas.length?`
+    <div class="det-row">
+      <div class="det-icon">👥</div>
+      <div class="det-body">
+        <div class="det-label">उपस्थित वरिष्ठ नेता</div>
+        <div class="neta-list">
+          ${netas.map(n=>`<div class="neta-item"><div class="neta-dot"></div>${esc(n)}</div>`).join('')}
+        </div>
+      </div>
+    </div>`:''}
+    <div class="det-row">
+      <div class="det-icon">🖼</div>
+      <div class="det-body">
+        <div class="det-label">फ़ोटो</div>
+        <div class="det-val">${(d[K.PH]||[]).length} फ़ोटो उपलब्ध</div>
+      </div>
+    </div>
   `;
-  document.getElementById('bsheet').classList.add('open');
+
+  /* ── RIGHT photos ── */
+  const ph=d[K.PH]||[];
+  const top4=ph.slice(0,4),rest=ph.slice(4);
+  let rH=`<div class="ph-header">📸 फ़ोटो <span class="ph-count">${ph.length}</span></div>`;
+  if(!ph.length){
+    rH+=`<div class="ph-empty">इस कार्यक्रम की फ़ोटो उपलब्ध नहीं हैं</div>`;
+  } else {
+    rH+=`<div class="ph-top4">${top4.map(p=>`
+      <div class="ph-big" onclick="openLB('${p}')">
+        <img src="${p}" alt="" onload="this.classList.add('ok')">
+      </div>`).join('')}</div>`;
+    if(rest.length){
+      rH+=`<div class="ph-strip">${rest.map(p=>`
+        <div class="ph-sm" onclick="openLB('${p}')">
+          <img src="${thumbUrl(p)}" alt="" onload="this.classList.add('ok')">
+        </div>`).join('')}</div>`;
+    }
+  }
+  document.getElementById('slPhotos').innerHTML=rH;
+  document.getElementById('slDetail').parentElement.scrollTop=0;
+  document.getElementById('slPhotos').scrollTop=0;
 }
-function closeSheet(){document.getElementById('bsheet').classList.remove('open');}
+
+function thumbUrl(u){return u?(u.replace('=w800-h600','=w300-h300')||u):''}
 
 /* LIGHTBOX */
-function openLB(src){if(!src)return;document.getElementById('lbI').src=src;document.getElementById('lb').classList.add('open');}
+function openLB(src){if(!src)return;event.stopPropagation();document.getElementById('lbI').src=src;document.getElementById('lb').classList.add('open');}
 function closeLB(){document.getElementById('lb').classList.remove('open');document.getElementById('lbI').src='';}
 
-/* TOUCH + KEYS */
+/* TOUCH + KEYBOARD */
 const ov=document.getElementById('slOv');
 ov.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-ov.addEventListener('touchend',e=>{
-  const diff=tx-e.changedTouches[0].clientX;
-  if(Math.abs(diff)>50){if(diff>0)nav(1);else nav(-1);}
-},{passive:true});
+ov.addEventListener('touchend',e=>{const diff=tx-e.changedTouches[0].clientX;if(Math.abs(diff)>55)nav(diff>0?1:-1);},{passive:true});
 document.addEventListener('keydown',e=>{
   if(document.getElementById('lb').classList.contains('open')){if(e.key==='Escape')closeLB();return;}
   if(!ov.classList.contains('open'))return;
   if(e.key==='ArrowRight')nav(1);
   if(e.key==='ArrowLeft')nav(-1);
-  if(e.key==='ArrowUp'&&stripIdx>0)selectStrip(stripIdx-1);
-  if(e.key==='ArrowDown'){const ph=(FLT[sIdx]||{})[K.PH]||[];if(stripIdx<ph.length-1)selectStrip(stripIdx+1);}
   if(e.key==='Escape')closeSlide();
 });
 
