@@ -2408,11 +2408,9 @@ if(id === 'tClient') loadClientSelections();
 
         const html = photos.map((p, idx) => {
           const globalIdx = reset ? idx : (currentPhotos.length - photos.length + idx);
-          let thumbUrl = p.thumbnail_url || p.thumb;
-          if (!thumbUrl && p.url && String(p.url).includes('/photos/')) {
-            thumbUrl = String(p.url).replace('/photos/', '/thumbnails/');
-          }
-          if(!thumbUrl) thumbUrl = p.url;
+          // IMPORTANT: Never derive thumbnail URL by string-replacing a *presigned* photo URL.
+          // If backend didn't return a thumbnail_url, fall back to the full photo URL.
+          let thumbUrl = p.thumbnail_url || p.thumb || p.url;
 
           const safeThumb = escapeHtml(thumbUrl || '');
           const safeFull = escapeHtml(p.url || '');
