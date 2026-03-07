@@ -100,19 +100,7 @@
                 </div>
             </div>
 
-            
-        <!-- Resume Upload Bar -->
-        <div id="resumeBar" style="display:none;background:#fef3c7;border:1px solid #f59e0b;border-radius:12px;padding:14px 18px;margin-bottom:16px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <i class="fa-solid fa-rotate" style="color:#d97706;font-size:18px;"></i>
-            <span class="resume-info" style="font-size:13px;font-weight:600;color:#92400e;"></span>
-          </div>
-          <div style="display:flex;gap:8px;">
-            <button class="resume-yes" style="padding:7px 16px;border-radius:50px;background:#d97706;color:#fff;border:none;font-size:13px;font-weight:700;cursor:pointer;">Resume करें</button>
-            <button class="resume-no" style="padding:7px 16px;border-radius:50px;background:transparent;color:#92400e;border:1.5px solid #d97706;font-size:13px;font-weight:700;cursor:pointer;">नया शुरू करें</button>
-          </div>
-        </div>
-        <div id="progressBox" class="hidden bg-zinc-950 border border-zinc-900 rounded-3xl p-6">
+            <div id="progressBox" class="hidden bg-zinc-950 border border-zinc-900 rounded-3xl p-6">
                 <div class="flex justify-between items-end mb-4">
                     <div>
                         <h3 class="font-bold text-lg" id="uploadTitle">Queue Ready</h3>
@@ -207,75 +195,6 @@
         let skippedCount      = 0;
         let BATCH_SIZE        = 5;
         let wakeLock          = null;
-        // ── Resumable Upload State ──
-        const RESUME_KEY = 'el_upload_resume';
-        
-        function saveUploadState(cid, eid, batchIdx, total, processed) {
-          try {
-            sessionStorage.setItem(RESUME_KEY, JSON.stringify({
-              cid, eid, batchIdx, total, processed, ts: Date.now()
-            }));
-          } catch(e) {}
-        }
-        
-        function loadUploadState() {
-          try {
-            const s = sessionStorage.getItem(RESUME_KEY);
-            if (!s) return null;
-            const state = JSON.parse(s);
-            // Only restore if < 2 hours old
-            if (Date.now() - state.ts > 7200000) {
-              sessionStorage.removeItem(RESUME_KEY);
-              return null;
-            }
-            return state;
-          } catch(e) { return null; }
-        }
-        
-        function clearUploadState() {
-          sessionStorage.removeItem(RESUME_KEY);
-        }
-        
-        // Retry wrapper with exponential backoff
-        async function withRetry(fn, maxRetries=3, label='') {
-          let lastErr;
-          for (let attempt = 0; attempt < maxRetries; attempt++) {
-            try {
-              return await fn();
-            } catch(e) {
-              lastErr = e;
-              const wait = Math.pow(2, attempt) * 1000;
-              log(`${label} retry ${attempt+1}/${maxRetries} in ${wait/1000}s...`, 'warn');
-              await new Promise(r => setTimeout(r, wait));
-            }
-          }
-          throw lastErr;
-        }
-        
-        // Check resume on page load
-        window.addEventListener('DOMContentLoaded', () => {
-          const state = loadUploadState();
-          if (state) {
-            const resumeBar = document.getElementById('resumeBar');
-            if (resumeBar) {
-              resumeBar.style.display = 'flex';
-              resumeBar.querySelector('.resume-info').textContent = 
-                `Resume upload? ${state.processed}/${state.total} photos done`;
-              resumeBar.querySelector('.resume-yes').onclick = () => {
-                currentBatchIndex = state.batchIdx;
-                processedCount = state.processed;
-                document.getElementById('colSelect').value = state.cid;
-                document.getElementById('evSelect').value = state.eid;
-                resumeBar.style.display = 'none';
-                startUpload();
-              };
-              resumeBar.querySelector('.resume-no').onclick = () => {
-                clearUploadState();
-                resumeBar.style.display = 'none';
-              };
-            }
-          }
-        });
 
         async function exchangeCode(code) {
           const params = new URLSearchParams({
@@ -447,14 +366,10 @@
                 log(`Batch [${Math.ceil((i+1)/BATCH_SIZE)}]: Processing ${batch.length} files...`);
                 await processBatch(batch, cid, eid);
                 currentBatchIndex = i + BATCH_SIZE;
-                const cid2 = document.getElementById('colSelect').value;
-                const eid2 = document.getElementById('evSelect').value;
-                saveUploadState(cid2, eid2, currentBatchIndex, uploadQueue.length, processedCount);
                 await new Promise(r => setTimeout(r, 1000));
             }
             isUploading = false;
             releaseWakeLock();
-            clearUploadState();
             document.getElementById('btnPause').classList.add('hidden');
             document.getElementById('uploadTitle').innerText = "Tasks Complete";
             showToast("Bulk upload finished successfully.");

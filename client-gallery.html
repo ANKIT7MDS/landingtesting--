@@ -769,13 +769,12 @@
                 autoFetchCount = 0; // Reset brake on fresh load
             }
             
-            // GALLERY: Paginated load — 60 per page for performance
-            const PAGE_SIZE = 60;
+            // --- CRITICAL FIX: INCREASED LIMIT TO 3000 & SEND LINK ID ---
             const payload = { 
                 collection_id: colId, 
-                limit: PAGE_SIZE,
+                limit: 3000, // Maximized scan limit to reduce requests
                 next_token: nextToken,
-                link_id: linkId
+                link_id: linkId // This is key for event filtering
             };
             
             // Pass event_id if present in URL
@@ -1112,39 +1111,6 @@
         function updateCounters() {
              // implemented inside updateUI for simplicity
         }
-    
-// ── Infinite Scroll via IntersectionObserver ──
-(function() {
-  const sentinel = document.createElement('div');
-  sentinel.id = 'scroll-sentinel';
-  sentinel.style.cssText = 'height:1px;width:100%;';
-  
-  const grid = document.getElementById('grid') || document.querySelector('.gallery-grid');
-  if (grid && grid.parentNode) {
-    grid.parentNode.insertBefore(sentinel, grid.nextSibling);
-  }
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-        if (loadMoreBtn && loadMoreBtn.style.display !== 'none') {
-          loadPhotos(false); // Load next page
-        }
-      }
-    });
-  }, { rootMargin: '200px' });
-  
-  const start = () => {
-    const s = document.getElementById('scroll-sentinel');
-    if (s) observer.observe(s);
-  };
-  
-  // Start after initial load
-  if (document.readyState === 'complete') start();
-  else window.addEventListener('load', start);
-})();
-
-</script>
+    </script>
 </body>
 </html>

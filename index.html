@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="manifest" href="manifest.json"/>
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <!-- FIX ADDED: Prevents 403 Forbidden on S3 Images -->
   <meta name="referrer" content="no-referrer" />
-  <meta name="theme-color" content="#f97316"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
   <title>EventLens Pro – Admin Console</title>
 
   <!-- Fonts & Icons -->
@@ -292,144 +290,12 @@ body{overflow-x:hidden;}
       </div>
     </div>
 
-    <div class="view" id="vLogin" style="background:#f8fafc;min-height:100vh;font-family:'Plus Jakarta Sans',sans-serif;">
-      <!-- LANDING NAV -->
-      <nav style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-bottom:1px solid #e2e8f0;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;box-shadow:0 4px 12px rgba(249,115,22,.3);"><i class="fa-solid fa-camera"></i></div>
-          <span style="font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:#0f172a;letter-spacing:-.5px;">Event<span style="color:#f97316;">Lens</span></span>
-        </div>
-        <div class="lnd-nav-links" style="display:flex;align-items:center;gap:32px;">
-          <a href="#lnd-how" style="font-size:14px;font-weight:500;color:#64748b;text-decoration:none;">कैसे काम करता है</a>
-          <a href="#lnd-features" style="font-size:14px;font-weight:500;color:#64748b;text-decoration:none;">Features</a>
-          <a href="#lnd-pricing" style="font-size:14px;font-weight:500;color:#64748b;text-decoration:none;">Plans</a>
-        </div>
-        <div style="display:flex;gap:10px;align-items:center;">
-          <button onclick="doLogin()" style="padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,#f97316,#ea580c);border:none;box-shadow:0 4px 14px rgba(249,115,22,.35);cursor:pointer;display:inline-flex;align-items:center;gap:6px;"><i class="fa-solid fa-sign-in-alt"></i> Login / Sign Up</button>
-        </div>
-      </nav>
-
-      <!-- HERO -->
-      <div style="padding:80px 5% 60px;display:flex;align-items:center;justify-content:space-between;gap:60px;flex-wrap:wrap;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.07) 0%,transparent 70%);pointer-events:none;"></div>
-        <div style="flex:1;min-width:280px;max-width:580px;">
-          <div style="display:inline-flex;align-items:center;gap:8px;background:#fff7ed;border:1px solid rgba(249,115,22,.2);color:#ea580c;padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:24px;">
-            <span style="width:7px;height:7px;border-radius:50%;background:#f97316;animation:lndBlink 2s ease infinite;"></span>AI Powered Photo Platform
-          </div>
-          <h1 style="font-family:'Sora',sans-serif;font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.1;letter-spacing:-2px;color:#0f172a;margin-bottom:20px;">एक Selfie से<br>पाएं अपनी सभी<br><span style="color:#f97316;position:relative;">Event Photos<span style="position:absolute;bottom:-4px;left:0;right:0;height:4px;border-radius:2px;background:linear-gradient(90deg,#f97316,transparent);"></span></span></h1>
-          <p style="font-size:18px;color:#64748b;line-height:1.7;margin-bottom:36px;max-width:480px;font-family:'Noto Sans Devanagari',sans-serif;">India का #1 AI Photo Delivery Platform। Face Recognition से हर Guest को उनकी Photos तुरंत मिलती हैं।</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;">
-            <button onclick="doLogin()" style="padding:13px 28px;border-radius:50px;font-size:15px;font-weight:700;color:#fff;background:linear-gradient(135deg,#f97316,#ea580c);border:none;box-shadow:0 4px 14px rgba(249,115,22,.35);cursor:pointer;display:inline-flex;align-items:center;gap:6px;"><i class="fa-solid fa-rocket"></i> Free Trial शुरू करें</button>
-            <a href="#lnd-pricing" style="padding:13px 28px;border-radius:50px;font-size:15px;font-weight:700;color:#0f172a;background:transparent;border:1.5px solid #cbd5e1;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Plans देखें <i class="fa-solid fa-arrow-down"></i></a>
-          </div>
-          <div style="display:flex;gap:32px;flex-wrap:wrap;padding-top:32px;border-top:1px solid #e2e8f0;">
-            <div><span style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#0f172a;display:block;">5L+</span><span style="font-size:12px;color:#64748b;font-weight:500;">Photos Delivered</span></div>
-            <div><span style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#0f172a;display:block;">99%</span><span style="font-size:12px;color:#64748b;font-weight:500;">Face Accuracy</span></div>
-            <div><span style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#0f172a;display:block;">&lt;3s</span><span style="font-size:12px;color:#64748b;font-weight:500;">Search Time</span></div>
-            <div><span style="font-family:'Sora',sans-serif;font-size:24px;font-weight:800;color:#0f172a;display:block;">&#8377;2,999</span><span style="font-size:12px;color:#64748b;font-weight:500;">से शुरू</span></div>
-          </div>
-        </div>
-        <!-- Demo Card -->
-        <div style="flex:0 0 380px;min-width:280px;background:#fff;border-radius:24px;border:1px solid #e2e8f0;box-shadow:0 20px 60px rgba(0,0,0,.1);overflow:hidden;">
-          <div style="background:#0f172a;padding:14px 18px;display:flex;align-items:center;gap:8px;">
-            <div style="display:flex;gap:6px;"><span style="width:10px;height:10px;border-radius:50%;background:#ff5f57;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#28c840;display:inline-block;"></span></div>
-            <span style="color:rgba(255,255,255,.5);font-size:12px;margin-left:8px;">EventLens — Guest Portal</span>
-          </div>
-          <div style="padding:24px;">
-            <div style="border:2px dashed #cbd5e1;border-radius:16px;padding:28px;text-align:center;margin-bottom:20px;">
-              <i class="fa-solid fa-camera" style="font-size:32px;color:#f97316;margin-bottom:8px;display:block;"></i>
-              <p style="font-size:13px;color:#64748b;font-weight:500;font-family:'Noto Sans Devanagari',sans-serif;">Selfie Upload करें<br><span style="font-size:11px;opacity:.6;">अपनी Photos तुरंत पाएं</span></p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#fed7aa,#fb923c);position:relative;"><span style="position:absolute;top:6px;right:6px;background:#f97316;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:50px;">✓</span></div>
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#bfdbfe,#60a5fa);"></div>
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#bbf7d0,#34d399);"></div>
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#e9d5ff,#a78bfa);"></div>
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#fecaca,#f87171);"></div>
-              <div style="aspect-ratio:1;border-radius:10px;background:linear-gradient(135deg,#fef08a,#facc15);"></div>
-            </div>
-            <div style="padding:12px;background:#f0fdf4;border-radius:10px;display:flex;align-items:center;gap:10px;">
-              <i class="fa-solid fa-circle-check" style="color:#16a34a;font-size:18px;"></i>
-              <div><div style="font-size:13px;font-weight:700;color:#166534;font-family:'Noto Sans Devanagari',sans-serif;">6 Photos मिली!</div><div style="font-size:11px;color:#4ade80;">Face Match: 99.2% accurate</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HOW IT WORKS -->
-      <div id="lnd-how" style="padding:64px 5%;background:white;">
-        <div style="text-align:center;margin-bottom:40px;">
-          <span style="display:inline-block;background:#fff7ed;color:#ea580c;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:12px;">How It Works</span>
-          <h2 style="font-family:'Sora',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;color:#0f172a;margin-bottom:12px;">3 Steps में शुरू करें</h2>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 22px;">
-            <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-family:'Sora',sans-serif;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 4px 12px rgba(249,115,22,.3);">1</div>
-            <h3 style="font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#0f172a;margin-bottom:8px;">Photos Upload करें</h3>
-            <p style="font-size:13px;color:#64748b;line-height:1.6;font-family:'Noto Sans Devanagari',sans-serif;">Account बनाएं, Event Create करें, Photos bulk upload करें।</p>
-          </div>
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 22px;">
-            <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-family:'Sora',sans-serif;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 4px 12px rgba(249,115,22,.3);">2</div>
-            <h3 style="font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#0f172a;margin-bottom:8px;">Link Share करें</h3>
-            <p style="font-size:13px;color:#64748b;line-height:1.6;font-family:'Noto Sans Devanagari',sans-serif;">WhatsApp या QR Code से Guests को link share करें।</p>
-          </div>
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:28px 22px;">
-            <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-family:'Sora',sans-serif;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 4px 12px rgba(249,115,22,.3);">3</div>
-            <h3 style="font-family:'Sora',sans-serif;font-size:16px;font-weight:700;color:#0f172a;margin-bottom:8px;">Selfie से Photos पाएं</h3>
-            <p style="font-size:13px;color:#64748b;line-height:1.6;font-family:'Noto Sans Devanagari',sans-serif;">Guest Selfie लेता है, AI 3 seconds में Photos ढूंढ लेता है।</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- FEATURES -->
-      <div id="lnd-features" style="padding:64px 5%;">
-        <div style="text-align:center;margin-bottom:40px;">
-          <span style="display:inline-block;background:#fff7ed;color:#ea580c;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:12px;">Features</span>
-          <h2 style="font-family:'Sora',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;color:#0f172a;margin-bottom:12px;">सब कुछ एक Platform पर</h2>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#fff7ed;color:#f97316;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-brain"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">AI Face Recognition</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">99%+ accuracy। हर Guest की Photos automatically।</p></div></div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#eff6ff;color:#3b82f6;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-bolt"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">Instant Delivery</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">3 seconds से कम में Results।</p></div></div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#f0fdf4;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-download"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">Bulk Download</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">Guests सभी Photos ZIP में download।</p></div></div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#faf5ff;color:#9333ea;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-brands fa-whatsapp"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">WhatsApp Share</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">एक click में Photos share।</p></div></div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#fff7ed;color:#f97316;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-palette"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">Custom Branding</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">Logo, Colors, Studio Name।</p></div></div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px 20px;display:flex;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:#f0fdfa;color:#0d9488;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-qrcode"></i></div><div><h4 style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:4px;">QR Code Generator</h4><p style="font-size:12px;color:#64748b;line-height:1.5;font-family:'Noto Sans Devanagari',sans-serif;">Print करो, scan करो, Photos मिलें।</p></div></div>
-        </div>
-      </div>
-
-      <!-- PRICING -->
-      <div id="lnd-pricing" style="padding:64px 5%;background:white;">
-        <div style="text-align:center;margin-bottom:40px;">
-          <span style="display:inline-block;background:#fff7ed;color:#ea580c;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:50px;margin-bottom:12px;">Pricing Plans</span>
-          <h2 style="font-family:'Sora',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;color:#0f172a;margin-bottom:8px;">आपके Budget में, आपके लिए</h2>
-          <p style="font-size:15px;color:#64748b;font-family:'Noto Sans Devanagari',sans-serif;">सभी Plans में GST extra। एक बार pay करें, 365 दिन use करें।</p>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;align-items:start;">
-          <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:28px 24px;"><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Launch</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>2,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 25K Photos | 5 Events</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:1.5px solid #f97316;background:transparent;color:#f97316;cursor:pointer;">शुरू करें</button></div>
-          <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:28px 24px;"><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Growth</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>4,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 60K Photos | 20 Events</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:1.5px solid #f97316;background:transparent;color:#f97316;cursor:pointer;">शुरू करें</button></div>
-          <div style="background:linear-gradient(145deg,#fff 0%,#fff7ed 100%);border:1.5px solid #f97316;border-radius:18px;padding:28px 24px;position:relative;box-shadow:0 8px 32px rgba(249,115,22,.15);"><div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-size:10px;font-weight:700;padding:4px 14px;border-radius:50px;white-space:nowrap;">&#11088; Most Popular</div><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Pro</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>7,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 1.25L Photos | Unlimited Events</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:none;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;cursor:pointer;box-shadow:0 4px 14px rgba(249,115,22,.35);">शुरू करें</button></div>
-          <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:28px 24px;"><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Studio</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>13,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 2L Photos | Team Login (2)</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:1.5px solid #f97316;background:transparent;color:#f97316;cursor:pointer;">शुरू करें</button></div>
-          <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:28px 24px;"><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Studio Plus</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>19,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 3L Photos | White Label</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:1.5px solid #f97316;background:transparent;color:#f97316;cursor:pointer;">शुरू करें</button></div>
-          <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:18px;padding:28px 24px;"><div style="font-size:12px;font-weight:700;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Premium</div><div style="font-family:'Sora',sans-serif;font-size:36px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;"><sup style="font-size:18px;vertical-align:super;">&#8377;</sup>27,999<sub style="font-size:13px;color:#64748b;font-weight:500;vertical-align:baseline;">/yr</sub></div><div style="font-size:11px;color:#64748b;margin-bottom:16px;">+ GST | 5L Photos | Full White Label</div><button onclick="doLogin()" style="width:100%;padding:11px;border-radius:50px;font-size:13px;font-weight:700;border:1.5px solid #f97316;background:transparent;color:#f97316;cursor:pointer;">शुरू करें</button></div>
-        </div>
-      </div>
-
-      <!-- CTA FOOTER -->
-      <div style="background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);padding:60px 5%;text-align:center;">
-        <h2 style="font-family:'Sora',sans-serif;color:#fff;font-size:clamp(24px,4vw,40px);letter-spacing:-1.5px;margin-bottom:12px;">आज ही शुरू करें<br>पहले 30 दिन Free</h2>
-        <p style="color:rgba(255,255,255,.6);font-size:16px;margin-bottom:28px;font-family:'Noto Sans Devanagari',sans-serif;">Credit card नहीं चाहिए। 5 minutes में setup।</p>
-        <button onclick="doLogin()" style="padding:14px 32px;border-radius:50px;font-size:15px;font-weight:700;background:#fff;color:#0f172a;border:none;box-shadow:0 4px 20px rgba(0,0,0,.2);cursor:pointer;display:inline-flex;align-items:center;gap:8px;"><i class="fa-solid fa-rocket"></i> Free Trial शुरू करें</button>
-        <p style="margin-top:24px;font-size:12px;color:rgba(255,255,255,.4);">&#169; 2026 EventLens. Made in India &#127470;&#127475;</p>
+    <div class="view" id="vLogin">
+      <div class="card" style="max-width: 480px; margin: 80px auto; text-align: center; padding: 40px;">
+        <h2>Welcome Back</h2>
+        <button class="btn primary" onclick="doLogin()">Login via AWS Cognito</button>
       </div>
     </div>
-    <style>
-      @keyframes lndBlink{0%,100%{opacity:1}50%{opacity:.3}}
-      @media(max-width:768px){
-        .lnd-nav-links{display:none!important}
-        #vLogin [style*="flex:0 0 380px"]{flex:none!important;width:100%!important;max-width:100%!important;}
-        #vLogin [style*="padding:80px 5%"]{padding:40px 5%!important;flex-direction:column!important;}
-      }
-    </style>
 
     <div class="view" id="vDash">
       <div class="row" style="margin-bottom: 24px;">
