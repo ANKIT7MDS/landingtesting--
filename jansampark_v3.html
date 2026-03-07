@@ -2,216 +2,434 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#fffaf5">
 <title>जनसम्पर्क – सुधीर जी गुप्ता</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 <style>
+/* ════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════ */
 :root{
-  --sf:#D94F00;--sfl:#fff2ea;--sfb:rgba(217,79,0,.28);
-  --gn:#1b7a0f;--gnl:#eef7ec;
-  --gd:#b87200;--gdl:#fff8e6;--gdb:rgba(184,114,0,.22);
-  --bg:#fffaf5;--bg2:#fff;--bg3:#fff5ec;
-  --sur:#f5ede2;--bd:#e6d3bc;--bd2:#cdb898;
-  --tx:#190d00;--tx2:#5c3c18;--tx3:#9a7248;
-  --sh:0 2px 14px rgba(160,90,10,.09);
-  --sh2:0 6px 28px rgba(160,90,10,.16);
-  --r:16px;--rs:10px;
+  --sf:#D94F00; --sfl:#fff2ea; --sfb:rgba(217,79,0,.28);
+  --gn:#1b7a0f; --gnl:#eef7ec;
+  --gd:#b87200; --gdl:#fff8e6; --gdb:rgba(184,114,0,.22);
+  --bg:#fffaf5; --bg2:#fff; --bg3:#fff5ec;
+  --bd:#e6d3bc; --bd2:#cdb898;
+  --tx:#190d00; --tx2:#5c3c18; --tx3:#9a7248;
+  --r:14px; --rs:10px;
+  --hdr:50px;
+  --flt:46px;
 }
+
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--tx);font-family:"Baloo 2",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;display:flex;flex-direction:column}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
-
-/* ══ HEADER ══ */
-.hdr{flex-shrink:0;background:rgba(255,250,245,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--bd);box-shadow:0 1px 8px rgba(160,90,10,.07)}
-.hdr-in{max-width:100%;display:flex;align-items:center;gap:10px;height:52px;padding:0 16px}
-.flag{display:flex;flex-direction:column;gap:2px;width:20px;flex-shrink:0}
-.fs{height:4px;border-radius:2px}
-.fs.s{background:#FF9933}.fs.w{background:#fff;border:1px solid #e0e0e0;position:relative}
-.fs.w::after{content:"●";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:4px;color:#000080}
-.fs.g{background:#138808}
-.hdr-t{flex:1;min-width:0}
-.hdr-t h1{font-size:13px;font-weight:800;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hdr-t p{font-size:10px;color:var(--tx3);margin-top:1px}
-.hdr-pill{background:var(--sfl);border:1.5px solid var(--sfb);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:800;color:var(--sf);white-space:nowrap;flex-shrink:0}
-
-/* ══ MAIN AREA — fills remaining height ══ */
-.main{flex:1;overflow:hidden;display:flex;flex-direction:column;min-height:0}
-
-/* ══ FILTER BAR ══ */
-.flt{flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--bd);padding:10px 14px;display:flex;align-items:center;gap:10px}
-.chips{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:1}
-.chips::-webkit-scrollbar{display:none}
-.chip{border:1.5px solid var(--bd);background:var(--bg3);color:var(--tx2);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .15s;font-family:"Baloo 2",sans-serif;flex-shrink:0}
-.chip.on{background:var(--sf);border-color:var(--sf);color:#fff}
-.chip:active{transform:scale(.95)}
-.srch-wrap{position:relative;flex-shrink:0;width:220px}
-.srch-wrap input{width:100%;background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--rs);color:var(--tx);padding:7px 10px 7px 30px;font-size:13px;font-family:"Baloo 2",sans-serif;outline:none;-webkit-appearance:none;transition:border-color .15s}
-.srch-wrap input:focus{border-color:var(--sf);background:#fff}
-.srch-wrap input::placeholder{color:var(--tx3)}
-.si{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--tx3);font-size:13px;pointer-events:none}
-.res-count{font-size:11px;color:var(--tx3);font-weight:700;white-space:nowrap;flex-shrink:0}
-
-/* ══ PPT SLIDE — fills everything ══ */
-.ppt{flex:1;overflow:hidden;display:flex;flex-direction:row;min-height:0;width:100%}
-
-/* ── LEFT 50% — detail ── */
-.ppt-left{
-  width:50%;flex-shrink:0;flex-grow:0;
-  display:flex;flex-direction:column;
-  background:linear-gradient(150deg,#fffaf5 0%,#fff5e8 100%);
-  border-right:2px solid var(--bd);
+html{
+  height:100%;
+  height:100dvh;
+  -webkit-text-size-adjust:100%;
   overflow:hidden;
 }
-.ppt-detail{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 26px 16px}
+body{
+  font-family:'Baloo 2',sans-serif;
+  background:var(--bg);
+  color:var(--tx);
+  -webkit-font-smoothing:antialiased;
+  height:100%;
+  height:100dvh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px}
 
-/* event number pill */
-.ev-pill{display:inline-flex;align-items:center;gap:8px;background:var(--sfl);border:1.5px solid var(--sfb);border-radius:20px;padding:4px 14px 4px 5px;margin-bottom:16px}
-.ev-circle{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--sf),#ff8030);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;box-shadow:0 2px 8px rgba(217,79,0,.3);flex-shrink:0}
-.ev-pill-txt{font-size:12px;font-weight:700;color:var(--sf)}
+/* ════════════════════════════════════════
+   HEADER — fixed top bar
+════════════════════════════════════════ */
+.hdr{
+  flex-shrink:0;
+  height:var(--hdr);
+  background:rgba(255,250,245,.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--bd);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 14px;
+  padding-top:env(safe-area-inset-top);
+  z-index:10;
+}
+.flag{display:flex;flex-direction:column;gap:2px;width:18px;flex-shrink:0}
+.fs{height:3.5px;border-radius:2px}
+.fs.s{background:#FF9933}
+.fs.w{background:#fff;border:1px solid #ddd;position:relative}
+.fs.w::after{content:"●";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:3.5px;color:#000080}
+.fs.g{background:#138808}
+.hdr-t{flex:1;min-width:0}
+.hdr-t h1{font-size:12.5px;font-weight:800;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-t p{font-size:9.5px;color:var(--tx3)}
+.hdr-pill{background:var(--sfl);border:1.5px solid var(--sfb);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:800;color:var(--sf);white-space:nowrap;flex-shrink:0}
 
-/* sthan */
-.ev-sthan{font-family:"Tiro Devanagari Hindi",serif;font-size:24px;font-weight:700;color:var(--tx);line-height:1.3;margin-bottom:13px}
+/* ════════════════════════════════════════
+   FILTER BAR
+════════════════════════════════════════ */
+.flt{
+  flex-shrink:0;
+  height:var(--flt);
+  background:var(--bg2);
+  border-bottom:1px solid var(--bd);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:0 12px;
+}
+.chips{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;flex:1;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  border:1.5px solid var(--bd);
+  background:var(--bg3);
+  color:var(--tx2);
+  border-radius:20px;
+  padding:4px 10px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+  flex-shrink:0;
+  font-family:'Baloo 2',sans-serif;
+  transition:all .15s;
+}
+.chip.on{background:var(--sf);border-color:var(--sf);color:#fff}
+.chip:active{transform:scale(.95)}
+.srch-in{
+  flex-shrink:0;
+  width:180px;
+  background:var(--bg3);
+  border:1.5px solid var(--bd);
+  border-radius:var(--rs);
+  color:var(--tx);
+  padding:6px 10px;
+  font-size:13px;
+  font-family:'Baloo 2',sans-serif;
+  outline:none;
+}
+.srch-in:focus{border-color:var(--sf)}
+.res-ct{font-size:10px;color:var(--tx3);font-weight:700;white-space:nowrap;flex-shrink:0}
 
-/* meta badges */
-.ev-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.bdg{border-radius:20px;padding:3px 9px;font-size:11px;font-weight:700}
+/* ════════════════════════════════════════
+   PPT WRAPPER — fills all remaining space
+════════════════════════════════════════ */
+.ppt{
+  flex:1;
+  min-height:0;
+  display:flex;
+  overflow:hidden;
+}
+
+/* ════════════════════════════════════════
+   DESKTOP: side-by-side 50/50
+════════════════════════════════════════ */
+@media(min-width:701px){
+  .ppt{flex-direction:row}
+
+  /* LEFT — detail */
+  .ppt-L{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(150deg,#fffaf5,#fff5e8);
+    border-right:2px solid var(--bd);
+    overflow:hidden;
+  }
+  .ppt-scroll{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:22px 24px 12px;
+  }
+  .ppt-nav{
+    flex-shrink:0;
+    display:flex;
+    gap:10px;
+    padding:12px 18px;
+    border-top:1.5px solid var(--bd);
+    background:#fffaf5;
+  }
+
+  /* RIGHT — photos */
+  .ppt-R{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    background:#0f0a04;
+    overflow:hidden;
+  }
+  .ph-area{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:14px;
+    min-height:0;
+  }
+}
+
+/* ════════════════════════════════════════
+   MOBILE: stacked — photos TOP, detail BOTTOM
+════════════════════════════════════════ */
+@media(max-width:700px){
+  .ppt{flex-direction:column}
+
+  /* RIGHT (photos) — goes on TOP on mobile */
+  .ppt-R{
+    flex:1;                  /* takes all remaining space by default */
+    min-height:0;
+    order:1;
+    display:flex;
+    flex-direction:column;
+    background:#0f0a04;
+    overflow:hidden;
+  }
+  .ph-area{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:10px;
+    min-height:0;
+  }
+
+  /* LEFT (detail) — slides up from BOTTOM as a panel */
+  .ppt-L{
+    flex-shrink:0;
+    order:2;
+    display:flex;
+    flex-direction:column;
+    background:var(--bg2);
+    border-top:2px solid var(--bd);
+    overflow:hidden;
+    /* height: controlled by JS drag or fixed ratio */
+    height:clamp(200px, 38vh, 360px);
+  }
+  .ppt-scroll{
+    flex:1;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:12px 14px 6px;
+  }
+  .ppt-nav{
+    flex-shrink:0;
+    display:flex;
+    gap:8px;
+    padding:8px 12px;
+    padding-bottom:max(8px,env(safe-area-inset-bottom));
+    border-top:1px solid var(--bd);
+    background:var(--bg2);
+  }
+
+  /* hide search on mobile */
+  .srch-wrap{display:none!important}
+}
+
+/* ════════════════════════════════════════
+   DETAIL CONTENT
+════════════════════════════════════════ */
+/* drag handle on mobile */
+.drag-handle{
+  display:none;
+  width:36px;height:4px;
+  background:var(--bd2);
+  border-radius:2px;
+  margin:8px auto 6px;
+  flex-shrink:0;
+  cursor:ns-resize;
+}
+@media(max-width:700px){ .drag-handle{display:block} }
+
+.ev-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--sfl);border:1.5px solid var(--sfb);
+  border-radius:20px;padding:3px 12px 3px 4px;
+  margin-bottom:10px;
+}
+.ev-circle{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--sf),#ff8030);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;
+  flex-shrink:0;
+}
+.ev-pill-txt{font-size:11px;font-weight:700;color:var(--sf)}
+.ev-sthan{
+  font-family:'Tiro Devanagari Hindi',serif;
+  font-size:20px;font-weight:700;
+  color:var(--tx);line-height:1.3;
+  margin-bottom:10px;
+}
+@media(max-width:700px){.ev-sthan{font-size:16px;margin-bottom:8px}}
+
+.ev-meta{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.bdg{border-radius:20px;padding:2px 8px;font-size:10px;font-weight:700}
 .bj{background:var(--sfl);color:var(--sf);border:1px solid var(--sfb)}
 .bm{background:var(--gnl);color:var(--gn);border:1px solid rgba(27,122,15,.2)}
 .bt{background:var(--gdl);color:var(--gd);border:1px solid var(--gdb)}
+.ev-div{height:1.5px;background:linear-gradient(90deg,var(--sfb),transparent);margin-bottom:12px}
 
-/* divider */
-.ev-div{height:2px;background:linear-gradient(90deg,var(--sfb),transparent);margin-bottom:18px;border-radius:2px}
-
-/* detail blocks */
-.dblk{display:flex;gap:12px;margin-bottom:18px;align-items:flex-start}
-.dico{font-size:20px;line-height:1;margin-top:1px;width:28px;text-align:center;flex-shrink:0}
+.dblk{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
+.dico{font-size:17px;line-height:1;margin-top:2px;width:22px;text-align:center;flex-shrink:0}
 .dbod{flex:1;min-width:0}
-.dlbl{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
-.dval{font-family:"Tiro Devanagari Hindi",serif;font-size:14px;color:var(--tx);line-height:1.7}
-.dval.box{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 13px;font-size:13px;color:var(--tx2)}
-.neta-li{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed var(--bd);font-family:"Tiro Devanagari Hindi",serif;font-size:13.5px;color:var(--tx2)}
+.dlbl{font-size:9px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
+.dval{font-family:'Tiro Devanagari Hindi',serif;font-size:13px;color:var(--tx);line-height:1.6}
+.dval.box{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 10px;font-size:12px;color:var(--tx2)}
+.neta-li{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px dashed var(--bd);font-family:'Tiro Devanagari Hindi',serif;font-size:12.5px;color:var(--tx2)}
 .neta-li:last-child{border-bottom:none}
-.ndot{width:6px;height:6px;border-radius:50%;background:var(--sf);flex-shrink:0}
+.ndot{width:5px;height:5px;border-radius:50%;background:var(--sf);flex-shrink:0}
 
-/* nav buttons at bottom of left */
-.ppt-nav{flex-shrink:0;display:flex;gap:10px;padding:12px 18px;border-top:1.5px solid var(--bd);background:#fffaf5}
-.navbtn{flex:1;height:44px;border-radius:var(--rs);border:1.5px solid var(--bd);background:#fff;color:var(--tx2);font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;font-family:"Baloo 2",sans-serif;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+/* nav buttons */
+.navbtn{
+  flex:1;height:40px;
+  border-radius:var(--rs);
+  border:1.5px solid var(--bd);
+  background:#fff;color:var(--tx2);
+  font-size:13px;font-weight:800;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-family:'Baloo 2',sans-serif;
+  transition:all .15s;
+}
 .navbtn:hover{border-color:var(--sf);color:var(--sf);background:var(--sfl)}
 .navbtn:active{transform:scale(.97)}
-.navbtn:disabled{opacity:.22;pointer-events:none}
+.navbtn:disabled{opacity:.2;pointer-events:none}
 
-/* ── RIGHT 50% — photos ── */
-.ppt-right{
-  width:50%;flex-shrink:0;flex-grow:0;
-  display:flex;flex-direction:column;
-  background:#0f0a04;
-  overflow:hidden;
-  min-width:0;
+/* ════════════════════════════════════════
+   PHOTO BAR
+════════════════════════════════════════ */
+.ph-bar{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px 8px;
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
-.ph-bar{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:12px 16px 10px;border-bottom:1px solid rgba(255,255,255,.06)}
-.ph-title{font-size:11px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px}
-.ph-pill{background:rgba(217,79,0,.22);border:1px solid rgba(217,79,0,.38);border-radius:10px;padding:2px 9px;font-size:11px;font-weight:800;color:#ff9a60}
-.ph-prog{flex:1;text-align:right;font-size:10px;color:rgba(255,255,255,.25);font-weight:700}
+.ph-bar-title{font-size:10px;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.8px}
+.ph-pill{background:rgba(217,79,0,.22);border:1px solid rgba(217,79,0,.4);border-radius:10px;padding:2px 8px;font-size:10px;font-weight:800;color:#ff9a60}
+.ph-prog-txt{flex:1;text-align:right;font-size:10px;color:rgba(255,255,255,.25);font-weight:700}
 
-/* photo area */
-.ph-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;min-height:0}
+/* ── Photo grid ── */
+.ph-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  margin-bottom:8px;
+}
+.ph-cell{
+  border-radius:9px;overflow:hidden;
+  background:#1a1008;
+  cursor:pointer;
+  position:relative;
+  aspect-ratio:4/3;
+}
+.ph-cell img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;display:block}
+.ph-cell img.ok{opacity:1}
+.ph-cell:active{opacity:.85}
 
-/* top 4 grid — 2x2 */
-.ph-top4{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px}
-.phbig{border-radius:10px;overflow:hidden;background:#1e1608;cursor:pointer;position:relative;aspect-ratio:4/3;transition:transform .2s}
-.phbig:hover{transform:scale(1.015)}
-.phbig img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;display:block}
-.phbig img.ok{opacity:1}
-.phbig-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 50%);opacity:0;transition:opacity .2s;border-radius:10px}
-.phbig:hover .phbig-overlay{opacity:1}
-.zoom-ico{position:absolute;bottom:8px;right:9px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
-.phbig:hover .zoom-ico{opacity:1}
+/* single photo — wide */
+.ph-grid.g1 .ph-cell{aspect-ratio:16/9;grid-column:1/-1}
 
-/* small strip */
-.ph-strip{display:flex;gap:6px;flex-wrap:wrap}
-.phsm{width:72px;height:72px;border-radius:8px;overflow:hidden;background:#1e1608;cursor:pointer;flex-shrink:0;transition:opacity .15s}
-.phsm:hover{opacity:.82}
-.phsm img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s;display:block}
-.phsm img.ok{opacity:1}
+/* 3 photos — first wide, two below */
+.ph-grid.g3 .ph-cell:first-child{grid-column:1/-1;aspect-ratio:16/9}
 
-/* progress bar at very bottom of right */
+/* ── Small strip ── */
+.ph-strip{display:flex;gap:5px;flex-wrap:wrap}
+.ph-sm{
+  width:64px;height:64px;
+  border-radius:7px;overflow:hidden;
+  background:#1a1008;cursor:pointer;flex-shrink:0;
+}
+.ph-sm img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.ph-sm img.ok{opacity:1}
+.ph-sm:active{opacity:.8}
+
+/* progress bar */
 .ph-progbar{flex-shrink:0;height:3px;background:rgba(255,255,255,.07)}
-.ph-progfill{height:100%;background:linear-gradient(90deg,var(--sf),var(--gd));transition:width .3s}
+.ph-progfill{height:100%;background:linear-gradient(90deg,var(--sf),var(--gd));transition:width .35s}
 
-/* no photo */
-.ph-nophoto{flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.25);font-size:15px;font-family:"Tiro Devanagari Hindi",serif;text-align:center;padding:40px}
+.ph-empty{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.2);font-family:'Tiro Devanagari Hindi',serif;font-size:14px;
+}
 
-/* ══ LIGHTBOX ══ */
-.lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center}
+/* ════════════════════════════════════════
+   LIGHTBOX
+════════════════════════════════════════ */
+.lb{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center}
 .lb.open{display:flex}
-.lb img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:6px}
-.lb-x{position:absolute;top:12px;right:14px;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.lb-x:active{background:var(--sf)}
+.lb img{max-width:96vw;max-height:90dvh;object-fit:contain;border-radius:6px}
+.lb-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-/* ══ ANALYTICS DRAWER ══ */
-.stats-btn{position:fixed;bottom:18px;right:18px;z-index:500;width:46px;height:46px;border-radius:50%;background:var(--sf);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 4px 16px rgba(217,79,0,.4);display:flex;align-items:center;justify-content:center;transition:all .15s}
-.stats-btn:active{transform:scale(.92)}
-.drawer{position:fixed;inset:0;z-index:600;pointer-events:none}
-.drawer-bg{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;pointer-events:none}
-.drawer-panel{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;transform:translateY(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);padding:0;max-height:88vh;overflow:hidden;display:flex;flex-direction:column}
-.drawer.open .drawer-bg{opacity:1;pointer-events:all}
-.drawer.open .drawer-panel{transform:translateY(0)}
+/* ════════════════════════════════════════
+   ANALYTICS FAB + DRAWER
+════════════════════════════════════════ */
+.fab{
+  position:fixed;bottom:max(18px,env(safe-area-inset-bottom));right:16px;
+  z-index:200;width:44px;height:44px;border-radius:50%;
+  background:var(--sf);color:#fff;border:none;font-size:18px;
+  cursor:pointer;box-shadow:0 4px 16px rgba(217,79,0,.4);
+  display:flex;align-items:center;justify-content:center;
+}
+.fab:active{transform:scale(.92)}
+
+.drawer{position:fixed;inset:0;z-index:300;pointer-events:none}
+.dr-bg{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .3s;pointer-events:none}
+.dr-panel{
+  position:absolute;bottom:0;left:0;right:0;
+  background:#fff;border-radius:20px 20px 0 0;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+  max-height:86dvh;overflow:hidden;display:flex;flex-direction:column;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.drawer.open .dr-bg{opacity:1;pointer-events:all}
+.drawer.open .dr-panel{transform:translateY(0)}
 .drawer.open{pointer-events:all}
-.dr-handle{width:38px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 0}
-.dr-scroll{overflow-y:auto;padding:14px 18px 30px}
-.dr-title{font-size:14px;font-weight:800;color:var(--tx);margin-bottom:16px}
-.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:16px}
-.kpi{background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--r);padding:14px;position:relative;overflow:hidden}
-.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sf),var(--gd))}
-.kpi-v{font-size:26px;font-weight:800;color:var(--sf);line-height:1}
-.kpi-l{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.ch-box{background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--r);padding:13px}
-.ch-ttl{font-size:10px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
-.brow{display:flex;align-items:center;gap:7px;margin-bottom:5px}
-.blbl{font-size:11px;color:var(--tx2);min-width:52px;text-align:right;font-family:"Tiro Devanagari Hindi",serif;flex-shrink:0}
-.btrk{flex:1;background:var(--sur);border-radius:3px;height:14px;overflow:hidden}
-.bfil{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sf),var(--gd));display:flex;align-items:center;justify-content:flex-end;padding-right:4px;min-width:22px}
-.bnum{font-size:9px;font-weight:800;color:#fff}
+.dr-handle{width:36px;height:4px;background:var(--bd2);border-radius:2px;margin:12px auto 0}
+.dr-body{overflow-y:auto;padding:14px 16px 24px}
+.dr-title{font-size:14px;font-weight:800;color:var(--tx);margin-bottom:14px}
 
-/* ══ MOBILE ══ */
-@media(max-width:700px){
-  .ppt{flex-direction:column}
-  .ppt-left{width:100%;min-height:0;border-right:none;border-bottom:2px solid var(--bd)}
-  .ppt-detail{padding:16px}
-  .ev-sthan{font-size:19px}
-  .ppt-right{width:100%;flex-shrink:0;flex-grow:0;min-height:200px}
-  .ph-top4{grid-template-columns:1fr 1fr}
-  .phsm{width:60px;height:60px}
-  .srch-wrap{display:none}
-  .charts{grid-template-columns:1fr}
-}
-@media(max-width:400px){
-  .ph-top4{grid-template-columns:1fr 1fr}
-}
+/* KPI / Charts */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+.kpi{background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--r);padding:12px;position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sf),var(--gd))}
+.kpi-v{font-size:24px;font-weight:800;color:var(--sf);line-height:1}
+.kpi-l{font-size:9px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:400px){.charts{grid-template-columns:1fr}}
+.ch-box{background:var(--bg3);border:1.5px solid var(--bd);border-radius:var(--r);padding:12px}
+.ch-ttl{font-size:9px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.brow{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.blbl{font-size:10px;color:var(--tx2);min-width:48px;text-align:right;font-family:'Tiro Devanagari Hindi',serif;flex-shrink:0}
+.btrk{flex:1;background:var(--bg);border-radius:3px;height:13px;overflow:hidden}
+.bfil{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sf),var(--gd));display:flex;align-items:center;justify-content:flex-end;padding-right:4px;min-width:20px}
+.bnum{font-size:9px;font-weight:800;color:#fff}
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="hdr">
-  <div class="hdr-in">
-    <div class="flag"><div class="fs s"></div><div class="fs w"></div><div class="fs g"></div></div>
-    <div class="hdr-t">
-      <h1>श्री सुधीर जी गुप्ता – जनसम्पर्क कार्यक्रम</h1>
-      <p>लोकसभा प्रत्याशी | मंदसौर – नीमच – रतलाम</p>
-    </div>
-    <div class="hdr-pill" id="hBadge">…</div>
+  <div class="flag"><div class="fs s"></div><div class="fs w"></div><div class="fs g"></div></div>
+  <div class="hdr-t">
+    <h1>श्री सुधीर जी गुप्ता – जनसम्पर्क</h1>
+    <p>लोकसभा प्रत्याशी | मंदसौर–नीमच–रतलाम</p>
   </div>
+  <div class="hdr-pill" id="hBadge">…</div>
 </header>
 
 <!-- FILTER BAR -->
-<div class="flt main" style="flex:0 0 auto;overflow:visible;">
+<div class="flt">
   <div class="chips" id="chips">
     <button class="chip on" data-v="">सभी</button>
     <button class="chip" data-v="मंदसौर">🟠 मंदसौर</button>
@@ -219,17 +437,25 @@ body{background:var(--bg);color:var(--tx);font-family:"Baloo 2",sans-serif;-webk
     <button class="chip" data-v="रतलाम">🔵 रतलाम</button>
     <button class="chip" data-v="भोपाल">🟡 भोपाल</button>
   </div>
-  <div class="srch-wrap"><span class="si">🔍</span><input type="search" id="sIn" placeholder="खोजें…" autocomplete="off"></div>
-  <div class="res-count" id="resCt">…</div>
+  <div class="srch-wrap" style="position:relative;flex-shrink:0;">
+    <input class="srch-in" type="search" id="sIn" placeholder="🔍 खोजें…" autocomplete="off">
+  </div>
+  <div class="res-ct" id="resCt">…</div>
 </div>
 
-<!-- PPT SLIDE VIEW -->
+<!-- PPT SPLIT -->
 <div class="ppt" id="ppt">
 
-  <!-- LEFT: detail panel -->
-  <div class="ppt-left">
-    <div class="ppt-detail" id="pptDetail">
-      <!-- JS renders here -->
+  <!-- RIGHT: Photos (top on mobile) -->
+  <div class="ppt-R" id="pptR">
+    <!-- rendered by JS -->
+  </div>
+
+  <!-- LEFT: Detail (bottom on mobile) -->
+  <div class="ppt-L" id="pptL">
+    <div class="drag-handle" id="dragHandle"></div>
+    <div class="ppt-scroll" id="pptDetail">
+      <!-- rendered by JS -->
     </div>
     <div class="ppt-nav">
       <button class="navbtn" id="btnPrev" onclick="nav(-1)">← पिछला</button>
@@ -237,23 +463,18 @@ body{background:var(--bg);color:var(--tx);font-family:"Baloo 2",sans-serif;-webk
     </div>
   </div>
 
-  <!-- RIGHT: photos panel -->
-  <div class="ppt-right" id="pptRight">
-    <!-- JS renders here -->
-  </div>
-
 </div>
 
 <!-- ANALYTICS FAB -->
-<button class="stats-btn" onclick="openDrawer()" title="Analytics">📊</button>
+<button class="fab" onclick="document.getElementById('drawer').classList.add('open')" title="Analytics">📊</button>
 
 <!-- ANALYTICS DRAWER -->
 <div class="drawer" id="drawer">
-  <div class="drawer-bg" onclick="closeDrawer()"></div>
-  <div class="drawer-panel">
+  <div class="dr-bg" onclick="document.getElementById('drawer').classList.remove('open')"></div>
+  <div class="dr-panel">
     <div class="dr-handle"></div>
-    <div class="dr-scroll">
-      <div class="dr-title">📊 Analytics Dashboard</div>
+    <div class="dr-body">
+      <div class="dr-title">📊 Analytics</div>
       <div class="kpis">
         <div class="kpi"><div class="kpi-v">552</div><div class="kpi-l">📸 कार्यक्रम</div></div>
         <div class="kpi"><div class="kpi-v">6,611</div><div class="kpi-l">🖼 Photos</div></div>
@@ -280,20 +501,22 @@ function _load(){
   try{const b=atob(_D),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return JSON.parse(new TextDecoder().decode(u));}catch(e){return[];}
 }
 const K={SR:0,DT:1,JI:2,MA:3,ST:4,NE:5,VI:6,PH:7};
-let ALL=[],FLT=[],idx=0,actJ='',srch='',tx=0;
+let ALL=[],FLT=[],idx=0,actJ='',srch='',txStart=0;
 
+// ── INIT ──
 window.addEventListener('DOMContentLoaded',()=>{
   ALL=_load();
   buildCharts();
   bindFilters();
   applyFilter();
   document.getElementById('hBadge').textContent=ALL.length+' कार्यक्रम';
+  initDrag();
 });
 
-/* CHARTS */
+// ── CHARTS ──
 function buildCharts(){
-  const jD={"मंदसौर": 349, "नीमच": 175, "रतलाम": 68, "भोपाल": 2};
-  const mD={"जन": 17, "फर": 10, "मार्च": 79, "अप्रैल": 373, "मई": 12, "जून": 13, "जुल": 3, "अग": 5, "सित": 6, "अक्त": 2, "नव": 1};
+  const jD={"मंदसौर":349,"नीमच":175,"रतलाम":68,"भोपाल":2};
+  const mD={"जन":17,"फर":10,"मार्च":79,"अप्रैल":373,"मई":12,"जून":13,"जुल":3,"अग":5,"सित":6,"अक्त":2,"नव":1};
   const jM=Math.max(...Object.values(jD));
   document.getElementById('jilaChart').innerHTML=Object.entries(jD).sort((a,b)=>b[1]-a[1]).map(([l,v])=>
     `<div class="brow"><div class="blbl">${l}</div><div class="btrk"><div class="bfil" style="width:${Math.round(v/jM*100)}%"><span class="bnum">${v}</span></div></div></div>`).join('');
@@ -302,7 +525,7 @@ function buildCharts(){
     `<div class="brow"><div class="blbl">${l}</div><div class="btrk"><div class="bfil" style="width:${Math.round(v/mM*100)}%"><span class="bnum">${v}</span></div></div></div>`).join('');
 }
 
-/* FILTERS */
+// ── FILTERS ──
 function bindFilters(){
   document.querySelectorAll('#chips .chip').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('#chips .chip').forEach(x=>x.classList.remove('on'));
@@ -317,52 +540,47 @@ function applyFilter(){
     const ms=!q||[d[K.ST],d[K.MA],d[K.NE],d[K.VI],d[K.JI]].some(f=>f&&f.toLowerCase().includes(q));
     return mj&&ms;
   });
-  document.getElementById('resCt').textContent=FLT.length+' कार्यक्रम';
-  idx=0;
-  render();
+  idx=0; render();
 }
 
-/* NAV */
+// ── NAV ──
 function nav(d){
   idx=Math.max(0,Math.min(idx+d,FLT.length-1));
   render();
 }
 
+// ── RENDER ──
 function thumbUrl(u){return u?u.replace('=w800-h600','=w350-h260'):u}
 
-/* MAIN RENDER */
 function render(){
   if(!FLT.length){
-    document.getElementById('pptDetail').innerHTML='<div style="padding:40px;text-align:center;color:var(--tx3)">🔍 कोई कार्यक्रम नहीं मिला</div>';
-    document.getElementById('pptRight').innerHTML='';
+    document.getElementById('pptDetail').innerHTML='<div style="padding:30px;text-align:center;color:var(--tx3)">🔍 कोई कार्यक्रम नहीं मिला</div>';
+    document.getElementById('pptR').innerHTML='';
+    document.getElementById('resCt').textContent='0';
     return;
   }
-  const d=FLT[idx],tot=FLT.length,cur=idx+1;
-
-  // update nav buttons
+  const d=FLT[idx], tot=FLT.length, cur=idx+1;
   document.getElementById('btnPrev').disabled=idx===0;
   document.getElementById('btnNext').disabled=idx===tot-1;
-  document.getElementById('resCt').textContent=`${cur} / ${tot}`;
+  document.getElementById('resCt').textContent=cur+' / '+tot;
 
   const netas=d[K.NE]?d[K.NE].split('\n').map(n=>n.trim()).filter(Boolean):[];
+  const ph=d[K.PH]||[];
+  const pct=Math.round(cur/tot*100);
 
-  /* ── LEFT ── */
+  // ── DETAIL (LEFT / BOTTOM) ──
   document.getElementById('pptDetail').innerHTML=`
     <div class="ev-pill">
       <div class="ev-circle">${d[K.SR]||cur}</div>
       <span class="ev-pill-txt">कार्यक्रम ${d[K.SR]||cur} / ${tot}</span>
     </div>
-
     <div class="ev-sthan">${esc(d[K.ST])}</div>
-
     <div class="ev-meta">
       <span class="bdg bj">📍 ${esc(d[K.JI])}</span>
       ${d[K.MA]?`<span class="bdg bm">🏛 ${esc(d[K.MA])}</span>`:''}
       <span class="bdg bt">📅 ${d[K.DT]}</span>
     </div>
-
     <div class="ev-div"></div>
-
     ${d[K.VI]?`
     <div class="dblk">
       <div class="dico">📋</div>
@@ -371,93 +589,117 @@ function render(){
         <div class="dval box">${esc(d[K.VI]).replace(/\n/g,'<br>')}</div>
       </div>
     </div>`:''}
-
     ${netas.length?`
     <div class="dblk">
       <div class="dico">👥</div>
       <div class="dbod">
-        <div class="dlbl">उपस्थित वरिष्ठ नेता</div>
-        <div>
-          ${netas.map(n=>`<div class="neta-li"><div class="ndot"></div>${esc(n)}</div>`).join('')}
-        </div>
+        <div class="dlbl">उपस्थित नेता</div>
+        <div>${netas.map(n=>`<div class="neta-li"><div class="ndot"></div>${esc(n)}</div>`).join('')}</div>
       </div>
     </div>`:''}
-
     <div class="dblk">
       <div class="dico">🖼</div>
       <div class="dbod">
         <div class="dlbl">फ़ोटो</div>
-        <div class="dval">${(d[K.PH]||[]).length} फ़ोटो उपलब्ध हैं</div>
+        <div class="dval">${ph.length} उपलब्ध</div>
       </div>
     </div>
   `;
+  document.getElementById('pptDetail').scrollTop=0;
 
-  /* ── RIGHT ── */
-  const ph=d[K.PH]||[];
-  const pct=Math.round(cur/tot*100);
-
+  // ── PHOTOS (RIGHT / TOP) ──
   if(!ph.length){
-    document.getElementById('pptRight').innerHTML=`
-      <div class="ph-bar">
-        <span class="ph-title">📸 फ़ोटो</span>
-        <span class="ph-pill">0</span>
-      </div>
-      <div class="ph-nophoto">इस कार्यक्रम की<br>फ़ोटो उपलब्ध नहीं हैं</div>
+    document.getElementById('pptR').innerHTML=`
+      <div class="ph-bar"><span class="ph-bar-title">📸 फ़ोटो</span><span class="ph-pill">0</span></div>
+      <div class="ph-empty">फ़ोटो उपलब्ध नहीं</div>
       <div class="ph-progbar"><div class="ph-progfill" style="width:${pct}%"></div></div>`;
     return;
   }
 
   const top4=ph.slice(0,4), rest=ph.slice(4);
-  document.getElementById('pptRight').innerHTML=`
+  const gc = top4.length===1?'g1':top4.length===3?'g3':'';
+
+  document.getElementById('pptR').innerHTML=`
     <div class="ph-bar">
-      <span class="ph-title">📸 फ़ोटो</span>
+      <span class="ph-bar-title">📸 फ़ोटो</span>
       <span class="ph-pill">${ph.length}</span>
-      <span class="ph-prog">${cur} / ${tot}</span>
+      <span class="ph-prog-txt">${cur} / ${tot}</span>
     </div>
     <div class="ph-area">
-      <div class="ph-top4">
+      <div class="ph-grid ${gc}">
         ${top4.map(p=>`
-          <div class="phbig" onclick="openLB('${p}')">
+          <div class="ph-cell" onclick="openLB('${p}')">
             <img src="${p}" alt="" onload="this.classList.add('ok')">
-            <div class="phbig-overlay"></div>
-            <span class="zoom-ico">🔍</span>
           </div>`).join('')}
       </div>
       ${rest.length?`
       <div class="ph-strip">
         ${rest.map(p=>`
-          <div class="phsm" onclick="openLB('${p}')">
+          <div class="ph-sm" onclick="openLB('${p}')">
             <img src="${thumbUrl(p)}" alt="" onload="this.classList.add('ok')">
           </div>`).join('')}
       </div>`:''}
     </div>
     <div class="ph-progbar"><div class="ph-progfill" style="width:${pct}%"></div></div>
   `;
-
-  document.getElementById('pptDetail').parentElement.scrollTop=0;
 }
 
-/* LIGHTBOX */
+// ── LIGHTBOX ──
 function openLB(src){if(!src)return;event.stopPropagation();document.getElementById('lbI').src=src;document.getElementById('lb').classList.add('open');}
 function closeLB(){document.getElementById('lb').classList.remove('open');document.getElementById('lbI').src='';}
 
-/* ANALYTICS DRAWER */
-function openDrawer(){document.getElementById('drawer').classList.add('open');}
-function closeDrawer(){document.getElementById('drawer').classList.remove('open');}
+// ── DRAG HANDLE (mobile resize) ──
+function initDrag(){
+  const handle=document.getElementById('dragHandle');
+  const pptL=document.getElementById('pptL');
+  if(!handle||!pptL) return;
 
-/* TOUCH SWIPE on PPT */
-const ppt=document.getElementById('ppt');
-ppt.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-ppt.addEventListener('touchend',e=>{
-  const diff=tx-e.changedTouches[0].clientX;
-  if(Math.abs(diff)>55){nav(diff>0?1:-1);}
+  let startY=0, startH=0, dragging=false;
+
+  const onStart=e=>{
+    const mobile=window.innerWidth<=700;
+    if(!mobile) return;
+    dragging=true;
+    startY=(e.touches?e.touches[0].clientY:e.clientY);
+    startH=pptL.offsetHeight;
+    document.addEventListener('touchmove',onMove,{passive:false});
+    document.addEventListener('mousemove',onMove);
+    document.addEventListener('touchend',onEnd);
+    document.addEventListener('mouseup',onEnd);
+  };
+  const onMove=e=>{
+    if(!dragging) return;
+    e.preventDefault();
+    const y=(e.touches?e.touches[0].clientY:e.clientY);
+    const diff=startY-y; // drag up = bigger panel
+    const newH=Math.min(Math.max(startH+diff, 160), window.innerHeight*0.7);
+    pptL.style.height=newH+'px';
+  };
+  const onEnd=()=>{
+    dragging=false;
+    document.removeEventListener('touchmove',onMove);
+    document.removeEventListener('mousemove',onMove);
+    document.removeEventListener('touchend',onEnd);
+    document.removeEventListener('mouseup',onEnd);
+  };
+
+  handle.addEventListener('touchstart',onStart,{passive:true});
+  handle.addEventListener('mousedown',onStart);
+}
+
+// ── SWIPE (photos panel) ──
+const pptEl=document.getElementById('ppt');
+pptEl.addEventListener('touchstart',e=>{txStart=e.touches[0].clientX;},{passive:true});
+pptEl.addEventListener('touchend',e=>{
+  const diff=txStart-e.changedTouches[0].clientX;
+  if(Math.abs(diff)>60) nav(diff>0?1:-1);
 },{passive:true});
 
-/* KEYBOARD */
+// ── KEYBOARD ──
 document.addEventListener('keydown',e=>{
   if(document.getElementById('lb').classList.contains('open')){if(e.key==='Escape')closeLB();return;}
-  if(e.key==='ArrowRight')nav(1);
-  if(e.key==='ArrowLeft')nav(-1);
+  if(e.key==='ArrowRight') nav(1);
+  if(e.key==='ArrowLeft')  nav(-1);
 });
 
 function esc(t){return t?String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''}
